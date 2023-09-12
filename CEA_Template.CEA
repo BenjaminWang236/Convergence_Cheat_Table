@@ -1,0 +1,12 @@
+[ENABLE]
+ItemGibArray:
+// ID       Quantity Upgrade  AshOfWar
+[INSERT HERE]
+
+// END
+dd 00000000 00000000 00000000 FFFFFFFF
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]
