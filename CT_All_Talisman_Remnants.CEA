@@ -1,0 +1,21 @@
+[ENABLE]
+ItemGibArray:
+// ID       Quantity Upgrade  AshOfWar
+// dd 40000898 00000001 00000000 FFFFFFFF // Prattling Pate "Hello"
+dd 400051d6 00000001 00000000 FFFFFFFF // Combat Remnant
+dd 400051d7 00000001 00000000 FFFFFFFF // Heriloom Remnant
+dd 400051d8 00000001 00000000 FFFFFFFF // Faint Relic Remnant
+dd 400051d9 00000001 00000000 FFFFFFFF // Shimmering Relic Remnant
+dd 400051da 00000001 00000000 FFFFFFFF // Glowing Relic Remnant
+dd 400051db 00000001 00000000 FFFFFFFF // Shining Relic Remnant
+dd 400051dc 00000001 00000000 FFFFFFFF // Enchanted Remnant
+
+// END
+dd 00000000 00000000 00000000 FFFFFFFF
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]
+ItemGibArray+10:
+dd 00000000 00000000 00000000 FFFFFFFF

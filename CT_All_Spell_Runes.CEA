@@ -1,0 +1,104 @@
+[ENABLE]
+ItemGibArray:
+// ID       Quantity Upgrade  AshOfWar
+// dd 40000898 00000001 00000000 FFFFFFFF // Prattling Pate "Hello"
+dd 4000206c 00000001 00000000 FFFFFFFF // Faint rune of beasts
+dd 4000206d 00000001 00000000 FFFFFFFF // Shimmering rune of beasts
+dd 4000206e 00000001 00000000 FFFFFFFF // Glowing rune of beasts
+dd 4000206f 00000001 00000000 FFFFFFFF // Shining rune of beasts
+dd 40002070 00000001 00000000 FFFFFFFF // Radiant rune of beasts
+dd 40002071 00000001 00000000 FFFFFFFF // Faint rune of order
+dd 40002072 00000001 00000000 FFFFFFFF // Shimmering rune of order
+dd 40002073 00000001 00000000 FFFFFFFF // Glowing rune of order
+dd 40002074 00000001 00000000 FFFFFFFF // Shining rune of order
+dd 40002075 00000001 00000000 FFFFFFFF // Radiant rune of order
+dd 40002076 00000001 00000000 FFFFFFFF // Faint rune of fell flame
+dd 40002077 00000001 00000000 FFFFFFFF // Shimmering rune of fell flame
+dd 40002078 00000001 00000000 FFFFFFFF // Glowing rune of fell flame
+dd 40002079 00000001 00000000 FFFFFFFF // Shining rune of fell flame
+dd 4000207a 00000001 00000000 FFFFFFFF // Radiant rune of fell flame
+dd 4000207b 00000001 00000000 FFFFFFFF // Faint rune of lightning
+dd 4000207c 00000001 00000000 FFFFFFFF // Shimmering rune of Lightning
+dd 4000207d 00000001 00000000 FFFFFFFF // Glowing rune of lightning
+dd 4000207e 00000001 00000000 FFFFFFFF // shining rune of lightning
+dd 4000207f 00000001 00000000 FFFFFFFF // radiant rune of lightning
+dd 40002080 00000001 00000000 FFFFFFFF // Faint rune of black flame
+dd 40002081 00000001 00000000 FFFFFFFF // Shimmering rune of black flame
+dd 40002082 00000001 00000000 FFFFFFFF // Glowing rune of black flame
+dd 40002083 00000001 00000000 FFFFFFFF // Shining rune of black flame
+dd 40002084 00000001 00000000 FFFFFFFF // Radiant rune of black flame
+dd 40002085 00000001 00000000 FFFFFFFF // Faint rune of frenzy
+dd 40002086 00000001 00000000 FFFFFFFF // Shimmering rune of frenzy
+dd 40002087 00000001 00000000 FFFFFFFF // Glowing rune of frenzy
+dd 40002088 00000001 00000000 FFFFFFFF // Shining rune of frenzy
+dd 40002089 00000001 00000000 FFFFFFFF // Radiant rune of frenzy
+dd 4000208a 00000001 00000000 FFFFFFFF // Faint rune of bloodflame
+dd 4000208b 00000001 00000000 FFFFFFFF // Shimmering rune of bloodflame
+dd 4000208c 00000001 00000000 FFFFFFFF // Glowing rune of bloodflame
+dd 4000208d 00000001 00000000 FFFFFFFF // Shining rune of bloodflame
+dd 4000208e 00000001 00000000 FFFFFFFF // Radiant rune of bloodflame
+dd 4000208f 00000001 00000000 FFFFFFFF // Faint rune of rot
+dd 40002090 00000001 00000000 FFFFFFFF // Shimmering rune of rot
+dd 40002091 00000001 00000000 FFFFFFFF // Glowing rune of rot
+dd 40002092 00000001 00000000 FFFFFFFF // Shining rune of rot
+dd 40002093 00000001 00000000 FFFFFFFF // Radiant rune of rot
+dd 40002094 00000001 00000000 FFFFFFFF // Faint rune of Ancient
+dd 40002095 00000001 00000000 FFFFFFFF // Shimmering rune of Ancient
+dd 40002096 00000001 00000000 FFFFFFFF // Glowing rune of Ancient
+dd 40002097 00000001 00000000 FFFFFFFF // Shining rune of ancient
+dd 40002098 00000001 00000000 FFFFFFFF // Radiant rune of ancient
+dd 40002099 00000001 00000000 FFFFFFFF // Faint rune of glintstone
+dd 4000209a 00000001 00000000 FFFFFFFF // Shimmering rune of glintstone
+dd 4000209b 00000001 00000000 FFFFFFFF // Glowing rune of glintstone
+dd 4000209c 00000001 00000000 FFFFFFFF // Shinning rune of glintstone
+dd 4000209d 00000001 00000000 FFFFFFFF // Radiant rune of glintstone
+dd 4000209e 00000001 00000000 FFFFFFFF // Faint rune of gravity
+dd 4000209f 00000001 00000000 FFFFFFFF // Shimmering rune of gravity
+dd 400020a0 00000001 00000000 FFFFFFFF // Glowing rune of gravity
+dd 400020a1 00000001 00000000 FFFFFFFF // Shining rune of gravity
+dd 400020a2 00000001 00000000 FFFFFFFF // Radiant rune of gravity
+dd 400020a3 00000001 00000000 FFFFFFFF // Faint rune of the dragonkin
+dd 400020a4 00000001 00000000 FFFFFFFF // Shimmering rune of the dragonkin
+dd 400020a5 00000001 00000000 FFFFFFFF // Glowing rune of the dragonkin
+dd 400020a6 00000001 00000000 FFFFFFFF // Shining rune of the dragonkin
+dd 400020a7 00000001 00000000 FFFFFFFF // Radiant rune of the dragonkin
+dd 400020a8 00000001 00000000 FFFFFFFF // Faint rune of magma
+dd 400020a9 00000001 00000000 FFFFFFFF // Shimmering rune of magma
+dd 400020aa 00000001 00000000 FFFFFFFF // Glowing rune of magma
+dd 400020ab 00000001 00000000 FFFFFFFF // Shining rune of magma
+dd 400020ac 00000001 00000000 FFFFFFFF // Radiant rune of magma
+dd 400020ad 00000001 00000000 FFFFFFFF // Faint rune of Night
+dd 400020ae 00000001 00000000 FFFFFFFF // Shimmering rune of Night
+dd 400020af 00000001 00000000 FFFFFFFF // Glowing rune of Night
+dd 400020b0 00000001 00000000 FFFFFFFF // Shining rune of Night
+dd 400020b1 00000001 00000000 FFFFFFFF // Radiant rune of Night
+dd 400020b2 00000001 00000000 FFFFFFFF // Faint rune of Necromancy
+dd 400020b3 00000001 00000000 FFFFFFFF // Shimmering rune of Necromancy
+dd 400020b4 00000001 00000000 FFFFFFFF // Glowing rune of Necromancy
+dd 400020b5 00000001 00000000 FFFFFFFF // Shining rune of Necromancy
+dd 400020b6 00000001 00000000 FFFFFFFF // Radiant rune of Necromancy
+dd 400020b7 00000001 00000000 FFFFFFFF // Faint rune of the storm
+dd 400020b8 00000001 00000000 FFFFFFFF // Shimmering rune of the storm
+dd 400020b9 00000001 00000000 FFFFFFFF // Glowing rune of the storm
+dd 400020ba 00000001 00000000 FFFFFFFF // Shining rune of the storm
+dd 400020bb 00000001 00000000 FFFFFFFF // Radiant rune of the storm
+dd 400020bc 00000001 00000000 FFFFFFFF // Faint rune of frost
+dd 400020bd 00000001 00000000 FFFFFFFF // Shimmering rune of frost
+dd 400020be 00000001 00000000 FFFFFFFF // Glowing rune of frost
+dd 400020bf 00000001 00000000 FFFFFFFF // Shining rune of frost
+dd 400020c0 00000001 00000000 FFFFFFFF // Radiant rune of frost
+dd 400020c1 00000001 00000000 FFFFFFFF // Faint rune of thorns
+dd 400020c2 00000001 00000000 FFFFFFFF // Shimmering rune of thorns
+dd 400020c3 00000001 00000000 FFFFFFFF // Glowing rune of thorns
+dd 400020c4 00000001 00000000 FFFFFFFF // Shining rune of thorns
+dd 400020c5 00000001 00000000 FFFFFFFF // Radiant rune of thorns
+
+// END
+dd 00000000 00000000 00000000 FFFFFFFF
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]
+ItemGibArray+10:
+dd 00000000 00000000 00000000 FFFFFFFF

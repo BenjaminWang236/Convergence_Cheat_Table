@@ -1,0 +1,170 @@
+Axe Of Epiphany - 14090000
+Axe Of Rust - 15090000
+Crimson Brair-Bough - 12040000
+Sword Of The Cyclops - 3120000
+Axe Of Fell prophecy - 14130000
+Foil Of Caddock - 5080000
+Three Finger Blade - 8090000
+Frozen Twinshards - 10040000
+Celestial Blade - 3110000
+Glintstone Cleaver - 14070000
+Godwyn's Cragblades - 10070000
+Leaden Maul - 11020000
+Midnight Dagger - 1170000
+Mohgwyn Censer - 13050000
+Nomad's Kilij - 7180000
+Quicksilver Rapier- 5090000
+Blade Of Scarlet Boom - 7160000
+Glaive Of The Ancients - 18120000
+Seething Flail - 13060000
+Stone Claws - 22040000
+Sulien's Razors - 10020000
+Surgeons Catlinger - 1120000
+Thorn Of The Guilty - 5070000
+Underworld Greatmace - 12030000
+Sword Of Hadea - 3230000
+Dragonkin Seeker Sword - 2250000
+Molten Sword - 2150000
+Underworld Dagger - 1050000
+Sword Of The Cosmos - 2140000
+
+# Patch v1.3:
+Spear of Tranquility : 16100000
+Zephyr Blades : 2100000
+Gravelstone Arcblades : 4120000
+Lodestone of Gelmir : 23160000
+Yura’s Kanabo : 2030000
+Sigur’s Greatmace : 12070000
+Bloodhound Hookblade : 14150000
+Osian’s Greatsword : 4130000
+Reaver’s Odachi : 18170000
+Palm-Ax Twinblades : 10100000
+War Scythe : 19040000
+Gilded Quarterstaff : 10110000
+Carwyn’s Épée : 6030000
+Godskin Flayer : 7170000
+Guardian Spearblade : 18110000
+
+# Remnants:
+# 20900 to 20904 for Physick Remnants
+# 20950 to 20956 for Talisman Remnants (20951 for Heriloom Remnants)
+Essence Physick Remnant - 20900
+Elemental Physick Remnant - 20901
+Prowess Physick Remnant - 20902
+Invigorating Physick Remnant - 20903
+Enduring Physick Remnant - 20904
+Combat Remnant - 20950
+Heriloom Remnant - 20951
+Faint Relic Remnant - 20952
+Shimmering Relic Remnant - 20953
+Glowing Relic Remnant - 20954
+Shining Relic Remnant - 20955
+Enchanted Remnant - 20956
+
+Faint rune of beasts - 0 - 8300
+Shimmering rune of beasts - 0 - 8301
+Glowing rune of beasts - 0 - 8302
+Shining rune of beasts - 0 - 8303
+Radiant rune of beasts - 0 - 8304
+
+Faint rune of order - 0 - 8305
+Shimmering rune of order - 0 - 8306
+Glowing rune of order - 0 - 8307
+Shining rune of order - 0 - 8308
+Radiant rune of order - 0 - 8309
+
+Faint rune of fell flame - 0 - 8310
+Shimmering rune of fell flame - 0 - 8311
+Glowing rune of fell flame - 0 - 8312
+Shining rune of fell flame - 0 - 8313
+Radiant rune of fell flame - 0 - 8314
+
+Faint rune of lightning - 0 - 8315
+Shimmering rune of Lightning - 0 - 8316
+Glowing rune of lightning - 0 - 8317
+shining rune of lightning - 0 - 8318
+radiant rune of lightning - 0 - 8319
+
+Faint rune of black flame - 0 - 8320
+Shimmering rune of black flame - 0 - 8321 
+Glowing rune of black flame - 0 - 8322
+Shining rune of black flame - 0 - 8323
+Radiant rune of black flame - 0 - 8324
+
+Faint rune of frenzy - 0 - 8325
+Shimmering rune of frenzy - 0 - 8326
+Glowing rune of frenzy - 0 - 8327
+Shining rune of frenzy - 0 - 8328
+Radiant rune of frenzy - 0 - 8329
+
+Faint rune of bloodflame - 0 - 8330
+Shimmering rune of bloodflame - 0 - 8331
+Glowing rune of bloodflame - 0 - 8332
+Shining rune of bloodflame - 0 - 8333
+Radiant rune of bloodflame - 0 - 8334
+
+Faint rune of rot - 0 - 8335
+Shimmering rune of rot - 0 - 8336
+Glowing rune of rot - 0 - 8337
+Shining rune of rot - 0 - 8338
+Radiant rune of rot - 0 - 8339
+
+Faint rune of Ancient - 0 - 8340
+Shimmering rune of Ancient - 0 - 8341
+Glowing rune of Ancient - 0 - 8342
+Shining rune of ancient - 0 - 8343
+Radiant rune of ancient - 0 - 8344
+
+Faint rune of glintstone - 0 - 8345
+Shimmering rune of glintstone - 0 - 8346
+Glowing rune of glintstone - 0 - 8347
+Shinning rune of glintstone - 0 - 8348
+Radiant rune of glintstone - 0 - 8349
+
+Faint rune of gravity - 0 - 8350
+Shimmering rune of gravity - 0 - 8351
+Glowing rune of gravity - 0 - 8352
+Shining rune of gravity - 0 - 8353
+Radiant rune of gravity - 0 - 8354
+
+Faint rune of the dragonkin - 0 - 8355
+Shimmering rune of the dragonkin - 0 - 8356
+Glowing rune of the dragonkin - 0 - 8357
+Shining rune of the dragonkin - 0 - 8358
+Radiant rune of the dragonkin - 0 - 8359
+
+Faint rune of magma - 0 - 8360
+Shimmering rune of magma - 0 - 8361
+Glowing rune of magma - 0 - 8362
+Shining rune of magma - 0 - 8363
+Radiant rune of magma - 0 - 8364
+
+Faint rune of Night - 0 - 8365
+Shimmering rune of Night - 0 - 8366
+Glowing rune of Night - 0 - 8367
+Shining rune of Night - 0 - 8368
+Radiant rune of Night - 0 - 8369
+
+Faint rune of Necromancy - 0 - 8370
+Shimmering rune of Necromancy - 0 - 8371
+Glowing rune of Necromancy - 0 - 8372
+Shining rune of Necromancy - 0 - 8373
+Radiant rune of Necromancy - 0 - 8374
+
+Faint rune of the storm - 0 - 8375
+Shimmering rune of the storm - 0 - 8376
+Glowing rune of the storm - 0 - 8377
+Shining rune of the storm - 0 - 8378
+Radiant rune of the storm - 0 - 8379
+
+Faint rune of frost - 0 - 8380
+Shimmering rune of frost - 0 - 8381 
+Glowing rune of frost - 0 - 8382
+Shining rune of frost - 0 - 8383
+Radiant rune of frost - 0 - 8384
+
+Faint rune of thorns - 0 - 8385
+Shimmering rune of thorns  - 0 - 8386 
+Glowing rune of thorns - 0 - 8387
+Shining rune of thorns - 0 - 8388
+Radiant rune of thorns - 0 - 8389

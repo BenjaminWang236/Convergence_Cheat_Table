@@ -1,0 +1,145 @@
+dd 00d6ff10 00000001 FFFF0000 FFFFFFFF // Axe Of Epiphany
+dd 00e64150 00000001 FFFF0000 FFFFFFFF // Axe Of Rust
+dd 00b7b740 00000001 FFFF0000 FFFFFFFF // Crimson Brair-Bough
+dd 002f9b80 00000001 FFFF0000 FFFFFFFF // Sword Of The Cyclops
+dd 00d79b50 00000001 FFFF0000 FFFFFFFF // Axe Of Fell prophecy
+dd 004d83c0 00000001 FFFF0000 FFFFFFFF // Foil Of Caddock
+dd 007b7190 00000001 FFFF0000 FFFFFFFF // Three Finger Blade
+dd 009932c0 00000001 FFFF0000 FFFFFFFF // Frozen Twinshards
+dd 002f7470 00000001 FFFF0000 FFFFFFFF // Celestial Blade
+dd 00d6b0f0 00000001 FFFF0000 FFFFFFFF // Glintstone Cleaver
+dd 0099a7f0 00000001 FFFF0000 FFFFFFFF // Godwyn's Cragblades
+dd 00a826e0 00000001 FFFF0000 FFFFFFFF // Leaden Maul
+dd 0011da50 00000001 FFFF0000 FFFFFFFF // Midnight Dagger
+dd 00c72090 00000001 FFFF0000 FFFFFFFF // Mohgwyn Censer
+dd 006d8ee0 00000001 FFFF0000 FFFFFFFF // Nomad's Kilij
+dd 006d40c0 00000001 FFFF0000 FFFFFFFF // Blade Of Scarlet Boom
+dd 01147d40 00000001 FFFF0000 FFFFFFFF // Glaive Of The Ancients
+dd 00c747a0 00000001 FFFF0000 FFFFFFFF // Seething Flail
+dd 01504dc0 00000001 FFFF0000 FFFFFFFF // Stone Claws
+dd 0098e4a0 00000001 FFFF0000 FFFFFFFF // Sulien's Razors
+dd 00111700 00000001 FFFF0000 FFFFFFFF // Surgeons Catlinger
+dd 004d5cb0 00000001 FFFF0000 FFFFFFFF // Thorn Of The Guilty
+dd 00b79030 00000001 FFFF0000 FFFFFFFF // Underworld Greatmace
+dd 00314930 00000001 FFFF0000 FFFFFFFF // Sword Of Hadea
+dd 00225510 00000001 FFFF0000 FFFFFFFF // Dragonkin Seeker Sword
+dd 0020ce70 00000001 FFFF0000 FFFFFFFF // Molten Sword
+dd 00100590 00000001 FFFF0000 FFFFFFFF // Underworld Dagger
+dd 0020a760 00000001 FFFF0000 FFFFFFFF // Sword Of The Cosmos
+dd 00f5aaa0 00000001 FFFF0000 FFFFFFFF // Spear of Tranquility
+dd 00200b20 00000001 FFFF0000 FFFFFFFF // Zephyr Blades
+dd 003eddc0 00000001 FFFF0000 FFFFFFFF // Gravelstone Arcblades
+dd 016164c0 00000001 FFFF0000 FFFFFFFF // Lodestone of Gelmir
+dd 001ef9b0 00000001 FFFF0000 FFFFFFFF // Yura’s Kanabo
+dd 00b82c70 00000001 FFFF0000 FFFFFFFF // Sigur’s Greatmace
+dd 00d7e970 00000001 FFFF0000 FFFFFFFF // Bloodhound Hookblade
+dd 003f04d0 00000001 FFFF0000 FFFFFFFF // Osian’s Greatsword
+dd 01154090 00000001 FFFF0000 FFFFFFFF // Reaver’s Odachi
+dd 009a1d20 00000001 FFFF0000 FFFFFFFF // Palm-Ax Twinblades
+dd 01228700 00000001 FFFF0000 FFFFFFFF // War Scythe
+dd 009a4430 00000001 FFFF0000 FFFFFFFF // Gilded Quarterstaff
+dd 005c02b0 00000001 FFFF0000 FFFFFFFF // Carwyn’s Épée
+dd 006d67d0 00000001 FFFF0000 FFFFFFFF // Godskin Flayer
+dd 01145630 00000001 FFFF0000 FFFFFFFF // Guardian Spearblade
+dd 000051a4 00000001 FFFF0000 FFFFFFFF // Essence Physick Remnant
+dd 000051a5 00000001 FFFF0000 FFFFFFFF // Elemental Physick Remnant
+dd 000051a6 00000001 FFFF0000 FFFFFFFF // Prowess Physick Remnant
+dd 000051a7 00000001 FFFF0000 FFFFFFFF // Invigorating Physick Remnant
+dd 000051a8 00000001 FFFF0000 FFFFFFFF // Enduring Physick Remnant
+dd 000051d6 00000001 FFFF0000 FFFFFFFF // Combat Remnant
+dd 000051d7 00000001 FFFF0000 FFFFFFFF // Heriloom Remnant
+dd 000051d8 00000001 FFFF0000 FFFFFFFF // Faint Relic Remnant
+dd 000051d9 00000001 FFFF0000 FFFFFFFF // Shimmering Relic Remnant
+dd 000051da 00000001 FFFF0000 FFFFFFFF // Glowing Relic Remnant
+dd 000051db 00000001 FFFF0000 FFFFFFFF // Shining Relic Remnant
+dd 000051dc 00000001 FFFF0000 FFFFFFFF // Enchanted Remnant
+dd 0000206c 00000001 FFFF0000 FFFFFFFF // Faint rune of beasts
+dd 0000206d 00000001 FFFF0000 FFFFFFFF // Shimmering rune of beasts
+dd 0000206e 00000001 FFFF0000 FFFFFFFF // Glowing rune of beasts
+dd 0000206f 00000001 FFFF0000 FFFFFFFF // Shining rune of beasts
+dd 00002070 00000001 FFFF0000 FFFFFFFF // Radiant rune of beasts
+dd 00002071 00000001 FFFF0000 FFFFFFFF // Faint rune of order
+dd 00002072 00000001 FFFF0000 FFFFFFFF // Shimmering rune of order
+dd 00002073 00000001 FFFF0000 FFFFFFFF // Glowing rune of order
+dd 00002074 00000001 FFFF0000 FFFFFFFF // Shining rune of order
+dd 00002075 00000001 FFFF0000 FFFFFFFF // Radiant rune of order
+dd 00002076 00000001 FFFF0000 FFFFFFFF // Faint rune of fell flame
+dd 00002077 00000001 FFFF0000 FFFFFFFF // Shimmering rune of fell flame
+dd 00002078 00000001 FFFF0000 FFFFFFFF // Glowing rune of fell flame
+dd 00002079 00000001 FFFF0000 FFFFFFFF // Shining rune of fell flame
+dd 0000207a 00000001 FFFF0000 FFFFFFFF // Radiant rune of fell flame
+dd 0000207b 00000001 FFFF0000 FFFFFFFF // Faint rune of lightning
+dd 0000207c 00000001 FFFF0000 FFFFFFFF // Shimmering rune of Lightning
+dd 0000207d 00000001 FFFF0000 FFFFFFFF // Glowing rune of lightning
+dd 0000207e 00000001 FFFF0000 FFFFFFFF // shining rune of lightning
+dd 0000207f 00000001 FFFF0000 FFFFFFFF // radiant rune of lightning
+dd 00002080 00000001 FFFF0000 FFFFFFFF // Faint rune of black flame
+dd 00002081 00000001 FFFF0000 FFFFFFFF // Shimmering rune of black flame
+dd 00002082 00000001 FFFF0000 FFFFFFFF // Glowing rune of black flame
+dd 00002083 00000001 FFFF0000 FFFFFFFF // Shining rune of black flame
+dd 00002084 00000001 FFFF0000 FFFFFFFF // Radiant rune of black flame
+dd 00002085 00000001 FFFF0000 FFFFFFFF // Faint rune of frenzy
+dd 00002086 00000001 FFFF0000 FFFFFFFF // Shimmering rune of frenzy
+dd 00002087 00000001 FFFF0000 FFFFFFFF // Glowing rune of frenzy
+dd 00002088 00000001 FFFF0000 FFFFFFFF // Shining rune of frenzy
+dd 00002089 00000001 FFFF0000 FFFFFFFF // Radiant rune of frenzy
+dd 0000208a 00000001 FFFF0000 FFFFFFFF // Faint rune of bloodflame
+dd 0000208b 00000001 FFFF0000 FFFFFFFF // Shimmering rune of bloodflame
+dd 0000208c 00000001 FFFF0000 FFFFFFFF // Glowing rune of bloodflame
+dd 0000208d 00000001 FFFF0000 FFFFFFFF // Shining rune of bloodflame
+dd 0000208e 00000001 FFFF0000 FFFFFFFF // Radiant rune of bloodflame
+dd 0000208f 00000001 FFFF0000 FFFFFFFF // Faint rune of rot
+dd 00002090 00000001 FFFF0000 FFFFFFFF // Shimmering rune of rot
+dd 00002091 00000001 FFFF0000 FFFFFFFF // Glowing rune of rot
+dd 00002092 00000001 FFFF0000 FFFFFFFF // Shining rune of rot
+dd 00002093 00000001 FFFF0000 FFFFFFFF // Radiant rune of rot
+dd 00002094 00000001 FFFF0000 FFFFFFFF // Faint rune of Ancient
+dd 00002095 00000001 FFFF0000 FFFFFFFF // Shimmering rune of Ancient
+dd 00002096 00000001 FFFF0000 FFFFFFFF // Glowing rune of Ancient
+dd 00002097 00000001 FFFF0000 FFFFFFFF // Shining rune of ancient
+dd 00002098 00000001 FFFF0000 FFFFFFFF // Radiant rune of ancient
+dd 00002099 00000001 FFFF0000 FFFFFFFF // Faint rune of glintstone
+dd 0000209a 00000001 FFFF0000 FFFFFFFF // Shimmering rune of glintstone
+dd 0000209b 00000001 FFFF0000 FFFFFFFF // Glowing rune of glintstone
+dd 0000209c 00000001 FFFF0000 FFFFFFFF // Shinning rune of glintstone
+dd 0000209d 00000001 FFFF0000 FFFFFFFF // Radiant rune of glintstone
+dd 0000209e 00000001 FFFF0000 FFFFFFFF // Faint rune of gravity
+dd 0000209f 00000001 FFFF0000 FFFFFFFF // Shimmering rune of gravity
+dd 000020a0 00000001 FFFF0000 FFFFFFFF // Glowing rune of gravity
+dd 000020a1 00000001 FFFF0000 FFFFFFFF // Shining rune of gravity
+dd 000020a2 00000001 FFFF0000 FFFFFFFF // Radiant rune of gravity
+dd 000020a3 00000001 FFFF0000 FFFFFFFF // Faint rune of the dragonkin
+dd 000020a4 00000001 FFFF0000 FFFFFFFF // Shimmering rune of the dragonkin
+dd 000020a5 00000001 FFFF0000 FFFFFFFF // Glowing rune of the dragonkin
+dd 000020a6 00000001 FFFF0000 FFFFFFFF // Shining rune of the dragonkin
+dd 000020a7 00000001 FFFF0000 FFFFFFFF // Radiant rune of the dragonkin
+dd 000020a8 00000001 FFFF0000 FFFFFFFF // Faint rune of magma
+dd 000020a9 00000001 FFFF0000 FFFFFFFF // Shimmering rune of magma
+dd 000020aa 00000001 FFFF0000 FFFFFFFF // Glowing rune of magma
+dd 000020ab 00000001 FFFF0000 FFFFFFFF // Shining rune of magma
+dd 000020ac 00000001 FFFF0000 FFFFFFFF // Radiant rune of magma
+dd 000020ad 00000001 FFFF0000 FFFFFFFF // Faint rune of Night
+dd 000020ae 00000001 FFFF0000 FFFFFFFF // Shimmering rune of Night
+dd 000020af 00000001 FFFF0000 FFFFFFFF // Glowing rune of Night
+dd 000020b0 00000001 FFFF0000 FFFFFFFF // Shining rune of Night
+dd 000020b1 00000001 FFFF0000 FFFFFFFF // Radiant rune of Night
+dd 000020b2 00000001 FFFF0000 FFFFFFFF // Faint rune of Necromancy
+dd 000020b3 00000001 FFFF0000 FFFFFFFF // Shimmering rune of Necromancy
+dd 000020b4 00000001 FFFF0000 FFFFFFFF // Glowing rune of Necromancy
+dd 000020b5 00000001 FFFF0000 FFFFFFFF // Shining rune of Necromancy
+dd 000020b6 00000001 FFFF0000 FFFFFFFF // Radiant rune of Necromancy
+dd 000020b7 00000001 FFFF0000 FFFFFFFF // Faint rune of the storm
+dd 000020b8 00000001 FFFF0000 FFFFFFFF // Shimmering rune of the storm
+dd 000020b9 00000001 FFFF0000 FFFFFFFF // Glowing rune of the storm
+dd 000020ba 00000001 FFFF0000 FFFFFFFF // Shining rune of the storm
+dd 000020bb 00000001 FFFF0000 FFFFFFFF // Radiant rune of the storm
+dd 000020bc 00000001 FFFF0000 FFFFFFFF // Faint rune of frost
+dd 000020bd 00000001 FFFF0000 FFFFFFFF // Shimmering rune of frost
+dd 000020be 00000001 FFFF0000 FFFFFFFF // Glowing rune of frost
+dd 000020bf 00000001 FFFF0000 FFFFFFFF // Shining rune of frost
+dd 000020c0 00000001 FFFF0000 FFFFFFFF // Radiant rune of frost
+dd 000020c1 00000001 FFFF0000 FFFFFFFF // Faint rune of thorns
+dd 000020c2 00000001 FFFF0000 FFFFFFFF // Shimmering rune of thorns 
+dd 000020c3 00000001 FFFF0000 FFFFFFFF // Glowing rune of thorns
+dd 000020c4 00000001 FFFF0000 FFFFFFFF // Shining rune of thorns
+dd 000020c5 00000001 FFFF0000 FFFFFFFF // Radiant rune of thorns
