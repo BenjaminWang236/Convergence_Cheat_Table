@@ -1,0 +1,56 @@
+[ENABLE]
+ItemGibArray:
+// ID       Quantity Upgrade  AshOfWar
+// dd 000F4240 00000001 FFFF0000 FFFFFFFF // Dagger
+dd 00100590 00000001 FFFF0000 FFFFFFFF // underworld dagger
+dd 00111700 00000001 FFFF0000 FFFFFFFF // surgeons catlinger
+dd 0011da50 00000001 FFFF0000 FFFFFFFF // midnight dagger
+dd 001ef9b0 00000001 FFFF0000 FFFFFFFF // yura’s kanabo
+dd 00200b20 00000001 FFFF0000 FFFFFFFF // zephyr blades
+dd 0020a760 00000001 FFFF0000 FFFFFFFF // sword of the cosmos
+dd 0020ce70 00000001 FFFF0000 FFFFFFFF // molten sword
+dd 00225510 00000001 FFFF0000 FFFFFFFF // dragonkin seeker sword
+dd 002f7470 00000001 FFFF0000 FFFFFFFF // celestial blade
+dd 002f9b80 00000001 FFFF0000 FFFFFFFF // sword of the cyclops
+dd 00314930 00000001 FFFF0000 FFFFFFFF // sword of hadea
+dd 003eddc0 00000001 FFFF0000 FFFFFFFF // gravelstone arcblades
+dd 003f04d0 00000001 FFFF0000 FFFFFFFF // osian’s greatsword
+dd 004d5cb0 00000001 FFFF0000 FFFFFFFF // thorn of the guilty
+dd 004d83c0 00000001 FFFF0000 FFFFFFFF // foil of caddock
+dd 004daad0 00000001 FFFF0000 FFFFFFFF // quicksilver rapier
+dd 005c02b0 00000001 FFFF0000 FFFFFFFF // carwyn’s épée
+dd 006d40c0 00000001 FFFF0000 FFFFFFFF // blade of scarlet boom
+dd 006d67d0 00000001 FFFF0000 FFFFFFFF // godskin flayer
+dd 006d8ee0 00000001 FFFF0000 FFFFFFFF // nomad's kilij
+dd 007b7190 00000001 FFFF0000 FFFFFFFF // three finger blade
+dd 0098e4a0 00000001 FFFF0000 FFFFFFFF // sulien's razors
+dd 009932c0 00000001 FFFF0000 FFFFFFFF // frozen twinshards
+dd 0099a7f0 00000001 FFFF0000 FFFFFFFF // godwyn's cragblades
+dd 009a1d20 00000001 FFFF0000 FFFFFFFF // palm-ax twinblades
+dd 009a4430 00000001 FFFF0000 FFFFFFFF // gilded quarterstaff
+dd 00a826e0 00000001 FFFF0000 FFFFFFFF // leaden maul
+dd 00b79030 00000001 FFFF0000 FFFFFFFF // underworld greatmace
+dd 00b7b740 00000001 FFFF0000 FFFFFFFF // crimson brair-bough
+dd 00b82c70 00000001 FFFF0000 FFFFFFFF // sigur’s greatmace
+dd 00c72090 00000001 FFFF0000 FFFFFFFF // mohgwyn censer
+dd 00c747a0 00000001 FFFF0000 FFFFFFFF // seething flail
+dd 00d6b0f0 00000001 FFFF0000 FFFFFFFF // glintstone cleaver
+dd 00d6ff10 00000001 FFFF0000 FFFFFFFF // axe of epiphany
+dd 00d79b50 00000001 FFFF0000 FFFFFFFF // axe of fell prophecy
+dd 00d7e970 00000001 FFFF0000 FFFFFFFF // bloodhound hookblade
+dd 00e64150 00000001 FFFF0000 FFFFFFFF // axe of rust
+dd 00f5aaa0 00000001 FFFF0000 FFFFFFFF // spear of tranquility
+dd 01145630 00000001 FFFF0000 FFFFFFFF // guardian spearblade
+dd 01147d40 00000001 FFFF0000 FFFFFFFF // glaive of the ancients
+dd 01154090 00000001 FFFF0000 FFFFFFFF // reaver’s odachi
+dd 01228700 00000001 FFFF0000 FFFFFFFF // war scythe
+dd 01504dc0 00000001 FFFF0000 FFFFFFFF // stone claws
+dd 016164c0 00000001 FFFF0000 FFFFFFFF // lodestone of gelmir
+
+// END
+dd 00000000 00000000 00000000 FFFFFFFF
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]

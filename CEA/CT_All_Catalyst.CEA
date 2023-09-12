@@ -1,0 +1,48 @@
+[ENABLE]
+ItemGibArray:
+// ID       Quantity Upgrade  AshOfWar
+// dd 000F4240 00000001 FFFF0000 FFFFFFFF // Dagger
+dd 01f78a40 00000001 FFFF0000 FFFFFFFF // glintstone staff
+dd 01f84d90 00000001 FFFF0000 FFFFFFFF // gelmir lava staff
+dd 01f874a0 00000001 FFFF0000 FFFFFFFF // blighted branch
+dd 01f95f00 00000001 FFFF0000 FFFFFFFF // digger staff
+dd 01fa4960 00000001 FFFF0000 FFFFFFFF // prince of death staff
+dd 01fa9780 00000001 FFFF0000 FFFFFFFF // dragon student staff
+dd 01fb0cb0 00000001 FFFF0000 FFFFFFFF // azur's staff
+dd 01fb33c0 00000001 FFFF0000 FFFFFFFF // lusat's night staff
+dd 01fb5ad0 00000001 FFFF0000 FFFFFFFF // meteorite staff
+dd 01fb81e0 00000001 FFFF0000 FFFFFFFF // staff of the guilty
+dd 01fbd000 00000001 FFFF0000 FFFFFFFF // staff of loss
+dd 01fbf710 00000001 FFFF0000 FFFFFFFF // dragonkin scepter
+dd 01fc1e20 00000001 FFFF0000 FFFFFFFF // ranni's staff
+dd 01fc4530 00000001 FFFF0000 FFFFFFFF // snow witch staff
+dd 01fc6c40 00000001 FFFF0000 FFFFFFFF // staff of briar
+dd 01fc9350 00000001 FFFF0000 FFFFFFFF // lavastone staff
+dd 01fcba60 00000001 FFFF0000 FFFFFFFF // tempestcaller's staff
+dd 01fce170 00000001 FFFF0000 FFFFFFFF // stormcaller staff
+dd 0206cc80 00000001 FFFF0000 FFFFFFFF // finger seal
+dd 0206f390 00000001 FFFF0000 FFFFFFFF // godslayer's seal
+dd 02071aa0 00000001 FFFF0000 FFFFFFFF // giant's seal
+dd 020741b0 00000001 FFFF0000 FFFFFFFF // gravel stone seal
+dd 020768c0 00000001 FFFF0000 FFFFFFFF // clawmark seal
+dd 0207b6e0 00000001 FFFF0000 FFFFFFFF // golden order seal
+dd 02082c10 00000001 FFFF0000 FFFFFFFF // frenzied flame seal
+dd 02085320 00000001 FFFF0000 FFFFFFFF // godskin seal
+dd 02087a30 00000001 FFFF0000 FFFFFFFF // fire monk seal
+dd 0208a140 00000001 FFFF0000 FFFFFFFF // dragon cult seal
+dd 0208c850 00000001 FFFF0000 FFFFFFFF // earthbreaker seal
+dd 0208ef60 00000001 FFFF0000 FFFFFFFF // fingerprint seal
+dd 02091670 00000001 FFFF0000 FFFFFFFF // mohgwyn seal
+dd 02093d80 00000001 FFFF0000 FFFFFFFF // war surgeon seal
+dd 02096490 00000001 FFFF0000 FFFFFFFF // seal of rot
+dd 02098ba0 00000001 FFFF0000 FFFFFFFF // pest seal
+dd 0209b2b0 00000001 FFFF0000 FFFFFFFF // spiritshaper seal
+dd 0209d9c0 00000001 FFFF0000 FFFFFFFF // mystic seal
+
+// END
+dd 00000000 00000000 00000000 FFFFFFFF
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]

@@ -1,6 +1,8 @@
 [ENABLE]
 ItemGibArray:
 // ID       Quantity Upgrade  AshOfWar
+// dd 000F4240 00000001 FFFF0000 FFFFFFFF // Dagger
+// dd 40000898 00000001 00000000 FFFFFFFF // Prattling Pate "Hello"
 [INSERT HERE]
 
 // END
