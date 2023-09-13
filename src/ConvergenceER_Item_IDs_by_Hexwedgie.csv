@@ -200,15 +200,15 @@ note,1049390050,path of the nox oracle
 note,1049390051,weapons for the nox oracle
 note,1050380030,path of the servant of rot
 note,1050380031,weapons for the servant of rot
-physick,20900,essence
-physick,20901,elemental
-physick,20902,prowess
-physick,20903,invigorating
-physick,20904,enduring
-talisman,20952,faint
-talisman,20953,shimmering
-talisman,20954,glowing
-talisman,20955,shining
+physick,20900,essence physick remnant
+physick,20901,elemental physick remnant
+physick,20902,prowess physick remnant
+physick,20903,invigorating physick remnant
+physick,20904,enduring physick remnant
+talisman,20952,faint relic remnant
+talisman,20953,shimmering relic remnant
+talisman,20954,glowing relic remnant
+talisman,20955,shining relic remnant
 rune,8300,faint rune of beasts
 rune,8301,shimmering rune of beasts
 rune,8302,glowing rune of beasts
@@ -308,9 +308,9 @@ stone,10164,large somber stone
 stone,10165,great somber stone
 stone,10167,colossal somber stone
 stone,10168,dragon somber stone
-talisman,20950,combat
-talisman,20951,heirloom
-talisman,20956,enchanted
+talisman,20950,combat remnant
+talisman,20951,heirloom remnant
+talisman,20956,enchanted remnant
 weapon,1050000,underworld dagger
 weapon,1120000,surgeons catlinger
 weapon,1170000,midnight dagger

@@ -1,0 +1,9 @@
+dd 40002775 00000001 00000000 FFFFFFFF // smithing stone
+dd 40002779 00000001 00000000 FFFFFFFF // large smithing stone
+dd 4000277b 00000001 00000000 FFFFFFFF // great smithing stone
+dd 4000279c 00000001 00000000 FFFFFFFF // dragon smithing stone
+dd 400027b0 00000001 00000000 FFFFFFFF // somber stone
+dd 400027b4 00000001 00000000 FFFFFFFF // large somber stone
+dd 400027b5 00000001 00000000 FFFFFFFF // great somber stone
+dd 400027b7 00000001 00000000 FFFFFFFF // colossal somber stone
+dd 400027b8 00000001 00000000 FFFFFFFF // dragon somber stone
