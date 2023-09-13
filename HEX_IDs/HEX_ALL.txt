@@ -1,0 +1,295 @@
+40001f7c:keystone 1
+40001f7d:keystone 2
+40001f7e:keystone 3
+40001f7f:keystone 4
+40001f80:keystone 5
+4000206c:faint rune of beasts
+4000206d:shimmering rune of beasts
+4000206e:glowing rune of beasts
+4000206f:shining rune of beasts
+40002070:radiant rune of beasts
+40002071:faint rune of order
+40002072:shimmering rune of order
+40002073:glowing rune of order
+40002074:shining rune of order
+40002075:radiant rune of order
+40002076:faint rune of fell flame
+40002077:shimmering rune of fell flame
+40002078:glowing rune of fell flame
+40002079:shining rune of fell flame
+4000207a:radiant rune of fell flame
+4000207b:faint rune of lightning
+4000207c:shimmering rune of lightning
+4000207d:glowing rune of lightning
+4000207e:shining rune of lightning
+4000207f:radiant rune of lightning
+40002080:faint rune of black flame
+40002081:shimmering rune of black flame
+40002082:glowing rune of black flame
+40002083:shining rune of black flame
+40002084:radiant rune of black flame
+40002085:faint rune of frenzy
+40002086:shimmering rune of frenzy
+40002087:glowing rune of frenzy
+40002088:shining rune of frenzy
+40002089:radiant rune of frenzy
+4000208a:faint rune of bloodflame
+4000208b:shimmering rune of bloodflame
+4000208c:glowing rune of bloodflame
+4000208d:shining rune of bloodflame
+4000208e:radiant rune of bloodflame
+4000208f:faint rune of rot
+40002090:shimmering rune of rot
+40002091:glowing rune of rot
+40002092:shining rune of rot
+40002093:radiant rune of rot
+40002094:faint rune of ancient
+40002095:shimmering rune of ancient
+40002096:glowing rune of ancient
+40002097:shining rune of ancient
+40002098:radiant rune of ancient
+40002099:faint rune of glintstone
+4000209a:shimmering rune of glintstone
+4000209b:glowing rune of glintstone
+4000209c:shinning rune of glintstone
+4000209d:radiant rune of glintstone
+4000209e:faint rune of gravity
+4000209f:shimmering rune of gravity
+400020a0:glowing rune of gravity
+400020a1:shining rune of gravity
+400020a2:radiant rune of gravity
+400020a3:faint rune of the dragonkin
+400020a4:shimmering rune of the dragonkin
+400020a5:glowing rune of the dragonkin
+400020a6:shining rune of the dragonkin
+400020a7:radiant rune of the dragonkin
+400020a8:faint rune of magma
+400020a9:shimmering rune of magma
+400020aa:glowing rune of magma
+400020ab:shining rune of magma
+400020ac:radiant rune of magma
+400020ad:faint rune of night
+400020ae:shimmering rune of night
+400020af:glowing rune of night
+400020b0:shining rune of night
+400020b1:radiant rune of night
+400020b2:faint rune of necromancy
+400020b3:shimmering rune of necromancy
+400020b4:glowing rune of necromancy
+400020b5:shining rune of necromancy
+400020b6:radiant rune of necromancy
+400020b7:faint rune of the storm
+400020b8:shimmering rune of the storm
+400020b9:glowing rune of the storm
+400020ba:shining rune of the storm
+400020bb:radiant rune of the storm
+400020bc:faint rune of frost
+400020bd:shimmering rune of frost
+400020be:glowing rune of frost
+400020bf:shining rune of frost
+400020c0:radiant rune of frost
+400020c1:faint rune of thorns
+400020c2:shimmering rune of thorns
+400020c3:glowing rune of thorns
+400020c4:shining rune of thorns
+400020c5:radiant rune of thorns
+400051a4:essence
+400051a5:elemental
+400051a6:prowess
+400051a7:invigorating
+400051a8:enduring
+400051d6:combat
+400051d7:heirloom
+400051d8:faint
+400051d9:shimmering
+400051da:glowing
+400051db:shining
+400051dc:enchanted
+10035c28:page gloves
+1003d158:nomadic merchant gloves
+10047950:night maiden bracelets
+100479b4:night maiden greaves
+10049890:shaman bracers
+10049bb0:mystic circlet
+10049c78:mystic bracelets
+1004e2c8:sanguine noble bracelets
+10066c88:vulgar militia hood
+100976a8:prophet manacles
+100a6428:war surgeon hood
+100b5658:viridian hood
+100c35c8:festive gloves
+100c362c:festive trousers
+100cc588:glint mage cap
+100cc5ec:glint mage robe
+100cc650:raya lucarian gloves
+100cc6b4:raya lucarian trousers
+100d9558:prisoner chains
+100ea6c8:consort's gloves
+100eb6cc:bloodsoaked wraps
+100f6a18:snow witch gloves
+00100590:underworld dagger
+00111700:surgeons catlinger
+10116520:vanguard helm
+10116584:vanguard armor
+101165e8:vanguard gauntlets
+1011664c:vanguard greaves
+10118c30:marksman hat
+10118c94:marksman tabard
+10118cf8:marksman gauntlets
+10118d5c:marksman boots
+1011b340:berserker leather helm
+1011b3a4:berserker battlewear
+1011b408:berserker bracers
+1011b46c:berserker legwraps
+1011da50:dreadnought helm
+0011da50:midnight dagger
+1011dab4:dreadnought armor
+1011db18:dreadnought gauntlets
+1011db7c:dreadnought greaves
+10120160:sellsword helm
+101201c4:sellsword armor
+10120228:sellsword gloves
+1012028c:sellsword boots
+10122870:starcaller hood
+101228d4:starcaller garb
+10122938:starcaller wraps
+1012299c:starcaller boots
+10124f80:underworld hood
+10124fe4:underworld robe
+10125048:underworld bracers
+101250ac:underworld boots
+10127690:volcanist hat
+101276f4:volcanist robe
+10127758:volcanist gloves
+101277bc:volcanist boots
+10129da0:stormcaller helm
+10129e04:stormcaller armor
+10129e68:stormcaller gauntlets
+10129ecc:stormcaller greaves
+1012c4b0:nox oracle headband
+1012c514:nox oracle armor
+1012c578:nox oracle gloves
+1012c5dc:nox oracle skirt
+1012ebc0:necromancer hood
+1012ec24:necromancer robe
+1012ec88:necromancer gloves
+1012ecec:necromancer trousers
+101312d0:frost witch hat
+10131334:frost witch robe
+10131398:frost witch wraps
+101313fc:frost witch skirt
+101339e0:heretic's collar
+10133a44:heretic's rags
+10133aa8:heretic's wraps
+10133b0c:heretic's boots
+1013fd30:fundamentalist crown
+1013fd94:fundamentalist breastplate
+1013fdf8:fundamentalist bracers
+1013fe5c:fundamentalist greaves
+10142440:dragon cult helm
+101424a4:dragon cult armor
+10142508:dragon cult gauntlets
+1014256c:dragon cult greaves
+10144b50:zealot hood
+10144bb4:zealot robe
+10144c18:zealot wraps
+10144c7c:zealot boots
+10147260:hood of rot
+101472c4:coat of rot
+10147328:gloves of rot
+1014738c:boots of rot
+10149970:frenzied maiden blindfold
+101499d4:frenzied maiden robe
+10149a38:frenzied maiden gloves
+10149a9c:frenzied maiden boots
+1014c080:dreamer's horned headband
+1014c0e4:dreamer's rags
+1014c148:dreamer's wraps
+1014c1ac:dreamer's skirt
+1014e790:beast clergy hood
+1014e7f4:beast clergy robe
+1014e858:beast clergy bracers
+1014e8bc:beast clergy boots
+101b9e50:mausoleum knight helm
+101d9ae8:fia's bracelets
+101d9b4c:fia's trousers
+101dc130:millicent's headband
+101e5e38:high page gloves
+101e5e9c:high page trousers
+001ef9b0:yura’s kanabo
+00200b20:zephyr blades
+0020a760:sword of the cosmos
+0020ce70:molten sword
+00225510:dragonkin seeker sword
+002f7470:celestial blade
+002f9b80:sword of the cyclops
+00314930:sword of hadea
+003eddc0:gravelstone arcblades
+003f04d0:osian’s greatsword
+004d5cb0:thorn of the guilty
+004d83c0:foil of caddock
+004daad0:quicksilver rapier
+005c02b0:carwyn’s épée
+006d40c0:blade of scarlet boom
+006d67d0:godskin flayer
+006d8ee0:nomad's kilij
+007b7190:three finger blade
+0098e4a0:sulien's razors
+009932c0:frozen twinshards
+0099a7f0:godwyn's cragblades
+009a1d20:palm-ax twinblades
+009a4430:gilded quarterstaff
+00a826e0:leaden maul
+00b79030:underworld greatmace
+00b7b740:crimson brair-bough
+00b82c70:sigur’s greatmace
+00c72090:mohgwyn censer
+00c747a0:seething flail
+00d6b0f0:glintstone cleaver
+00d6ff10:axe of epiphany
+00d79b50:axe of fell prophecy
+00d7e970:bloodhound hookblade
+00e64150:axe of rust
+00f5aaa0:spear of tranquility
+01145630:guardian spearblade
+01147d40:glaive of the ancients
+01154090:reaver’s odachi
+01228700:war scythe
+01504dc0:stone claws
+016164c0:lodestone of gelmir
+01f78a40:glintstone staff
+01f84d90:gelmir lava staff
+01f874a0:blighted branch
+01f95f00:digger staff
+01fa4960:prince of death staff
+01fa9780:dragon student staff
+01fb0cb0:azur's staff
+01fb33c0:lusat's night staff
+01fb5ad0:meteorite staff
+01fb81e0:staff of the guilty
+01fbd000:staff of loss
+01fbf710:dragonkin scepter
+01fc1e20:ranni's staff
+01fc4530:snow witch staff
+01fc6c40:staff of briar
+01fc9350:lavastone staff
+01fcba60:tempestcaller's staff
+01fce170:stormcaller staff
+0206cc80:finger seal
+0206f390:godslayer's seal
+02071aa0:giant's seal
+020741b0:gravel stone seal
+020768c0:clawmark seal
+0207b6e0:golden order seal
+02082c10:frenzied flame seal
+02085320:godskin seal
+02087a30:fire monk seal
+0208a140:dragon cult seal
+0208c850:earthbreaker seal
+0208ef60:fingerprint seal
+02091670:mohgwyn seal
+02093d80:war surgeon seal
+02096490:seal of rot
+02098ba0:pest seal
+0209b2b0:spiritshaper seal
+0209d9c0:mystic seal
