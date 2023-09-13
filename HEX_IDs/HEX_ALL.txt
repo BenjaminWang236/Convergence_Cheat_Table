@@ -302,55 +302,55 @@
 101dc130:millicent's headband
 101e5e38:high page gloves
 101e5e9c:high page trousers
-40b82e96:path of the underworld mage
-40b82e97:weapons for the underworld mage
-41d97af0:path of the bestial devout
-41d97af1:weapons for bestial devout
-41e959c0:path of the prisoner
-4da7ff66:path of the perfumer
-4db7900c:path of the blood initiate
-4db7900d:weapons for the blood initiate
-4db85334:path of the frost witch
-4db85335:weapons for the frost witch
-4dc683aa:path of the rogue
-4dc683ab:weapons for the rogue
-4dd61414:path of the glint sorcerer
-4dd61415:weapons for the glint sorcerer
-4dd6b0ae:path of the mystic
-4dd6b0af:weapons for the mystic
-4de57d6e:path of the aberrant heretic
-4de57d6f:weapons for the aberrant heretic
-4df42378:path of the dreadnought
-4df42379:weapons for the dreadnought
-4e02f06a:path of the storm caller
-4e02f06b:weapons for the storm caller
-4e11e804:path of the retainer
-4e11e805:weapons for the retainer
-4e20d8be:path of the necromancer
-4e20d8bf:weapons for the necromancer
-4e214e3e:path of the vanguard
-4e214e3f:weapons for the vanguard
-4e21751c:path of the berserker
-4e21751d:weapons for the berserker
-4e306950:path of the dragon cultist
-4e306951:weapons for the dragon cultist
-4e30b73e:path of the sellsword
-4e30b73f:weapons for the sellsword
-4e310554:path of the godskin celebrant
-4e310555:weapons for the godskin celebrant
-4e3f366a:path of the frenzied zealot
-4e3f366b:weapons for the frenzied zealot
-4e4e785a:path of the starcaller
-4e4e785b:weapons for the starcaller
-4e4eed80:path of the marksman
-4e4eed81:weapons for the marksman
-4e5e7f0c:path of the fundamentalist
-4e5e7f0d:weapons for the fundamentalist
-4e5ecc1e:path of the flame prophet
-4e5ecc1f:weapons for the flame prophet
-4e6e0ea5:path of the volcanist
-4e6e0ea6:weapons for the volcanist
-4e8c6be2:path of the nox oracle
-4e8c6be3:weapons for the nox oracle
-4e9b86fe:path of the servant of rot
-4e9b86ff:weapons for the servant of rot
+00b82e96:path of the underworld mage
+00b82e97:weapons for the underworld mage
+01d97af0:path of the bestial devout
+01d97af1:weapons for bestial devout
+01e959c0:path of the prisoner
+3da7ff66:path of the perfumer
+3db7900c:path of the blood initiate
+3db7900d:weapons for the blood initiate
+3db85334:path of the frost witch
+3db85335:weapons for the frost witch
+3dc683aa:path of the rogue
+3dc683ab:weapons for the rogue
+3dd61414:path of the glint sorcerer
+3dd61415:weapons for the glint sorcerer
+3dd6b0ae:path of the mystic
+3dd6b0af:weapons for the mystic
+3de57d6e:path of the aberrant heretic
+3de57d6f:weapons for the aberrant heretic
+3df42378:path of the dreadnought
+3df42379:weapons for the dreadnought
+3e02f06a:path of the storm caller
+3e02f06b:weapons for the storm caller
+3e11e804:path of the retainer
+3e11e805:weapons for the retainer
+3e20d8be:path of the necromancer
+3e20d8bf:weapons for the necromancer
+3e214e3e:path of the vanguard
+3e214e3f:weapons for the vanguard
+3e21751c:path of the berserker
+3e21751d:weapons for the berserker
+3e306950:path of the dragon cultist
+3e306951:weapons for the dragon cultist
+3e30b73e:path of the sellsword
+3e30b73f:weapons for the sellsword
+3e310554:path of the godskin celebrant
+3e310555:weapons for the godskin celebrant
+3e3f366a:path of the frenzied zealot
+3e3f366b:weapons for the frenzied zealot
+3e4e785a:path of the starcaller
+3e4e785b:weapons for the starcaller
+3e4eed80:path of the marksman
+3e4eed81:weapons for the marksman
+3e5e7f0c:path of the fundamentalist
+3e5e7f0d:weapons for the fundamentalist
+3e5ecc1e:path of the flame prophet
+3e5ecc1f:weapons for the flame prophet
+3e6e0ea5:path of the volcanist
+3e6e0ea6:weapons for the volcanist
+3e8c6be2:path of the nox oracle
+3e8c6be3:weapons for the nox oracle
+3e9b86fe:path of the servant of rot
+3e9b86ff:weapons for the servant of rot
