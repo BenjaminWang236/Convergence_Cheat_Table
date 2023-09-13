@@ -2,11 +2,11 @@
 ItemGibArray:
 // ID       Quantity Upgrade  AshOfWar
 // dd 40000898 00000001 00000000 FFFFFFFF // Prattling Pate "Hello"
-dd 400051a4 00000001 00000000 FFFFFFFF // Essence Physick Remnant
-dd 400051a5 00000001 00000000 FFFFFFFF // Elemental Physick Remnant
-dd 400051a6 00000001 00000000 FFFFFFFF // Prowess Physick Remnant
-dd 400051a7 00000001 00000000 FFFFFFFF // Invigorating Physick Remnant
-dd 400051a8 00000001 00000000 FFFFFFFF // Enduring Physick Remnant
+dd 400051a4 0000000F 00000000 FFFFFFFF // Essence Physick Remnant
+dd 400051a5 00000007 00000000 FFFFFFFF // Elemental Physick Remnant
+dd 400051a6 00000009 00000000 FFFFFFFF // Prowess Physick Remnant
+dd 400051a7 0000000A 00000000 FFFFFFFF // Invigorating Physick Remnant
+dd 400051a8 00000008 00000000 FFFFFFFF // Enduring Physick Remnant
 
 // END
 dd 00000000 00000000 00000000 FFFFFFFF
