@@ -1126,1258 +1126,6 @@ tgaUnregisterBases()
 </AssemblerScript>
       <CheatEntries>
         <CheatEntry>
-          <ID>1337271380</ID>
-          <Description>"ItemGib CONVERGENCE"</Description>
-          <Options moHideChildren="1"/>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>[ENABLE]
-aobscanmodule(ItemGib_Main_AOB,$process,8B 02 83 F8 0A)
-//aobscanmodule(WeaponLookup_AOB,$process,8B EA 48 8B F1 33 DB 41 83 CE FF 85 D2)
-define(ItemGib_Main_Call,ItemGib_Main_AOB-52)
-//define(WeaponLookup_Call,WeaponLookup_AOB-22)
-alloc(ItemGib,$300,$process)
-alloc(ItemGibData,$100)
-alloc(ItemGibArray,$2000)
-
-{$c prefix=item_gib}
-#include &lt;tga/params.h&gt;
-{$asm}
-ItemGib:
-registerSymbol(ItemGib)
-test rcx,rcx
-jne short ItemGib_set
-mov rcx,ItemGibArray
-ItemGib_set:
-mov r12,rcx
-call ItemGib_Insert
-mov rcx,ItemGibArray
-call ItemGib_Cleanup
-ret
-
-ItemGib_Insert:
-mov eax,[r12]
-test eax,eax
-je ItemGib_Insert_end
-mov r10,ItemGibData
-lea r11,[r10+20]
-mov ecx,0xA
-mov [r10+20],00
-ItemGib_Insert_Loop:
-mov eax,[r12]
-test eax,eax
-je short ItemGib_Insert_03
-mov [r11+04],eax
-mov eax,[r12+04]
-mov [r11+08],eax
-mov eax,FFFFFFFF
-mov [r11+0C],eax
-mov [r11+10],eax
-cmp dword ptr [r12+00],02FAF080
-jae short ItemGib_Insert_01
-call ItemGib_WeaponCheck
-movzx eax,word ptr [r12+08]
-add [r11+04],eax
-mov eax,[r12+0C]
-mov [r11+10],eax
-mov qword ptr [r11+08],0x1
-jmp short ItemGib_Insert_02
-ItemGib_Insert_01:
-cmp dword ptr [r12+00],10000000 // Protector
-jl short ItemGib_Insert_02
-cmp dword ptr [r12+00],40000000 // Goods
-jg short ItemGib_Insert_02
-mov [r11+08],0x1
-ItemGib_Insert_02:
-add r11,10
-add r12,10
-inc [r10+20]
-loop ItemGib_Insert_Loop
-ItemGib_Insert_03:
-call ItemGib_Main
-jmp ItemGib_Insert
-ItemGib_Insert_end:
-ret
-
-ItemGib_WeaponCheck:
-push ecx
-xor rcx,rcx
-mov edx,dword ptr [r11+04]
-movzx ebx,word ptr [r12+0A]
-{$ccode weapon_id=edx inputReinforceLv=ebx result=eax}
-extern uint8_t** GameDataMan;
-EquipParamWeapon* param = CParamUtils_GetRowData(L"EquipParamWeapon", weapon_id);
-if (param != 0) {
-	uint8_t playerReinforceLv = *(*(GameDataMan+0x1)+0xE2);
-	if (param-&gt;originEquipWep1 != -1) {
-		if (inputReinforceLv &gt; 25) {
-			inputReinforceLv = playerReinforceLv;
-		}
-		result = inputReinforceLv;
-		if (param-&gt;originEquipWep16 == -1)
-			result = (int)(((float)inputReinforceLv + 0.5f) / 2.5f);
-	}
-	else {
-		result = 0;
-	}
-}
-{$asm}
-add [r11+04],eax
-pop ecx
-ret
-
-ItemGib_Cleanup:
-xor rax,rax
-mov qword ptr [rcx+10],rax
-mov eax,FFFFFFFF
-mov dword ptr [rcx+18],eax
-mov dword ptr [rcx+1C],eax
-ret
-
-ItemGib_Main:
-sub rsp,48
-xor r9d,r9d
-mov r8,ItemGibData
-lea rdx,[r8+20]
-mov r10,MapItemMan
-mov rcx,[r10]
-call ItemGib_Main_Call
-add rsp,48
-ret
-
-ItemGibArray:
-registerSymbol(ItemGibArray)
-// ID       Quantity Upgrade  AshOfWar
-dd 000F4240 00000001 FFFF0000 FFFFFFFF
-dd 00000000 00000000 00000000 FFFFFFFF
-
-[DISABLE]
-dealloc(ItemGib)
-dealloc(ItemGibData)
-dealloc(ItemGibArray)
-unregisterSymbol(ItemGib)
-unregisterSymbol(ItemGibArray)
-</AssemblerScript>
-          <CheatEntries>
-            <CheatEntry>
-              <ID>1337271381</ID>
-              <Description>"CER Item"</Description>
-              <DropDownListLink>ItemDropdownCER</DropDownListLink>
-              <ShowAsHex>1</ShowAsHex>
-              <ShowAsSigned>0</ShowAsSigned>
-              <VariableType>4 Bytes</VariableType>
-              <Address>ItemGibArray+00</Address>
-            </CheatEntry>
-            <CheatEntry>
-              <ID>1337271382</ID>
-              <Description>"Quantity"</Description>
-              <ShowAsSigned>0</ShowAsSigned>
-              <VariableType>4 Bytes</VariableType>
-              <Address>ItemGibArray+04</Address>
-            </CheatEntry>
-            <CheatEntry>
-              <ID>1337271383</ID>
-              <Description>"Upgrade"</Description>
-              <DropDownListLink>ItemUpgrade</DropDownListLink>
-              <ShowAsSigned>0</ShowAsSigned>
-              <VariableType>2 Bytes</VariableType>
-              <Address>ItemGibArray+08</Address>
-            </CheatEntry>
-            <CheatEntry>
-              <ID>1337271384</ID>
-              <Description>"Reinforcement Level (Regular | Somber)"</Description>
-              <DropDownListLink>ItemReinforceLv</DropDownListLink>
-              <ShowAsSigned>1</ShowAsSigned>
-              <VariableType>2 Bytes</VariableType>
-              <Address>ItemGibArray+0A</Address>
-            </CheatEntry>
-            <CheatEntry>
-              <ID>1337271385</ID>
-              <Description>"Ash of War"</Description>
-              <DropDownListLink>ItemGem</DropDownListLink>
-              <ShowAsHex>1</ShowAsHex>
-              <ShowAsSigned>1</ShowAsSigned>
-              <VariableType>4 Bytes</VariableType>
-              <Address>ItemGibArray+0C</Address>
-            </CheatEntry>
-            <CheatEntry>
-              <ID>1337271386</ID>
-              <Description>"&gt; Spawn Item"</Description>
-              <Color>FF8000</Color>
-              <VariableType>Auto Assembler Script</VariableType>
-              <AssemblerScript>[ENABLE]
-createthread(ItemGib)
-{$lua}
-if not syntaxcheck then disableMemrec(memrec) end
-[DISABLE]
-
-</AssemblerScript>
-            </CheatEntry>
-            <CheatEntry>
-              <ID>1337271387</ID>
-              <Description>"Details"</Description>
-              <Options moHideChildren="1"/>
-              <Color>C0C0C0</Color>
-              <GroupHeader>1</GroupHeader>
-              <CheatEntries>
-                <CheatEntry>
-                  <ID>1337271388</ID>
-                  <Description>"ItemID"</Description>
-                  <ShowAsHex>1</ShowAsHex>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>4 Bytes</VariableType>
-                  <Address>ItemGibArray+00</Address>
-                  <CheatEntries>
-                    <CheatEntry>
-                      <ID>1337271389</ID>
-                      <Description>"EquipID"</Description>
-                      <ShowAsSigned>0</ShowAsSigned>
-                      <VariableType>Binary</VariableType>
-                      <BitStart>0</BitStart>
-                      <BitLength>28</BitLength>
-                      <ShowAsBinary>0</ShowAsBinary>
-                      <Address>ItemGibArray+00</Address>
-                    </CheatEntry>
-                    <CheatEntry>
-                      <ID>1337271390</ID>
-                      <Description>"EquipType"</Description>
-                      <DropDownListLink>ItemType</DropDownListLink>
-                      <ShowAsSigned>0</ShowAsSigned>
-                      <VariableType>Binary</VariableType>
-                      <BitStart>4</BitStart>
-                      <BitLength>4</BitLength>
-                      <ShowAsBinary>0</ShowAsBinary>
-                      <Address>ItemGibArray+03</Address>
-                    </CheatEntry>
-                  </CheatEntries>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>1337271391</ID>
-                  <Description>"Quantity"</Description>
-                  <ShowAsHex>1</ShowAsHex>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>4 Bytes</VariableType>
-                  <Address>ItemGibArray+04</Address>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>1337271392</ID>
-                  <Description>"Upgrade"</Description>
-                  <ShowAsHex>1</ShowAsHex>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>2 Bytes</VariableType>
-                  <Address>ItemGibArray+08</Address>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>1337271393</ID>
-                  <Description>"Reinforcement Level"</Description>
-                  <ShowAsHex>1</ShowAsHex>
-                  <ShowAsSigned>0</ShowAsSigned>
-                  <VariableType>2 Bytes</VariableType>
-                  <Address>ItemGibArray+0A</Address>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>1337271394</ID>
-                  <Description>"Ash of War"</Description>
-                  <ShowAsHex>1</ShowAsHex>
-                  <ShowAsSigned>1</ShowAsSigned>
-                  <VariableType>4 Bytes</VariableType>
-                  <Address>ItemGibArray+0C</Address>
-                </CheatEntry>
-              </CheatEntries>
-            </CheatEntry>
-            <CheatEntry>
-              <ID>1337271395</ID>
-              <Description>"MassItemGib"</Description>
-              <Options moHideChildren="1"/>
-              <GroupHeader>1</GroupHeader>
-              <CheatEntries>
-                <CheatEntry>
-                  <ID>1337271396</ID>
-                  <Description>"Give all CER weapons"</Description>
-                  <VariableType>Auto Assembler Script</VariableType>
-                  <AssemblerScript>[ENABLE]
-ItemGibArray:
-// ID       Quantity Upgrade  AshOfWar
-// dd 000F4240 00000001 FFFF0000 FFFFFFFF // Dagger
-dd 00d6ff10 00000001 FFFF0000 FFFFFFFF // Axe Of Epiphany
-dd 00e64150 00000001 FFFF0000 FFFFFFFF // Axe Of Rust
-dd 00b7b740 00000001 FFFF0000 FFFFFFFF // Crimson Brair-Bough
-dd 002f9b80 00000001 FFFF0000 FFFFFFFF // Sword Of The Cyclops
-dd 00d79b50 00000001 FFFF0000 FFFFFFFF // Axe Of Fell prophecy
-dd 004d83c0 00000001 FFFF0000 FFFFFFFF // Foil Of Caddock
-dd 007b7190 00000001 FFFF0000 FFFFFFFF // Three Finger Blade
-dd 009932c0 00000001 FFFF0000 FFFFFFFF // Frozen Twinshards
-dd 002f7470 00000001 FFFF0000 FFFFFFFF // Celestial Blade
-dd 00d6b0f0 00000001 FFFF0000 FFFFFFFF // Glintstone Cleaver
-dd 0099a7f0 00000001 FFFF0000 FFFFFFFF // Godwyn's Cragblades
-dd 00a826e0 00000001 FFFF0000 FFFFFFFF // Leaden Maul
-dd 0011da50 00000001 FFFF0000 FFFFFFFF // Midnight Dagger
-dd 00c72090 00000001 FFFF0000 FFFFFFFF // Mohgwyn Censer
-dd 006d8ee0 00000001 FFFF0000 FFFFFFFF // Nomad's Kilij
-dd 006d40c0 00000001 FFFF0000 FFFFFFFF // Blade Of Scarlet Boom
-dd 01147d40 00000001 FFFF0000 FFFFFFFF // Glaive Of The Ancients
-dd 00c747a0 00000001 FFFF0000 FFFFFFFF // Seething Flail
-dd 01504dc0 00000001 FFFF0000 FFFFFFFF // Stone Claws
-dd 0098e4a0 00000001 FFFF0000 FFFFFFFF // Sulien's Razors
-dd 00111700 00000001 FFFF0000 FFFFFFFF // Surgeons Catlinger
-dd 004d5cb0 00000001 FFFF0000 FFFFFFFF // Thorn Of The Guilty
-dd 00b79030 00000001 FFFF0000 FFFFFFFF // Underworld Greatmace
-dd 00314930 00000001 FFFF0000 FFFFFFFF // Sword Of Hadea
-dd 00225510 00000001 FFFF0000 FFFFFFFF // Dragonkin Seeker Sword
-dd 0020ce70 00000001 FFFF0000 FFFFFFFF // Molten Sword
-dd 00100590 00000001 FFFF0000 FFFFFFFF // Underworld Dagger
-dd 0020a760 00000001 FFFF0000 FFFFFFFF // Sword Of The Cosmos
-dd 00f5aaa0 00000001 FFFF0000 FFFFFFFF // Spear of Tranquility
-dd 00200b20 00000001 FFFF0000 FFFFFFFF // Zephyr Blades
-dd 003eddc0 00000001 FFFF0000 FFFFFFFF // Gravelstone Arcblades
-dd 016164c0 00000001 FFFF0000 FFFFFFFF // Lodestone of Gelmir
-dd 001ef9b0 00000001 FFFF0000 FFFFFFFF // Yura’s Kanabo
-dd 00b82c70 00000001 FFFF0000 FFFFFFFF // Sigur’s Greatmace
-dd 00d7e970 00000001 FFFF0000 FFFFFFFF // Bloodhound Hookblade
-dd 003f04d0 00000001 FFFF0000 FFFFFFFF // Osian’s Greatsword
-dd 01154090 00000001 FFFF0000 FFFFFFFF // Reaver’s Odachi
-dd 009a1d20 00000001 FFFF0000 FFFFFFFF // Palm-Ax Twinblades
-dd 01228700 00000001 FFFF0000 FFFFFFFF // War Scythe
-dd 009a4430 00000001 FFFF0000 FFFFFFFF // Gilded Quarterstaff
-dd 005c02b0 00000001 FFFF0000 FFFFFFFF // Carwyn’s Épée
-dd 006d67d0 00000001 FFFF0000 FFFFFFFF // Godskin Flayer
-dd 01145630 00000001 FFFF0000 FFFFFFFF // Guardian Spearblade
-
-// END
-dd 00000000 00000000 00000000 FFFFFFFF
-
-createthread(ItemGib)
-{$lua}
-if not syntaxcheck then disableMemrec(memrec) end
-[DISABLE]
-</AssemblerScript>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>1337271397</ID>
-                  <Description>"Give all CER catalysts"</Description>
-                  <VariableType>Auto Assembler Script</VariableType>
-                  <AssemblerScript>[ENABLE]
-ItemGibArray:
-// ID       Quantity Upgrade  AshOfWar
-// dd 000F4240 00000001 FFFF0000 FFFFFFFF // Dagger
-dd 01f78a40 00000001 FFFF0000 FFFFFFFF // glintstone staff
-dd 01f84d90 00000001 FFFF0000 FFFFFFFF // gelmir lava staff
-dd 01f874a0 00000001 FFFF0000 FFFFFFFF // blighted branch
-dd 01f95f00 00000001 FFFF0000 FFFFFFFF // digger staff
-dd 01fa4960 00000001 FFFF0000 FFFFFFFF // prince of death staff
-dd 01fa9780 00000001 FFFF0000 FFFFFFFF // dragon student staff
-dd 01fb0cb0 00000001 FFFF0000 FFFFFFFF // azur's staff
-dd 01fb33c0 00000001 FFFF0000 FFFFFFFF // lusat's night staff
-dd 01fb5ad0 00000001 FFFF0000 FFFFFFFF // meteorite staff
-dd 01fb81e0 00000001 FFFF0000 FFFFFFFF // staff of the guilty
-dd 01fbd000 00000001 FFFF0000 FFFFFFFF // staff of loss
-dd 01fbf710 00000001 FFFF0000 FFFFFFFF // dragonkin scepter
-dd 01fc1e20 00000001 FFFF0000 FFFFFFFF // ranni's staff
-dd 01fc4530 00000001 FFFF0000 FFFFFFFF // snow witch staff
-dd 01fc6c40 00000001 FFFF0000 FFFFFFFF // staff of briar
-dd 01fc9350 00000001 FFFF0000 FFFFFFFF // lavastone staff
-dd 01fcba60 00000001 FFFF0000 FFFFFFFF // tempestcaller's staff
-dd 01fce170 00000001 FFFF0000 FFFFFFFF // stormcaller staff
-dd 0206cc80 00000001 FFFF0000 FFFFFFFF // finger seal
-dd 0206f390 00000001 FFFF0000 FFFFFFFF // godslayer's seal
-dd 02071aa0 00000001 FFFF0000 FFFFFFFF // giant's seal
-dd 020741b0 00000001 FFFF0000 FFFFFFFF // gravel stone seal
-dd 020768c0 00000001 FFFF0000 FFFFFFFF // clawmark seal
-dd 0207b6e0 00000001 FFFF0000 FFFFFFFF // golden order seal
-dd 02082c10 00000001 FFFF0000 FFFFFFFF // frenzied flame seal
-dd 02085320 00000001 FFFF0000 FFFFFFFF // godskin seal
-dd 02087a30 00000001 FFFF0000 FFFFFFFF // fire monk seal
-dd 0208a140 00000001 FFFF0000 FFFFFFFF // dragon cult seal
-dd 0208c850 00000001 FFFF0000 FFFFFFFF // earthbreaker seal
-dd 0208ef60 00000001 FFFF0000 FFFFFFFF // fingerprint seal
-dd 02091670 00000001 FFFF0000 FFFFFFFF // mohgwyn seal
-dd 02093d80 00000001 FFFF0000 FFFFFFFF // war surgeon seal
-dd 02096490 00000001 FFFF0000 FFFFFFFF // seal of rot
-dd 02098ba0 00000001 FFFF0000 FFFFFFFF // pest seal
-dd 0209b2b0 00000001 FFFF0000 FFFFFFFF // spiritshaper seal
-dd 0209d9c0 00000001 FFFF0000 FFFFFFFF // mystic seal
-
-// END
-dd 00000000 00000000 00000000 FFFFFFFF
-
-createthread(ItemGib)
-{$lua}
-if not syntaxcheck then disableMemrec(memrec) end
-[DISABLE]
-</AssemblerScript>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>1337271398</ID>
-                  <Description>"Give all CER armors"</Description>
-                  <VariableType>Auto Assembler Script</VariableType>
-                  <AssemblerScript>[ENABLE]
-ItemGibArray:
-// ID       Quantity Upgrade  AshOfWar
-// dd 10009C40 00000001 00000000 FFFFFFFF // Iron Helmet
-dd 10035c28 00000001 00000000 FFFFFFFF // page gloves
-dd 1003d158 00000001 00000000 FFFFFFFF // nomadic merchant gloves
-dd 10047950 00000001 00000000 FFFFFFFF // night maiden bracelets
-dd 100479b4 00000001 00000000 FFFFFFFF // night maiden greaves
-dd 10049890 00000001 00000000 FFFFFFFF // shaman bracers
-dd 10049bb0 00000001 00000000 FFFFFFFF // mystic circlet
-dd 10049c78 00000001 00000000 FFFFFFFF // mystic bracelets
-dd 1004e2c8 00000001 00000000 FFFFFFFF // sanguine noble bracelets
-dd 10066c88 00000001 00000000 FFFFFFFF // vulgar militia hood
-dd 100976a8 00000001 00000000 FFFFFFFF // prophet manacles
-dd 100a6428 00000001 00000000 FFFFFFFF // war surgeon hood
-dd 100b5658 00000001 00000000 FFFFFFFF // viridian hood
-dd 100c35c8 00000001 00000000 FFFFFFFF // festive gloves
-dd 100c362c 00000001 00000000 FFFFFFFF // festive trousers
-dd 100cc588 00000001 00000000 FFFFFFFF // glint mage cap
-dd 100cc5ec 00000001 00000000 FFFFFFFF // glint mage robe
-dd 100cc650 00000001 00000000 FFFFFFFF // raya lucarian gloves
-dd 100cc6b4 00000001 00000000 FFFFFFFF // raya lucarian trousers
-dd 100d9558 00000001 00000000 FFFFFFFF // prisoner chains
-dd 100ea6c8 00000001 00000000 FFFFFFFF // consort's gloves
-dd 100eb6cc 00000001 00000000 FFFFFFFF // bloodsoaked wraps
-dd 100f6a18 00000001 00000000 FFFFFFFF // snow witch gloves
-dd 10116520 00000001 00000000 FFFFFFFF // vanguard helm
-dd 10116584 00000001 00000000 FFFFFFFF // vanguard armor
-dd 101165e8 00000001 00000000 FFFFFFFF // vanguard gauntlets
-dd 1011664c 00000001 00000000 FFFFFFFF // vanguard greaves
-dd 10118c30 00000001 00000000 FFFFFFFF // marksman hat
-dd 10118c94 00000001 00000000 FFFFFFFF // marksman tabard
-dd 10118cf8 00000001 00000000 FFFFFFFF // marksman gauntlets
-dd 10118d5c 00000001 00000000 FFFFFFFF // marksman boots
-dd 1011b340 00000001 00000000 FFFFFFFF // berserker leather helm
-dd 1011b3a4 00000001 00000000 FFFFFFFF // berserker battlewear
-dd 1011b408 00000001 00000000 FFFFFFFF // berserker bracers
-dd 1011b46c 00000001 00000000 FFFFFFFF // berserker legwraps
-dd 1011da50 00000001 00000000 FFFFFFFF // dreadnought helm
-dd 1011dab4 00000001 00000000 FFFFFFFF // dreadnought armor
-dd 1011db18 00000001 00000000 FFFFFFFF // dreadnought gauntlets
-dd 1011db7c 00000001 00000000 FFFFFFFF // dreadnought greaves
-dd 10120160 00000001 00000000 FFFFFFFF // sellsword helm
-dd 101201c4 00000001 00000000 FFFFFFFF // sellsword armor
-dd 10120228 00000001 00000000 FFFFFFFF // sellsword gloves
-dd 1012028c 00000001 00000000 FFFFFFFF // sellsword boots
-dd 10122870 00000001 00000000 FFFFFFFF // starcaller hood
-dd 101228d4 00000001 00000000 FFFFFFFF // starcaller garb
-dd 10122938 00000001 00000000 FFFFFFFF // starcaller wraps
-dd 1012299c 00000001 00000000 FFFFFFFF // starcaller boots
-dd 10124f80 00000001 00000000 FFFFFFFF // underworld hood
-dd 10124fe4 00000001 00000000 FFFFFFFF // underworld robe
-dd 10125048 00000001 00000000 FFFFFFFF // underworld bracers
-dd 101250ac 00000001 00000000 FFFFFFFF // underworld boots
-dd 10127690 00000001 00000000 FFFFFFFF // volcanist hat
-dd 101276f4 00000001 00000000 FFFFFFFF // volcanist robe
-dd 10127758 00000001 00000000 FFFFFFFF // volcanist gloves
-dd 101277bc 00000001 00000000 FFFFFFFF // volcanist boots
-dd 10129da0 00000001 00000000 FFFFFFFF // stormcaller helm
-dd 10129e04 00000001 00000000 FFFFFFFF // stormcaller armor
-dd 10129e68 00000001 00000000 FFFFFFFF // stormcaller gauntlets
-dd 10129ecc 00000001 00000000 FFFFFFFF // stormcaller greaves
-dd 1012c4b0 00000001 00000000 FFFFFFFF // nox oracle headband
-dd 1012c514 00000001 00000000 FFFFFFFF // nox oracle armor
-dd 1012c578 00000001 00000000 FFFFFFFF // nox oracle gloves
-dd 1012c5dc 00000001 00000000 FFFFFFFF // nox oracle skirt
-dd 1012ebc0 00000001 00000000 FFFFFFFF // necromancer hood
-dd 1012ec24 00000001 00000000 FFFFFFFF // necromancer robe
-dd 1012ec88 00000001 00000000 FFFFFFFF // necromancer gloves
-dd 1012ecec 00000001 00000000 FFFFFFFF // necromancer trousers
-dd 101312d0 00000001 00000000 FFFFFFFF // frost witch hat
-dd 10131334 00000001 00000000 FFFFFFFF // frost witch robe
-dd 10131398 00000001 00000000 FFFFFFFF // frost witch wraps
-dd 101313fc 00000001 00000000 FFFFFFFF // frost witch skirt
-dd 101339e0 00000001 00000000 FFFFFFFF // heretic's collar
-dd 10133a44 00000001 00000000 FFFFFFFF // heretic's rags
-dd 10133aa8 00000001 00000000 FFFFFFFF // heretic's wraps
-dd 10133b0c 00000001 00000000 FFFFFFFF // heretic's boots
-dd 1013fd30 00000001 00000000 FFFFFFFF // fundamentalist crown
-dd 1013fd94 00000001 00000000 FFFFFFFF // fundamentalist breastplate
-dd 1013fdf8 00000001 00000000 FFFFFFFF // fundamentalist bracers
-dd 1013fe5c 00000001 00000000 FFFFFFFF // fundamentalist greaves
-dd 10142440 00000001 00000000 FFFFFFFF // dragon cult helm
-dd 101424a4 00000001 00000000 FFFFFFFF // dragon cult armor
-dd 10142508 00000001 00000000 FFFFFFFF // dragon cult gauntlets
-dd 1014256c 00000001 00000000 FFFFFFFF // dragon cult greaves
-dd 10144b50 00000001 00000000 FFFFFFFF // zealot hood
-dd 10144bb4 00000001 00000000 FFFFFFFF // zealot robe
-dd 10144c18 00000001 00000000 FFFFFFFF // zealot wraps
-dd 10144c7c 00000001 00000000 FFFFFFFF // zealot boots
-dd 10147260 00000001 00000000 FFFFFFFF // hood of rot
-dd 101472c4 00000001 00000000 FFFFFFFF // coat of rot
-dd 10147328 00000001 00000000 FFFFFFFF // gloves of rot
-dd 1014738c 00000001 00000000 FFFFFFFF // boots of rot
-dd 10149970 00000001 00000000 FFFFFFFF // frenzied maiden blindfold
-dd 101499d4 00000001 00000000 FFFFFFFF // frenzied maiden robe
-dd 10149a38 00000001 00000000 FFFFFFFF // frenzied maiden gloves
-dd 10149a9c 00000001 00000000 FFFFFFFF // frenzied maiden boots
-dd 1014c080 00000001 00000000 FFFFFFFF // dreamer's horned headband
-dd 1014c0e4 00000001 00000000 FFFFFFFF // dreamer's rags
-dd 1014c148 00000001 00000000 FFFFFFFF // dreamer's wraps
-dd 1014c1ac 00000001 00000000 FFFFFFFF // dreamer's skirt
-dd 1014e790 00000001 00000000 FFFFFFFF // beast clergy hood
-dd 1014e7f4 00000001 00000000 FFFFFFFF // beast clergy robe
-dd 1014e858 00000001 00000000 FFFFFFFF // beast clergy bracers
-dd 1014e8bc 00000001 00000000 FFFFFFFF // beast clergy boots
-dd 101b9e50 00000001 00000000 FFFFFFFF // mausoleum knight helm
-dd 101d9ae8 00000001 00000000 FFFFFFFF // fia's bracelets
-dd 101d9b4c 00000001 00000000 FFFFFFFF // fia's trousers
-dd 101dc130 00000001 00000000 FFFFFFFF // millicent's headband
-dd 101e5e38 00000001 00000000 FFFFFFFF // high page gloves
-dd 101e5e9c 00000001 00000000 FFFFFFFF // high page trousers
-
-// END
-dd 00000000 00000000 00000000 FFFFFFFF
-
-createthread(ItemGib)
-{$lua}
-if not syntaxcheck then disableMemrec(memrec) end
-[DISABLE]
-</AssemblerScript>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>1337271399</ID>
-                  <Description>"Give all CER keystones"</Description>
-                  <VariableType>Auto Assembler Script</VariableType>
-                  <AssemblerScript>[ENABLE]
-ItemGibArray:
-// ID       Quantity Upgrade  AshOfWar
-dd 40001f7c 00000001 00000000 FFFFFFFF // keystone 1
-dd 40001f7d 00000001 00000000 FFFFFFFF // keystone 2
-dd 40001f7e 00000001 00000000 FFFFFFFF // keystone 3
-dd 40001f7f 00000001 00000000 FFFFFFFF // keystone 4
-dd 40001f80 00000001 00000000 FFFFFFFF // keystone 5
-
-// END
-dd 00000000 00000000 00000000 FFFFFFFF
-
-createthread(ItemGib)
-{$lua}
-if not syntaxcheck then disableMemrec(memrec) end
-[DISABLE]
-ItemGibArray+10:
-dd 00000000 00000000 00000000 FFFFFFFF
-</AssemblerScript>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>1337271400</ID>
-                  <Description>"Give all CER physick remnants"</Description>
-                  <VariableType>Auto Assembler Script</VariableType>
-                  <AssemblerScript>[ENABLE]
-ItemGibArray:
-// ID       Quantity Upgrade  AshOfWar
-// dd 40000898 00000001 00000000 FFFFFFFF // Prattling Pate "Hello"
-dd 400051a4 0000000F 00000000 FFFFFFFF // Essence Physick Remnant
-dd 400051a5 00000007 00000000 FFFFFFFF // Elemental Physick Remnant
-dd 400051a6 00000009 00000000 FFFFFFFF // Prowess Physick Remnant
-dd 400051a7 0000000A 00000000 FFFFFFFF // Invigorating Physick Remnant
-dd 400051a8 00000008 00000000 FFFFFFFF // Enduring Physick Remnant
-
-// END
-dd 00000000 00000000 00000000 FFFFFFFF
-
-createthread(ItemGib)
-{$lua}
-if not syntaxcheck then disableMemrec(memrec) end
-[DISABLE]
-ItemGibArray+10:
-dd 00000000 00000000 00000000 FFFFFFFF
-</AssemblerScript>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>1337271401</ID>
-                  <Description>"Give all CER talisman remnants"</Description>
-                  <VariableType>Auto Assembler Script</VariableType>
-                  <AssemblerScript>[ENABLE]
-ItemGibArray:
-// ID       Quantity Upgrade  AshOfWar
-// dd 40000898 00000001 00000000 FFFFFFFF // Prattling Pate "Hello"
-dd 400051d6 00000017 00000000 FFFFFFFF // Combat Remnant
-dd 400051d7 0000000F 00000000 FFFFFFFF // Heriloom Remnant
-dd 400051d8 00000005 00000000 FFFFFFFF // Faint Relic Remnant
-dd 400051d9 00000005 00000000 FFFFFFFF // Shimmering Relic Remnant
-dd 400051da 00000005 00000000 FFFFFFFF // Glowing Relic Remnant
-dd 400051db 00000005 00000000 FFFFFFFF // Shining Relic Remnant
-dd 400051dc 0000001C 00000000 FFFFFFFF // Enchanted Remnant
-
-// END
-dd 00000000 00000000 00000000 FFFFFFFF
-
-createthread(ItemGib)
-{$lua}
-if not syntaxcheck then disableMemrec(memrec) end
-[DISABLE]
-ItemGibArray+10:
-dd 00000000 00000000 00000000 FFFFFFFF
-</AssemblerScript>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>1337271402</ID>
-                  <Description>"Give all CER spell runes"</Description>
-                  <VariableType>Auto Assembler Script</VariableType>
-                  <AssemblerScript>[ENABLE]
-ItemGibArray:
-// ID       Quantity Upgrade  AshOfWar
-// dd 40000898 00000001 00000000 FFFFFFFF // Prattling Pate "Hello"
-dd 4000206c 00000001 00000000 FFFFFFFF // Faint rune of beasts
-dd 4000206d 00000001 00000000 FFFFFFFF // Shimmering rune of beasts
-dd 4000206e 00000001 00000000 FFFFFFFF // Glowing rune of beasts
-dd 4000206f 00000001 00000000 FFFFFFFF // Shining rune of beasts
-dd 40002070 00000001 00000000 FFFFFFFF // Radiant rune of beasts
-dd 40002071 00000001 00000000 FFFFFFFF // Faint rune of order
-dd 40002072 00000001 00000000 FFFFFFFF // Shimmering rune of order
-dd 40002073 00000001 00000000 FFFFFFFF // Glowing rune of order
-dd 40002074 00000001 00000000 FFFFFFFF // Shining rune of order
-dd 40002075 00000001 00000000 FFFFFFFF // Radiant rune of order
-dd 40002076 00000001 00000000 FFFFFFFF // Faint rune of fell flame
-dd 40002077 00000001 00000000 FFFFFFFF // Shimmering rune of fell flame
-dd 40002078 00000001 00000000 FFFFFFFF // Glowing rune of fell flame
-dd 40002079 00000001 00000000 FFFFFFFF // Shining rune of fell flame
-dd 4000207a 00000001 00000000 FFFFFFFF // Radiant rune of fell flame
-dd 4000207b 00000001 00000000 FFFFFFFF // Faint rune of lightning
-dd 4000207c 00000001 00000000 FFFFFFFF // Shimmering rune of Lightning
-dd 4000207d 00000001 00000000 FFFFFFFF // Glowing rune of lightning
-dd 4000207e 00000001 00000000 FFFFFFFF // shining rune of lightning
-dd 4000207f 00000001 00000000 FFFFFFFF // radiant rune of lightning
-dd 40002080 00000001 00000000 FFFFFFFF // Faint rune of black flame
-dd 40002081 00000001 00000000 FFFFFFFF // Shimmering rune of black flame
-dd 40002082 00000001 00000000 FFFFFFFF // Glowing rune of black flame
-dd 40002083 00000001 00000000 FFFFFFFF // Shining rune of black flame
-dd 40002084 00000001 00000000 FFFFFFFF // Radiant rune of black flame
-dd 40002085 00000001 00000000 FFFFFFFF // Faint rune of frenzy
-dd 40002086 00000001 00000000 FFFFFFFF // Shimmering rune of frenzy
-dd 40002087 00000001 00000000 FFFFFFFF // Glowing rune of frenzy
-dd 40002088 00000001 00000000 FFFFFFFF // Shining rune of frenzy
-dd 40002089 00000001 00000000 FFFFFFFF // Radiant rune of frenzy
-dd 4000208a 00000001 00000000 FFFFFFFF // Faint rune of bloodflame
-dd 4000208b 00000001 00000000 FFFFFFFF // Shimmering rune of bloodflame
-dd 4000208c 00000001 00000000 FFFFFFFF // Glowing rune of bloodflame
-dd 4000208d 00000001 00000000 FFFFFFFF // Shining rune of bloodflame
-dd 4000208e 00000001 00000000 FFFFFFFF // Radiant rune of bloodflame
-dd 4000208f 00000001 00000000 FFFFFFFF // Faint rune of rot
-dd 40002090 00000001 00000000 FFFFFFFF // Shimmering rune of rot
-dd 40002091 00000001 00000000 FFFFFFFF // Glowing rune of rot
-dd 40002092 00000001 00000000 FFFFFFFF // Shining rune of rot
-dd 40002093 00000001 00000000 FFFFFFFF // Radiant rune of rot
-dd 40002094 00000001 00000000 FFFFFFFF // Faint rune of Ancient
-dd 40002095 00000001 00000000 FFFFFFFF // Shimmering rune of Ancient
-dd 40002096 00000001 00000000 FFFFFFFF // Glowing rune of Ancient
-dd 40002097 00000001 00000000 FFFFFFFF // Shining rune of ancient
-dd 40002098 00000001 00000000 FFFFFFFF // Radiant rune of ancient
-dd 40002099 00000001 00000000 FFFFFFFF // Faint rune of glintstone
-dd 4000209a 00000001 00000000 FFFFFFFF // Shimmering rune of glintstone
-dd 4000209b 00000001 00000000 FFFFFFFF // Glowing rune of glintstone
-dd 4000209c 00000001 00000000 FFFFFFFF // Shinning rune of glintstone
-dd 4000209d 00000001 00000000 FFFFFFFF // Radiant rune of glintstone
-dd 4000209e 00000001 00000000 FFFFFFFF // Faint rune of gravity
-dd 4000209f 00000001 00000000 FFFFFFFF // Shimmering rune of gravity
-dd 400020a0 00000001 00000000 FFFFFFFF // Glowing rune of gravity
-dd 400020a1 00000001 00000000 FFFFFFFF // Shining rune of gravity
-dd 400020a2 00000001 00000000 FFFFFFFF // Radiant rune of gravity
-dd 400020a3 00000001 00000000 FFFFFFFF // Faint rune of the dragonkin
-dd 400020a4 00000001 00000000 FFFFFFFF // Shimmering rune of the dragonkin
-dd 400020a5 00000001 00000000 FFFFFFFF // Glowing rune of the dragonkin
-dd 400020a6 00000001 00000000 FFFFFFFF // Shining rune of the dragonkin
-dd 400020a7 00000001 00000000 FFFFFFFF // Radiant rune of the dragonkin
-dd 400020a8 00000001 00000000 FFFFFFFF // Faint rune of magma
-dd 400020a9 00000001 00000000 FFFFFFFF // Shimmering rune of magma
-dd 400020aa 00000001 00000000 FFFFFFFF // Glowing rune of magma
-dd 400020ab 00000001 00000000 FFFFFFFF // Shining rune of magma
-dd 400020ac 00000001 00000000 FFFFFFFF // Radiant rune of magma
-dd 400020ad 00000001 00000000 FFFFFFFF // Faint rune of Night
-dd 400020ae 00000001 00000000 FFFFFFFF // Shimmering rune of Night
-dd 400020af 00000001 00000000 FFFFFFFF // Glowing rune of Night
-dd 400020b0 00000001 00000000 FFFFFFFF // Shining rune of Night
-dd 400020b1 00000001 00000000 FFFFFFFF // Radiant rune of Night
-dd 400020b2 00000001 00000000 FFFFFFFF // Faint rune of Necromancy
-dd 400020b3 00000001 00000000 FFFFFFFF // Shimmering rune of Necromancy
-dd 400020b4 00000001 00000000 FFFFFFFF // Glowing rune of Necromancy
-dd 400020b5 00000001 00000000 FFFFFFFF // Shining rune of Necromancy
-dd 400020b6 00000001 00000000 FFFFFFFF // Radiant rune of Necromancy
-dd 400020b7 00000001 00000000 FFFFFFFF // Faint rune of the storm
-dd 400020b8 00000001 00000000 FFFFFFFF // Shimmering rune of the storm
-dd 400020b9 00000001 00000000 FFFFFFFF // Glowing rune of the storm
-dd 400020ba 00000001 00000000 FFFFFFFF // Shining rune of the storm
-dd 400020bb 00000001 00000000 FFFFFFFF // Radiant rune of the storm
-dd 400020bc 00000001 00000000 FFFFFFFF // Faint rune of frost
-dd 400020bd 00000001 00000000 FFFFFFFF // Shimmering rune of frost
-dd 400020be 00000001 00000000 FFFFFFFF // Glowing rune of frost
-dd 400020bf 00000001 00000000 FFFFFFFF // Shining rune of frost
-dd 400020c0 00000001 00000000 FFFFFFFF // Radiant rune of frost
-dd 400020c1 00000001 00000000 FFFFFFFF // Faint rune of thorns
-dd 400020c2 00000001 00000000 FFFFFFFF // Shimmering rune of thorns
-dd 400020c3 00000001 00000000 FFFFFFFF // Glowing rune of thorns
-dd 400020c4 00000001 00000000 FFFFFFFF // Shining rune of thorns
-dd 400020c5 00000001 00000000 FFFFFFFF // Radiant rune of thorns
-
-// END
-dd 00000000 00000000 00000000 FFFFFFFF
-
-createthread(ItemGib)
-{$lua}
-if not syntaxcheck then disableMemrec(memrec) end
-[DISABLE]
-ItemGibArray+10:
-dd 00000000 00000000 00000000 FFFFFFFF
-</AssemblerScript>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>1337271403</ID>
-                  <Description>"Give all projectiles x99"</Description>
-                  <VariableType>Auto Assembler Script</VariableType>
-                  <AssemblerScript>[ENABLE]
-ItemGibArray:
-// Arrows
-dd 02FAF080 00000063 00000000 FFFFFFFF // Arrow
-dd 02FB1790 00000063 00000000 FFFFFFFF // Fire Arrow
-dd 02FB3EA0 00000063 00000000 FFFFFFFF // Serpent Arrow
-dd 02FB65B0 00000063 00000000 FFFFFFFF // Bone Arrow (Fletched)
-dd 02FB8CC0 00000063 00000000 FFFFFFFF // St. Trina's Arrow
-dd 02FBDAE0 00000063 00000000 FFFFFFFF // Shattershard Arrow (Fletched)
-dd 02FC2900 00000063 00000000 FFFFFFFF // Rainbow Stone Arrow (Fletched)
-dd 02FC5010 00000063 00000000 FFFFFFFF // Golden Arrow
-dd 02FC7720 00000063 00000000 FFFFFFFF // Dwelling Arrow
-dd 02FC9E30 00000063 00000000 FFFFFFFF // Bone Arrow
-dd 02FCEC50 00000063 00000000 FFFFFFFF // Firebone Arrow (Fletched)
-dd 02FD1360 00000063 00000000 FFFFFFFF // Firebone Arrow
-dd 02FD3A70 00000063 00000000 FFFFFFFF // Poisonbone Arrow (Fletched)
-dd 02FD6180 00000063 00000000 FFFFFFFF // Poisonbone Arrow
-dd 02FD8890 00000063 00000000 FFFFFFFF // Sleepbone Arrow (Fletched)
-dd 02FDAFA0 00000063 00000000 FFFFFFFF // Sleepbone Arrow
-dd 02FDD6B0 00000063 00000000 FFFFFFFF // Stormwing Bone Arrow
-dd 02FDFDC0 00000063 00000000 FFFFFFFF // Lightningbone Arrow (Fletched)
-dd 02FE24D0 00000063 00000000 FFFFFFFF // Lightningbone Arrow
-dd 02FE4BE0 00000063 00000000 FFFFFFFF // Rainbow Stone Arrow
-dd 02FE72F0 00000063 00000000 FFFFFFFF // Shattershard Arrow
-dd 02FE9A00 00000063 00000000 FFFFFFFF // Spiritflame Arrow
-dd 02FEE820 00000063 00000000 FFFFFFFF // Magicbone Arrow (Fletched)
-dd 02FF0F30 00000063 00000000 FFFFFFFF // Magicbone Arrow
-dd 02FF3640 00000063 00000000 FFFFFFFF // Haligbone Arrow (Fletched)
-dd 02FF5D50 00000063 00000000 FFFFFFFF // Haligbone Arrow
-dd 02FF8460 00000063 00000000 FFFFFFFF // Bloodbone Arrow (Fletched)
-dd 02FFAB70 00000063 00000000 FFFFFFFF // Bloodbone Arrow
-dd 02FFD280 00000063 00000000 FFFFFFFF // Coldbone Arrow (Fletched)
-dd 02FFF990 00000063 00000000 FFFFFFFF // Coldbone Arrow
-dd 030020A0 00000063 00000000 FFFFFFFF // Rotbone Arrow (Fletched)
-dd 030047B0 00000063 00000000 FFFFFFFF // Rotbone Arrow
-// Greatarrows
-dd 030A32C0 00000063 00000000 FFFFFFFF // Great Arrow
-dd 030A59D0 00000063 00000000 FFFFFFFF // Golem's Great Arrow
-dd 030A80E0 00000063 00000000 FFFFFFFF // Golden Great Arrow
-dd 030AA7F0 00000063 00000000 FFFFFFFF // Golem's Magic Arrow
-dd 030ACF00 00000063 00000000 FFFFFFFF // Radahn's Spear
-dd 030AF610 00000063 00000000 FFFFFFFF // Bone Great Arrow (Fletched)
-dd 030B1D20 00000063 00000000 FFFFFFFF // Bone Great Arrow
-// Bolts
-dd 03197500 00000063 00000000 FFFFFFFF // Bolt
-dd 03199C10 00000063 00000000 FFFFFFFF // Lightning Bolt
-dd 0319C320 00000063 00000000 FFFFFFFF // Perfumer's Bolt
-dd 0319EA30 00000063 00000000 FFFFFFFF // Black-Key Bolt
-dd 031A1140 00000063 00000000 FFFFFFFF // Burred Bolt
-dd 031A3850 00000063 00000000 FFFFFFFF // Meteor Bolt
-dd 031A5F60 00000063 00000000 FFFFFFFF // Explosive Bolt
-dd 031A8670 00000063 00000000 FFFFFFFF // Golden Bolt
-dd 031AAD80 00000063 00000000 FFFFFFFF // Lordsworn's Bolt
-dd 031AD490 00000063 00000000 FFFFFFFF // Bone Bolt
-dd 031AFBA0 00000063 00000000 FFFFFFFF // Firebone Bolt
-dd 031B22B0 00000063 00000000 FFFFFFFF // Lightningbone Bolt
-dd 031B49C0 00000063 00000000 FFFFFFFF // Magicbone Bolt
-dd 031B70D0 00000063 00000000 FFFFFFFF // Haligbone Bolt
-dd 031B97E0 00000063 00000000 FFFFFFFF // Poisonbone Bolt
-dd 031BBEF0 00000063 00000000 FFFFFFFF // Bloodbone Bolt
-dd 031BE600 00000063 00000000 FFFFFFFF // Coldbone Bolt
-dd 031C0D10 00000063 00000000 FFFFFFFF // Rotbone Bolt
-dd 031C3420 00000063 00000000 FFFFFFFF // Sleepbone Bolt
-dd 031C5B30 00000063 00000000 FFFFFFFF // Flaming Bolt
-// Greatbolts
-dd 0328B740 00000063 00000000 FFFFFFFF // Ballista Bolt
-dd 0328DE50 00000063 00000000 FFFFFFFF // Lightning Greatbolt
-dd 03290560 00000063 00000000 FFFFFFFF // Explosive Greatbolt
-dd 03292C70 00000063 00000000 FFFFFFFF // Bone Ballista Bolt
-dd 00000000 00000000 00000000 FFFFFFFF
-
-createthread(ItemGib)
-{$lua}
-if not syntaxcheck then disableMemrec(memrec) end
-[DISABLE]
-</AssemblerScript>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>1337271404</ID>
-                  <Description>"-- Goods --"</Description>
-                  <Color>C0C0C0</Color>
-                  <GroupHeader>1</GroupHeader>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>1337271405</ID>
-                  <Description>"Give misc consumables x99"</Description>
-                  <VariableType>Auto Assembler Script</VariableType>
-                  <AssemblerScript>//Author: The-Raid-Boss
-[ENABLE]
-ItemGibArray:
-// Consumables
-dd 400003AC 00000063 00000000 FFFFFFFF // Preserving Boluses
-dd 400003B6 00000063 00000000 FFFFFFFF // Rejuvenating Boluses
-dd 400003C0 00000063 00000000 FFFFFFFF // Clarifying Boluses
-dd 400003A2 00000063 00000000 FFFFFFFF // Stimulating Boluses
-dd 40000398 00000063 00000000 FFFFFFFF // Thawfrost Boluses
-dd 4000038E 00000063 00000000 FFFFFFFF // Stanching Boluses
-dd 40000384 00000063 00000000 FFFFFFFF // Neutralizing Boluses
-dd 400000BE 00000063 00000000 FFFFFFFF // Rune Arc
-dd 40000096 00000063 00000000 FFFFFFFF // Furlcalling Finger Remedy
-dd 40000334 00000063 00000000 FFFFFFFF // Boiled Crab
-dd 40000D21 00000063 00000000 FFFFFFFF // Radiant Baldachin's Blessing
-dd 4000032C 00000063 00000000 FFFFFFFF // Frozen Raisin
-dd 4000050A 00000063 00000000 FFFFFFFF // Starlight Shards
-dd 40000CEE 00000063 00000000 FFFFFFFF // Warming Stone
-dd 40000CEF 00000063 00000000 FFFFFFFF // Frenzyflame Stone
-dd 40000CF8 00000063 00000000 FFFFFFFF // Scriptstone
-dd 40000D16 00000063 00000000 FFFFFFFF // Bewitching Branch
-dd 400004A6 00000063 00000000 FFFFFFFF // Silver-Pickled Fowl Foot
-dd 400004B0 00000063 00000000 FFFFFFFF // Gold-Pickled Fowl Foot
-dd 400006E0 00000063 00000000 FFFFFFFF // Ruin Fragment
-dd 40000B67 00000063 00000000 FFFFFFFF // Lord's Rune
-dd 40001F40 00000063 00000000 FFFFFFFF // Stonesword Key
-dd 40000834 00000063 00000000 FFFFFFFF // Soft Cotton
-dd 40000802 00000063 00000000 FFFFFFFF // Grace Mimic
-// Meats
-dd 4000044C 00000063 00000000 FFFFFFFF // Pickled Turtle Neck
-dd 40000460 00000063 00000000 FFFFFFFF // Invigorating Cured Meat
-dd 40000456 00000063 00000000 FFFFFFFF // Immunizing Cured Meat
-dd 4000046A 00000063 00000000 FFFFFFFF // Clarifying Cured Meat
-dd 40000474 00000063 00000000 FFFFFFFF // Dappled Cured Meat
-dd 400004BA 00000063 00000000 FFFFFFFF // Exalted Flesh
-//dd 400004C4 00000063 00000000 FFFFFFFF // Deathsbane Jerky
-dd 400004D3 00000063 00000000 FFFFFFFF // Raw Meat Dumpling
-dd 4000051E 00000063 00000000 FFFFFFFF // Immunizing White Cured Meat
-dd 40000528 00000063 00000000 FFFFFFFF // Invigorating White Cured Meat
-dd 40000532 00000063 00000000 FFFFFFFF // Clarifying White Cured Meat
-dd 4000053C 00000063 00000000 FFFFFFFF // Dappled White Cured Meat
-//dd 40000546 00000063 00000000 FFFFFFFF // Deathsbane White Jerky
-dd 4000047E 00000063 00000000 FFFFFFFF // Spellproof Dried Liver
-dd 40000488 00000063 00000000 FFFFFFFF // Fireproof Dried Liver
-dd 40000492 00000063 00000000 FFFFFFFF // Lightningproof Dried Liver
-dd 4000049C 00000063 00000000 FFFFFFFF // Holyproof Dried Liver
-// Throwables
-dd 400006A4 00000063 00000000 FFFFFFFF // Throwing Dagger
-dd 400006AE 00000063 00000000 FFFFFFFF // Bone Dart
-dd 400006B8 00000063 00000000 FFFFFFFF // Poisonbone Dart
-dd 400006C2 00000063 00000000 FFFFFFFF // Kukri
-dd 400006CC 00000063 00000000 FFFFFFFF // Crystal Dart
-dd 400006D6 00000063 00000000 FFFFFFFF // Fan Daggers
-dd 40000726 00000063 00000000 FFFFFFFF // Explosive Stone
-dd 40000727 00000063 00000000 FFFFFFFF // Explosive Stone Clump
-dd 40000730 00000063 00000000 FFFFFFFF // Poisoned Stone
-dd 40000731 00000063 00000000 FFFFFFFF // Poisoned Stone Clump
-dd 400007E4 00000063 00000000 FFFFFFFF // Rainbow Stone
-dd 400007EE 00000063 00000000 FFFFFFFF // Glowstone
-//dd 40000BCC 00000063 00000000 FFFFFFFF // Miranda's Prayer
-dd 40000BD6 00000063 00000000 FFFFFFFF // Cuckoo Glintstone
-dd 40000BEA 00000063 00000000 FFFFFFFF // Glintstone Scrap
-dd 40000BEB 00000063 00000000 FFFFFFFF // Large Glintstone Scrap
-dd 40000BF4 00000063 00000000 FFFFFFFF // Gravity Stone Fan
-dd 40000BFE 00000063 00000000 FFFFFFFF // Gravity Stone Chunk
-// Grease
-dd 40000578 00000063 00000000 FFFFFFFF // Fire Grease
-dd 40000582 00000063 00000000 FFFFFFFF // Lightning Grease
-dd 4000058C 00000063 00000000 FFFFFFFF // Magic Grease
-dd 40000596 00000063 00000000 FFFFFFFF // Holy Grease
-dd 400005A0 00000063 00000000 FFFFFFFF // Blood Grease
-dd 400005AA 00000063 00000000 FFFFFFFF // Soporific Grease
-dd 400005B4 00000063 00000000 FFFFFFFF // Poison Grease
-dd 400005BE 00000063 00000000 FFFFFFFF // Freezing Grease
-dd 400005C8 00000063 00000000 FFFFFFFF // Dragonwound Grease
-dd 400005D2 00000063 00000000 FFFFFFFF // Rot Grease
-dd 400005DC 00000063 00000000 FFFFFFFF // Drawstring Fire Grease
-dd 400005E6 00000063 00000000 FFFFFFFF // Drawstring Lightning Grease
-dd 400005F0 00000063 00000000 FFFFFFFF // Drawstring Magic Grease
-dd 400005FA 00000063 00000000 FFFFFFFF // Drawstring Holy Grease
-dd 40000604 00000063 00000000 FFFFFFFF // Drawstring Blood Grease
-dd 4000060E 00000063 00000000 FFFFFFFF // Drawstring Soporific Grease
-dd 40000618 00000063 00000000 FFFFFFFF // Drawstring Poison Grease
-//dd 40000622 00000063 00000000 FFFFFFFF // Drawstring Freezing Grease
-dd 40000636 00000063 00000000 FFFFFFFF // Drawstring Rot Grease
-dd 4000069A 00000063 00000000 FFFFFFFF // Shield Grease
-//dd 40000CE4 00000063 00000000 FFFFFFFF // Holy Water Grease
-dd 00000000 00000000 00000000 FFFFFFFF
-
-createthread(ItemGib)
-{$lua}
-if not syntaxcheck then disableMemrec(memrec) end
-[DISABLE]
-</AssemblerScript>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>1337271406</ID>
-                  <Description>"Give all crafting materials x999"</Description>
-                  <VariableType>Auto Assembler Script</VariableType>
-                  <AssemblerScript>//Author: Mar_Veloz
-[ENABLE]
-ItemGibArray:
-// Animal
-dd 40003A98 000003E7 00000000 FFFFFFFF // Sliver of Meat
-dd 40003AA2 000003E7 00000000 FFFFFFFF // Beast Liver
-dd 40003AAC 000003E7 00000000 FFFFFFFF // Lump of Flesh
-dd 40003AB6 000003E7 00000000 FFFFFFFF // Beast Blood
-dd 40003AC0 000003E7 00000000 FFFFFFFF // Old Fang
-dd 40003ACA 000003E7 00000000 FFFFFFFF // Budding Horn
-dd 40003AD4 000003E7 00000000 FFFFFFFF // Flight Pinion
-dd 40003AE8 000003E7 00000000 FFFFFFFF // Four-Toed Fowl Foot
-dd 40003AF2 000003E7 00000000 FFFFFFFF // Turtle Neck Meat
-dd 40003AFC 000003E7 00000000 FFFFFFFF // Human Bone Shard
-dd 40003B06 000003E7 00000000 FFFFFFFF // Great Dragonfly Head
-dd 40003B10 000003E7 00000000 FFFFFFFF // Slumbering Egg
-dd 40003B1A 000003E7 00000000 FFFFFFFF // Crab Eggs
-dd 40003B24 000003E7 00000000 FFFFFFFF // Land Octopus Ovary
-dd 40003B38 000003E7 00000000 FFFFFFFF // Strip of White Flesh
-dd 40003BEC 000003E7 00000000 FFFFFFFF // Thin Beast Bones
-dd 40003BED 000003E7 00000000 FFFFFFFF // Hefty Beast Bone
-dd 40003C32 000003E7 00000000 FFFFFFFF // Living Jar Shard
-dd 40003C3C 000003E7 00000000 FFFFFFFF // Albinauric Bloodclot
-dd 40003C46 000003E7 00000000 FFFFFFFF // Stormhawk Feather
-dd 40005140 000003E7 00000000 FFFFFFFF // Nascent Butterfly
-dd 40005141 000003E7 00000000 FFFFFFFF // Aeonian Butterfly
-dd 40005142 000003E7 00000000 FFFFFFFF // Smoldering Butterfly
-dd 4000514A 000003E7 00000000 FFFFFFFF // Silver Firefly
-dd 4000514B 000003E7 00000000 FFFFFFFF // Gold Firefly
-dd 4000514C 000003E7 00000000 FFFFFFFF // Glintstone Firefly
-dd 40005154 000003E7 00000000 FFFFFFFF // Golden Centipede
-dd 40005159 000003E7 00000000 FFFFFFFF // Silver Tear Husk
-dd 4000515E 000003E7 00000000 FFFFFFFF // Gold-Tinged Excrement
-dd 4000515F 000003E7 00000000 FFFFFFFF // Blood-Tainted Excrement
-dd 4000516D 000003E7 00000000 FFFFFFFF // Yellow Ember
-// Plant
-dd 40003B2E 000003E7 00000000 FFFFFFFF // Miranda Powder
-dd 400050AA 000003E7 00000000 FFFFFFFF // Poisonbloom
-dd 400050AB 000003E7 00000000 FFFFFFFF // Trina's Lily
-dd 400050AC 000003E7 00000000 FFFFFFFF // Fulgurbloom
-dd 400050AD 000003E7 00000000 FFFFFFFF // Miquella's Lily
-dd 400050AE 000003E7 00000000 FFFFFFFF // Grave Violet
-dd 400050B4 000003E7 00000000 FFFFFFFF // Faded Erdleaf Flower
-dd 400050C8 000003E7 00000000 FFFFFFFF // Erdleaf Flower
-dd 400050C9 000003E7 00000000 FFFFFFFF // Altus Bloom
-dd 400050CA 000003E7 00000000 FFFFFFFF // Fire Blossom
-dd 400050CB 000003E7 00000000 FFFFFFFF // Golden Sunflower
-dd 400050CD 000003E7 00000000 FFFFFFFF // Tarnished Golden Sunflower
-dd 400050D2 000003E7 00000000 FFFFFFFF // Herba
-dd 400050D3 000003E7 00000000 FFFFFFFF // Arteria Leaf
-dd 400050E6 000003E7 00000000 FFFFFFFF // Dewkissed Herba
-dd 400050F0 000003E7 00000000 FFFFFFFF // Rowa Fruit
-dd 400050F1 000003E7 00000000 FFFFFFFF // Golden Rowa
-dd 400050F2 000003E7 00000000 FFFFFFFF // Rimed Rowa
-dd 400050F3 000003E7 00000000 FFFFFFFF // Bloodrose
-dd 40005104 000003E7 00000000 FFFFFFFF // Eye of Yelough
-dd 4000510E 000003E7 00000000 FFFFFFFF // Crystal Bud
-dd 4000510F 000003E7 00000000 FFFFFFFF // Rimed Crystal Bud
-dd 40005111 000003E7 00000000 FFFFFFFF // Sacramental Bud
-dd 40005118 000003E7 00000000 FFFFFFFF // Mushroom
-dd 40005119 000003E7 00000000 FFFFFFFF // Melted Mushroom
-dd 40005122 000003E7 00000000 FFFFFFFF // Toxic Mushroom
-dd 40005127 000003E7 00000000 FFFFFFFF // Root Resin
-dd 40005168 000003E7 00000000 FFFFFFFF // Cave Moss
-dd 40005169 000003E7 00000000 FFFFFFFF // Budding Cave Moss
-dd 4000516A 000003E7 00000000 FFFFFFFF // Crystal Cave Moss
-// Inorganic
-dd 400006E0 000003E7 00000000 FFFFFFFF // Ruin Fragment
-dd 40003C28 000003E7 00000000 FFFFFFFF // String
-dd 4000512C 000003E7 00000000 FFFFFFFF // Cracked Crystal
-dd 4000513B 000003E7 00000000 FFFFFFFF // Sanctuary Stone
-dd 40005172 000003E7 00000000 FFFFFFFF // Volcanic Stone
-dd 40005174 000003E7 00000000 FFFFFFFF // Formic Rock
-dd 40005177 000003E7 00000000 FFFFFFFF // Gravel Stone
-dd 00000000 00000000 00000000 FFFFFFFF
-
-createthread(ItemGib)
-{$lua}
-if not syntaxcheck then disableMemrec(memrec) end
-[DISABLE]
-</AssemblerScript>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>1337271407</ID>
-                  <Description>"Give all Spirit upgrade materials x999"</Description>
-                  <VariableType>Auto Assembler Script</VariableType>
-                  <AssemblerScript>[ENABLE]
-ItemGibArray:
-// Smithing Stone
-// dd 40002774 000003E7 00000000 FFFFFFFF // Smithing Stone [1]
-// dd 40002775 000003E7 00000000 FFFFFFFF // Smithing Stone [2]
-// dd 40002776 000003E7 00000000 FFFFFFFF // Smithing Stone [3]
-// dd 40002777 000003E7 00000000 FFFFFFFF // Smithing Stone [4]
-// dd 40002778 000003E7 00000000 FFFFFFFF // Smithing Stone [5]
-// dd 40002779 000003E7 00000000 FFFFFFFF // Smithing Stone [6]
-// dd 4000277A 000003E7 00000000 FFFFFFFF // Smithing Stone [7]
-// dd 4000277B 000003E7 00000000 FFFFFFFF // Smithing Stone [8]
-// dd 4000279C 000003E7 00000000 FFFFFFFF // Ancient Dragon Smithing Stone
-// Somber Smithing Stone
-// dd 400027B0 000003E7 00000000 FFFFFFFF // Somber Smithing Stone [1]
-// dd 400027B1 000003E7 00000000 FFFFFFFF // Somber Smithing Stone [2]
-// dd 400027B2 000003E7 00000000 FFFFFFFF // Somber Smithing Stone [3]
-// dd 400027B3 000003E7 00000000 FFFFFFFF // Somber Smithing Stone [4]
-// dd 400027B4 000003E7 00000000 FFFFFFFF // Somber Smithing Stone [5]
-// dd 400027B5 000003E7 00000000 FFFFFFFF // Somber Smithing Stone [6]
-// dd 400027B6 000003E7 00000000 FFFFFFFF // Somber Smithing Stone [7]
-// dd 400027B7 000003E7 00000000 FFFFFFFF // Somber Smithing Stone [8]
-// dd 400027B8 000003E7 00000000 FFFFFFFF // Somber Ancient Dragon Smithing Stone
-// dd 400027D8 000003E7 00000000 FFFFFFFF // Somber Smithing Stone [9]
-// Grave Glovewort
-dd 40002A94 000003E7 00000000 FFFFFFFF // Grave Glovewort [1]
-dd 40002A95 000003E7 00000000 FFFFFFFF // Grave Glovewort [2]
-dd 40002A96 000003E7 00000000 FFFFFFFF // Grave Glovewort [3]
-dd 40002A97 000003E7 00000000 FFFFFFFF // Grave Glovewort [4]
-dd 40002A98 000003E7 00000000 FFFFFFFF // Grave Glovewort [5]
-dd 40002A99 000003E7 00000000 FFFFFFFF // Grave Glovewort [6]
-dd 40002A9A 000003E7 00000000 FFFFFFFF // Grave Glovewort [7]
-dd 40002A9B 000003E7 00000000 FFFFFFFF // Grave Glovewort [8]
-dd 40002A9C 000003E7 00000000 FFFFFFFF // Grave Glovewort [9]
-dd 40002A9D 000003E7 00000000 FFFFFFFF // Great Grave Glovewort
-// Ghost Glovewort
-dd 40002A9E 000003E7 00000000 FFFFFFFF // Ghost Glovewort [1]
-dd 40002A9F 000003E7 00000000 FFFFFFFF // Ghost Glovewort [2]
-dd 40002AA0 000003E7 00000000 FFFFFFFF // Ghost Glovewort [3]
-dd 40002AA1 000003E7 00000000 FFFFFFFF // Ghost Glovewort [4]
-dd 40002AA2 000003E7 00000000 FFFFFFFF // Ghost Glovewort [5]
-dd 40002AA3 000003E7 00000000 FFFFFFFF // Ghost Glovewort [6]
-dd 40002AA4 000003E7 00000000 FFFFFFFF // Ghost Glovewort [7]
-dd 40002AA5 000003E7 00000000 FFFFFFFF // Ghost Glovewort [8]
-dd 40002AA6 000003E7 00000000 FFFFFFFF // Ghost Glovewort [9]
-dd 40002AA7 000003E7 00000000 FFFFFFFF // Great Ghost Glovewort
-dd 00000000 00000000 00000000 FFFFFFFF
-
-createthread(ItemGib)
-{$lua}
-if not syntaxcheck then disableMemrec(memrec) end
-[DISABLE]
-</AssemblerScript>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>1337271408</ID>
-                  <Description>"Give all limited quantity craftables x99"</Description>
-                  <VariableType>Auto Assembler Script</VariableType>
-                  <AssemblerScript>//Author: The-Raid-Boss
-[ENABLE]
-ItemGibArray:
-// Perfumes
-dd 40000DAC 00000063 00000000 FFFFFFFF // Uplifting Aromatic
-dd 40000DB6 00000063 00000000 FFFFFFFF // Spark Aromatic
-dd 40000DC0 00000063 00000000 FFFFFFFF // Ironjar Aromatic
-dd 40000DDE 00000063 00000000 FFFFFFFF // Bloodboil Aromatic
-dd 40000DFC 00000063 00000000 FFFFFFFF // Poison Spraymist
-dd 40000E1A 00000063 00000000 FFFFFFFF // Acid Spraymist
-dd 40000DC0 00000063 00000000 FFFFFFFF // Ironjar Aromatic
-// Pots
-dd 4000012C 00000063 00000000 FFFFFFFF // Fire Pot
-dd 4000012D 00000063 00000000 FFFFFFFF // Redmane Fire Pot
-dd 4000012E 00000063 00000000 FFFFFFFF // Giantsflame Fire Pot
-dd 40000140 00000063 00000000 FFFFFFFF // Lightning Pot
-dd 40000141 00000063 00000000 FFFFFFFF // Ancient Dragonbolt Pot
-dd 4000014A 00000063 00000000 FFFFFFFF // Fetid Pot
-dd 4000015E 00000063 00000000 FFFFFFFF // Holy Water Pot
-dd 4000015F 00000063 00000000 FFFFFFFF // Sacred Order Pot
-dd 40000168 00000063 00000000 FFFFFFFF // Freezing Pot
-dd 40000172 00000063 00000000 FFFFFFFF // Poison Pot
-dd 4000017C 00000063 00000000 FFFFFFFF // Oil Pot
-dd 4000029E 00000063 00000000 FFFFFFFF // Rot Pot
-dd 40000186 00000063 00000000 FFFFFFFF // Alluring Pot
-dd 40000187 00000063 00000000 FFFFFFFF // Beastlure Pot
-dd 40000190 00000063 00000000 FFFFFFFF // Roped Fire Pot
-dd 40000154 00000063 00000000 FFFFFFFF // Swarm Pot
-dd 40000280 00000063 00000000 FFFFFFFF // Sleep Pot
-dd 400001A4 00000063 00000000 FFFFFFFF // Roped Lightning Pot
-dd 400001AE 00000063 00000000 FFFFFFFF // Roped Fetid Pot
-dd 400001B8 00000063 00000000 FFFFFFFF // Roped Poison Pot
-dd 400001C2 00000063 00000000 FFFFFFFF // Roped Oil Pot
-dd 400001CC 00000063 00000000 FFFFFFFF // Roped Magic Pot
-dd 400001D6 00000063 00000000 FFFFFFFF // Roped Fly Pot
-//dd 400001E0 00000063 00000000 FFFFFFFF // Roped Freezing Pot
-dd 400001EA 00000063 00000000 FFFFFFFF // Roped Volcano Pot
-dd 400001FE 00000063 00000000 FFFFFFFF // Roped Holy Water Pot
-dd 40000258 00000063 00000000 FFFFFFFF // Volcano Pot
-dd 40000262 00000063 00000000 FFFFFFFF // Albinauric Pot
-dd 40000276 00000063 00000000 FFFFFFFF // Cursed-Blood Pot
-dd 40000294 00000063 00000000 FFFFFFFF // Magic Pot
-dd 40000295 00000063 00000000 FFFFFFFF // Academy Magic Pot
-dd 00000000 00000000 00000000 FFFFFFFF
-
-createthread(ItemGib)
-{$lua}
-if not syntaxcheck then disableMemrec(memrec) end
-[DISABLE]
-</AssemblerScript>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>1337271409</ID>
-                  <Description>"Give all prattling pates"</Description>
-                  <VariableType>Auto Assembler Script</VariableType>
-                  <AssemblerScript>//Author: The-Raid-Boss
-[ENABLE]
-ItemGibArray:
-dd 40000898 00000001 00000000 FFFFFFFF // Prattling Pate "Hello"
-dd 40000899 00000001 00000000 FFFFFFFF // Prattling Pate "Thank you"
-dd 4000089A 00000001 00000000 FFFFFFFF // Prattling Pate "Apologies"
-dd 4000089B 00000001 00000000 FFFFFFFF // Prattling Pate "Wonderful"
-dd 4000089C 00000001 00000000 FFFFFFFF // Prattling Pate "Please help"
-dd 4000089D 00000001 00000000 FFFFFFFF // Prattling Pate "My beloved"
-dd 4000089E 00000001 00000000 FFFFFFFF // Prattling Pate "Let's get to it"
-dd 4000089F 00000001 00000000 FFFFFFFF // Prattling Pate "You're beautiful"
-dd 00000000 00000000 00000000 FFFFFFFF
-
-createthread(ItemGib)
-{$lua}
-if not syntaxcheck then disableMemrec(memrec) end
-[DISABLE]
-</AssemblerScript>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>1337271410</ID>
-                  <Description>"Give all bell bearings"</Description>
-                  <VariableType>Auto Assembler Script</VariableType>
-                  <AssemblerScript>{
-    Author: Apricus
-    Description: Spawns all bell bearings
-}
-
-[ENABLE]
-ItemGibArray:
-dd 400022CE 00000001 00000000 FFFFFFFF // Pidia's Bell Bearing
-dd 400022CF 00000001 00000000 FFFFFFFF // Seluvis's Bell Bearing
-dd 400022D0 00000001 00000000 FFFFFFFF // Patches' Bell Bearing
-dd 400022D1 00000001 00000000 FFFFFFFF // Sellen's Bell Bearing
-dd 400022D3 00000001 00000000 FFFFFFFF // D's Bell Bearing
-dd 400022D4 00000001 00000000 FFFFFFFF // Bernahl's Bell Bearing
-dd 400022D5 00000001 00000000 FFFFFFFF // Miriel's Bell Bearing
-dd 400022D6 00000001 00000000 FFFFFFFF // Gostoc's Bell Bearing
-dd 400022D7 00000001 00000000 FFFFFFFF // Thops's Bell Bearing
-dd 400022D8 00000001 00000000 FFFFFFFF // Kalé's Bell Bearing
-dd 400022D9 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [1]
-dd 400022DA 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [2]
-dd 400022DB 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [3]
-dd 400022DC 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [4]
-dd 400022DD 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [5]
-dd 400022DE 00000001 00000000 FFFFFFFF // Isolated Merchant's Bell Bearing [1]
-dd 400022DF 00000001 00000000 FFFFFFFF // Isolated Merchant's Bell Bearing [2]
-dd 400022E0 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [6]
-dd 400022E1 00000001 00000000 FFFFFFFF // Hermit Merchant's Bell Bearing [1]
-dd 400022E2 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [7]
-dd 400022E3 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [8]
-dd 400022E4 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [9]
-dd 400022E5 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [10]
-//dd 400022E6 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [11]
-dd 400022E7 00000001 00000000 FFFFFFFF // Isolated Merchant's Bell Bearing [3]
-dd 400022E8 00000001 00000000 FFFFFFFF // Hermit Merchant's Bell Bearing [2]
-dd 400022E9 00000001 00000000 FFFFFFFF // Abandoned Merchant's Bell Bearing
-dd 400022EA 00000001 00000000 FFFFFFFF // Hermit Merchant's Bell Bearing [3]
-dd 400022EB 00000001 00000000 FFFFFFFF // Imprisoned Merchant's Bell Bearing
-dd 400022EC 00000001 00000000 FFFFFFFF // Iji's Bell Bearing
-dd 400022ED 00000001 00000000 FFFFFFFF // Rogier's Bell Bearing
-dd 400022EE 00000001 00000000 FFFFFFFF // Blackguard's Bell Bearing
-dd 400022EF 00000001 00000000 FFFFFFFF // Corhyn's Bell Bearing
-dd 400022F0 00000001 00000000 FFFFFFFF // Gowry's Bell Bearing
-dd 400022F1 00000001 00000000 FFFFFFFF // Bone Peddler's Bell Bearing
-dd 400022F2 00000001 00000000 FFFFFFFF // Meat Peddler's Bell Bearing
-dd 400022F3 00000001 00000000 FFFFFFFF // Medicine Peddler's Bell Bearing
-dd 400022F4 00000001 00000000 FFFFFFFF // Gravity Stone Peddler's Bell Bearing
-dd 400022F7 00000001 00000000 FFFFFFFF // Smithing-Stone Miner's Bell Bearing [1]
-dd 400022F8 00000001 00000000 FFFFFFFF // Smithing-Stone Miner's Bell Bearing [2]
-dd 400022F9 00000001 00000000 FFFFFFFF // Smithing-Stone Miner's Bell Bearing [3]
-dd 400022FA 00000001 00000000 FFFFFFFF // Smithing-Stone Miner's Bell Bearing [4]
-dd 400022FB 00000001 00000000 FFFFFFFF // Somberstone Miner's Bell Bearing [1]
-dd 400022FC 00000001 00000000 FFFFFFFF // Somberstone Miner's Bell Bearing [2]
-dd 400022FD 00000001 00000000 FFFFFFFF // Somberstone Miner's Bell Bearing [3]
-dd 400022FE 00000001 00000000 FFFFFFFF // Somberstone Miner's Bell Bearing [4]
-dd 400022FF 00000001 00000000 FFFFFFFF // Somberstone Miner's Bell Bearing [5]
-dd 40002300 00000001 00000000 FFFFFFFF // Glovewort Picker's Bell Bearing [1]
-dd 40002301 00000001 00000000 FFFFFFFF // Glovewort Picker's Bell Bearing [2]
-dd 40002302 00000001 00000000 FFFFFFFF // Glovewort Picker's Bell Bearing [3]
-dd 40002303 00000001 00000000 FFFFFFFF // Ghost-Glovewort Picker's Bell Bearing [1]
-dd 40002304 00000001 00000000 FFFFFFFF // Ghost-Glovewort Picker's Bell Bearing [2]
-dd 40002305 00000001 00000000 FFFFFFFF // Ghost-Glovewort Picker's Bell Bearing [3]
-
-createthread(ItemGib)
-{$lua}
-if not syntaxcheck then disableMemrec(memrec) end
-[DISABLE]
-</AssemblerScript>
-                </CheatEntry>
-                <CheatEntry>
-                  <ID>1337271411</ID>
-                  <Description>"Give all spirit ashes"</Description>
-                  <VariableType>Auto Assembler Script</VariableType>
-                  <AssemblerScript>[ENABLE]
-ItemGibArray:
-dd 40030D40 00000001 00000000 FFFFFFFF // Black Knife Tiche
-dd 40031128 00000001 00000000 FFFFFFFF // Banished Knight Oleg
-dd 40031510 00000001 00000000 FFFFFFFF // Banished Knight Engvall
-dd 400318F8 00000001 00000000 FFFFFFFF // Fanged Imp Ashes
-dd 40031CE0 00000001 00000000 FFFFFFFF // Latenna the Albinauric
-dd 400320C8 00000001 00000000 FFFFFFFF // Nomad Ashes
-dd 400324B0 00000001 00000000 FFFFFFFF // Nightmaiden &amp; Swordstress Puppets
-// dd 40032898 00000001 00000000 FFFFFFFF // Mimic Tear Ashes
-dd 40032C80 00000001 00000000 FFFFFFFF // Crystalian Ashes
-dd 40033068 00000001 00000000 FFFFFFFF // Ancestral Follower Ashes
-dd 40033450 00000001 00000000 FFFFFFFF // Winged Misbegotten Ashes
-dd 40033838 00000001 00000000 FFFFFFFF // Albinauric Ashes
-dd 40033C20 00000001 00000000 FFFFFFFF // Skeletal Militiaman Ashes
-dd 40034008 00000001 00000000 FFFFFFFF // Skeletal Bandit Ashes
-dd 400343F0 00000001 00000000 FFFFFFFF // Oracle Envoy Ashes
-dd 400347D8 00000001 00000000 FFFFFFFF // Putrid Corpse Ashes
-dd 40034BC0 00000001 00000000 FFFFFFFF // Depraved Perfumer Carmaan
-dd 40034FA8 00000001 00000000 FFFFFFFF // Perfumer Tricia
-dd 40035390 00000001 00000000 FFFFFFFF // Glintstone Sorcerer Ashes
-dd 40035778 00000001 00000000 FFFFFFFF // Twinsage Sorcerer Ashes
-dd 40035B60 00000001 00000000 FFFFFFFF // Page Ashes
-dd 40035F48 00000001 00000000 FFFFFFFF // Battlemage Hugues
-dd 40036330 00000001 00000000 FFFFFFFF // Clayman Ashes
-dd 40036718 00000001 00000000 FFFFFFFF // Cleanrot Knight Finlay
-dd 40036B00 00000001 00000000 FFFFFFFF // Kindred of Rot Ashes
-dd 40036EE8 00000001 00000000 FFFFFFFF // Marionette Soldier Ashes
-dd 400372D0 00000001 00000000 FFFFFFFF // Avionette Soldier Ashes
-dd 400376B8 00000001 00000000 FFFFFFFF // Fire Monk Ashes
-dd 40037AA0 00000001 00000000 FFFFFFFF // Blackflame Monk Amon
-dd 40037E88 00000001 00000000 FFFFFFFF // Man-Serpent Ashes
-dd 40038270 00000001 00000000 FFFFFFFF // Azula Beastman Ashes
-dd 40038658 00000001 00000000 FFFFFFFF // Kaiden Sellsword Ashes
-dd 40038A40 00000001 00000000 FFFFFFFF // Lone Wolf Ashes
-dd 40038E28 00000001 00000000 FFFFFFFF // Giant Rat Ashes
-dd 40039210 00000001 00000000 FFFFFFFF // Demi-Human Ashes
-dd 400395F8 00000001 00000000 FFFFFFFF // Rotten Stray Ashes
-dd 400399E0 00000001 00000000 FFFFFFFF // Spirit Jellyfish Ashes
-dd 40039DC8 00000001 00000000 FFFFFFFF // Warhawk Ashes
-dd 4003A1B0 00000001 00000000 FFFFFFFF // Stormhawk Deenh
-dd 4003A598 00000001 00000000 FFFFFFFF // Bloodhound Knight Floh
-dd 4003A980 00000001 00000000 FFFFFFFF // Wandering Noble Ashes
-dd 4003AD68 00000001 00000000 FFFFFFFF // Noble Sorcerer Ashes
-dd 4003B150 00000001 00000000 FFFFFFFF // Vulgar Militia Ashes
-dd 4003B538 00000001 00000000 FFFFFFFF // Mad Pumpkin Head Ashes
-dd 4003B920 00000001 00000000 FFFFFFFF // Land Squirt Ashes
-dd 4003BD08 00000001 00000000 FFFFFFFF // Miranda Sprout Ashes
-dd 4003C0F0 00000001 00000000 FFFFFFFF // Soldjars of Fortune Ashes
-dd 4003C4D8 00000001 00000000 FFFFFFFF // Omenkiller Rollo
-dd 4003C8C0 00000001 00000000 FFFFFFFF // Greatshield Soldier Ashes
-dd 4003CCA8 00000001 00000000 FFFFFFFF // Archer Ashes
-dd 4003D090 00000001 00000000 FFFFFFFF // Godrick Soldier Ashes
-dd 4003D478 00000001 00000000 FFFFFFFF // Raya Lucaria Soldier Ashes
-dd 4003D860 00000001 00000000 FFFFFFFF // Leyndell Soldier Ashes
-dd 4003DC48 00000001 00000000 FFFFFFFF // Radahn Soldier Ashes
-dd 4003E030 00000001 00000000 FFFFFFFF // Mausoleum Soldier Ashes
-dd 4003E418 00000001 00000000 FFFFFFFF // Haligtree Soldier Ashes
-dd 4003E800 00000001 00000000 FFFFFFFF // Ancient Dragon Knight Kristoff
-dd 4003EBE8 00000001 00000000 FFFFFFFF // Redmane Knight Ogha
-dd 4003EFD0 00000001 00000000 FFFFFFFF // Lhutel the Headless
-dd 4003F3B8 00000001 00000000 FFFFFFFF // Nepheli Loux Puppet
-dd 4003F7A0 00000001 00000000 FFFFFFFF // Dung Eater Puppet
-dd 4003FB88 00000001 00000000 FFFFFFFF // Finger Maiden Therolina Puppet
-dd 4003FF70 00000001 00000000 FFFFFFFF // Dolores the Sleeping Arrow Puppet
-dd 40040358 00000001 00000000 FFFFFFFF // Jarwight Puppet
-dd 00000000 00000000 00000000 FFFFFFFF
-
-createthread(ItemGib)
-{$lua}
-if not syntaxcheck then disableMemrec(memrec) end
-[DISABLE]
-</AssemblerScript>
-                </CheatEntry>
-              </CheatEntries>
-            </CheatEntry>
-          </CheatEntries>
-        </CheatEntry>
-        <CheatEntry>
           <ID>1337271341</ID>
           <Description>"ItemGib Vanilla"</Description>
           <Options moHideChildren="1"/>
@@ -5120,6 +3868,1258 @@ dd 40001EDC 00000001 00000000 FFFFFFFF // Fire's Deadly Sin
 dd 40001EDF 00000001 00000000 FFFFFFFF // Golden Lightning Fortification
 dd 00000000 00000000 00000000 FFFFFFFF
 
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]
+</AssemblerScript>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337271380</ID>
+          <Description>"ItemGib CER"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(ItemGib_Main_AOB,$process,8B 02 83 F8 0A)
+//aobscanmodule(WeaponLookup_AOB,$process,8B EA 48 8B F1 33 DB 41 83 CE FF 85 D2)
+define(ItemGib_Main_Call,ItemGib_Main_AOB-52)
+//define(WeaponLookup_Call,WeaponLookup_AOB-22)
+alloc(ItemGib,$300,$process)
+alloc(ItemGibData,$100)
+alloc(ItemGibArray,$2000)
+
+{$c prefix=item_gib}
+#include &lt;tga/params.h&gt;
+{$asm}
+ItemGib:
+registerSymbol(ItemGib)
+test rcx,rcx
+jne short ItemGib_set
+mov rcx,ItemGibArray
+ItemGib_set:
+mov r12,rcx
+call ItemGib_Insert
+mov rcx,ItemGibArray
+call ItemGib_Cleanup
+ret
+
+ItemGib_Insert:
+mov eax,[r12]
+test eax,eax
+je ItemGib_Insert_end
+mov r10,ItemGibData
+lea r11,[r10+20]
+mov ecx,0xA
+mov [r10+20],00
+ItemGib_Insert_Loop:
+mov eax,[r12]
+test eax,eax
+je short ItemGib_Insert_03
+mov [r11+04],eax
+mov eax,[r12+04]
+mov [r11+08],eax
+mov eax,FFFFFFFF
+mov [r11+0C],eax
+mov [r11+10],eax
+cmp dword ptr [r12+00],02FAF080
+jae short ItemGib_Insert_01
+call ItemGib_WeaponCheck
+movzx eax,word ptr [r12+08]
+add [r11+04],eax
+mov eax,[r12+0C]
+mov [r11+10],eax
+mov qword ptr [r11+08],0x1
+jmp short ItemGib_Insert_02
+ItemGib_Insert_01:
+cmp dword ptr [r12+00],10000000 // Protector
+jl short ItemGib_Insert_02
+cmp dword ptr [r12+00],40000000 // Goods
+jg short ItemGib_Insert_02
+mov [r11+08],0x1
+ItemGib_Insert_02:
+add r11,10
+add r12,10
+inc [r10+20]
+loop ItemGib_Insert_Loop
+ItemGib_Insert_03:
+call ItemGib_Main
+jmp ItemGib_Insert
+ItemGib_Insert_end:
+ret
+
+ItemGib_WeaponCheck:
+push ecx
+xor rcx,rcx
+mov edx,dword ptr [r11+04]
+movzx ebx,word ptr [r12+0A]
+{$ccode weapon_id=edx inputReinforceLv=ebx result=eax}
+extern uint8_t** GameDataMan;
+EquipParamWeapon* param = CParamUtils_GetRowData(L"EquipParamWeapon", weapon_id);
+if (param != 0) {
+	uint8_t playerReinforceLv = *(*(GameDataMan+0x1)+0xE2);
+	if (param-&gt;originEquipWep1 != -1) {
+		if (inputReinforceLv &gt; 25) {
+			inputReinforceLv = playerReinforceLv;
+		}
+		result = inputReinforceLv;
+		if (param-&gt;originEquipWep16 == -1)
+			result = (int)(((float)inputReinforceLv + 0.5f) / 2.5f);
+	}
+	else {
+		result = 0;
+	}
+}
+{$asm}
+add [r11+04],eax
+pop ecx
+ret
+
+ItemGib_Cleanup:
+xor rax,rax
+mov qword ptr [rcx+10],rax
+mov eax,FFFFFFFF
+mov dword ptr [rcx+18],eax
+mov dword ptr [rcx+1C],eax
+ret
+
+ItemGib_Main:
+sub rsp,48
+xor r9d,r9d
+mov r8,ItemGibData
+lea rdx,[r8+20]
+mov r10,MapItemMan
+mov rcx,[r10]
+call ItemGib_Main_Call
+add rsp,48
+ret
+
+ItemGibArray:
+registerSymbol(ItemGibArray)
+// ID       Quantity Upgrade  AshOfWar
+dd 000F4240 00000001 FFFF0000 FFFFFFFF
+dd 00000000 00000000 00000000 FFFFFFFF
+
+[DISABLE]
+dealloc(ItemGib)
+dealloc(ItemGibData)
+dealloc(ItemGibArray)
+unregisterSymbol(ItemGib)
+unregisterSymbol(ItemGibArray)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337271381</ID>
+              <Description>"CER Item"</Description>
+              <DropDownListLink>ItemDropdownCER</DropDownListLink>
+              <ShowAsHex>1</ShowAsHex>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>ItemGibArray+00</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337271382</ID>
+              <Description>"Quantity"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>ItemGibArray+04</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337271383</ID>
+              <Description>"Upgrade"</Description>
+              <DropDownListLink>ItemUpgrade</DropDownListLink>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>2 Bytes</VariableType>
+              <Address>ItemGibArray+08</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337271384</ID>
+              <Description>"Reinforcement Level (Regular | Somber)"</Description>
+              <DropDownListLink>ItemReinforceLv</DropDownListLink>
+              <ShowAsSigned>1</ShowAsSigned>
+              <VariableType>2 Bytes</VariableType>
+              <Address>ItemGibArray+0A</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337271385</ID>
+              <Description>"Ash of War"</Description>
+              <DropDownListLink>ItemGem</DropDownListLink>
+              <ShowAsHex>1</ShowAsHex>
+              <ShowAsSigned>1</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>ItemGibArray+0C</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337271386</ID>
+              <Description>"&gt; Spawn Item"</Description>
+              <Color>FF8000</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]
+
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337271387</ID>
+              <Description>"Details"</Description>
+              <Options moHideChildren="1"/>
+              <Color>C0C0C0</Color>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1337271388</ID>
+                  <Description>"ItemID"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>ItemGibArray+00</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>1337271389</ID>
+                      <Description>"EquipID"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>Binary</VariableType>
+                      <BitStart>0</BitStart>
+                      <BitLength>28</BitLength>
+                      <ShowAsBinary>0</ShowAsBinary>
+                      <Address>ItemGibArray+00</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1337271390</ID>
+                      <Description>"EquipType"</Description>
+                      <DropDownListLink>ItemType</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>Binary</VariableType>
+                      <BitStart>4</BitStart>
+                      <BitLength>4</BitLength>
+                      <ShowAsBinary>0</ShowAsBinary>
+                      <Address>ItemGibArray+03</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337271391</ID>
+                  <Description>"Quantity"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>ItemGibArray+04</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337271392</ID>
+                  <Description>"Upgrade"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>2 Bytes</VariableType>
+                  <Address>ItemGibArray+08</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337271393</ID>
+                  <Description>"Reinforcement Level"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>2 Bytes</VariableType>
+                  <Address>ItemGibArray+0A</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337271394</ID>
+                  <Description>"Ash of War"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <ShowAsSigned>1</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>ItemGibArray+0C</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337271395</ID>
+              <Description>"MassItemGib"</Description>
+              <Options moHideChildren="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1337271396</ID>
+                  <Description>"Give all CER weapons"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[ENABLE]
+ItemGibArray:
+// ID       Quantity Upgrade  AshOfWar
+// dd 000F4240 00000001 FFFF0000 FFFFFFFF // Dagger
+dd 00d6ff10 00000001 FFFF0000 FFFFFFFF // Axe Of Epiphany
+dd 00e64150 00000001 FFFF0000 FFFFFFFF // Axe Of Rust
+dd 00b7b740 00000001 FFFF0000 FFFFFFFF // Crimson Brair-Bough
+dd 002f9b80 00000001 FFFF0000 FFFFFFFF // Sword Of The Cyclops
+dd 00d79b50 00000001 FFFF0000 FFFFFFFF // Axe Of Fell prophecy
+dd 004d83c0 00000001 FFFF0000 FFFFFFFF // Foil Of Caddock
+dd 007b7190 00000001 FFFF0000 FFFFFFFF // Three Finger Blade
+dd 009932c0 00000001 FFFF0000 FFFFFFFF // Frozen Twinshards
+dd 002f7470 00000001 FFFF0000 FFFFFFFF // Celestial Blade
+dd 00d6b0f0 00000001 FFFF0000 FFFFFFFF // Glintstone Cleaver
+dd 0099a7f0 00000001 FFFF0000 FFFFFFFF // Godwyn's Cragblades
+dd 00a826e0 00000001 FFFF0000 FFFFFFFF // Leaden Maul
+dd 0011da50 00000001 FFFF0000 FFFFFFFF // Midnight Dagger
+dd 00c72090 00000001 FFFF0000 FFFFFFFF // Mohgwyn Censer
+dd 006d8ee0 00000001 FFFF0000 FFFFFFFF // Nomad's Kilij
+dd 006d40c0 00000001 FFFF0000 FFFFFFFF // Blade Of Scarlet Boom
+dd 01147d40 00000001 FFFF0000 FFFFFFFF // Glaive Of The Ancients
+dd 00c747a0 00000001 FFFF0000 FFFFFFFF // Seething Flail
+dd 01504dc0 00000001 FFFF0000 FFFFFFFF // Stone Claws
+dd 0098e4a0 00000001 FFFF0000 FFFFFFFF // Sulien's Razors
+dd 00111700 00000001 FFFF0000 FFFFFFFF // Surgeons Catlinger
+dd 004d5cb0 00000001 FFFF0000 FFFFFFFF // Thorn Of The Guilty
+dd 00b79030 00000001 FFFF0000 FFFFFFFF // Underworld Greatmace
+dd 00314930 00000001 FFFF0000 FFFFFFFF // Sword Of Hadea
+dd 00225510 00000001 FFFF0000 FFFFFFFF // Dragonkin Seeker Sword
+dd 0020ce70 00000001 FFFF0000 FFFFFFFF // Molten Sword
+dd 00100590 00000001 FFFF0000 FFFFFFFF // Underworld Dagger
+dd 0020a760 00000001 FFFF0000 FFFFFFFF // Sword Of The Cosmos
+dd 00f5aaa0 00000001 FFFF0000 FFFFFFFF // Spear of Tranquility
+dd 00200b20 00000001 FFFF0000 FFFFFFFF // Zephyr Blades
+dd 003eddc0 00000001 FFFF0000 FFFFFFFF // Gravelstone Arcblades
+dd 016164c0 00000001 FFFF0000 FFFFFFFF // Lodestone of Gelmir
+dd 001ef9b0 00000001 FFFF0000 FFFFFFFF // Yura’s Kanabo
+dd 00b82c70 00000001 FFFF0000 FFFFFFFF // Sigur’s Greatmace
+dd 00d7e970 00000001 FFFF0000 FFFFFFFF // Bloodhound Hookblade
+dd 003f04d0 00000001 FFFF0000 FFFFFFFF // Osian’s Greatsword
+dd 01154090 00000001 FFFF0000 FFFFFFFF // Reaver’s Odachi
+dd 009a1d20 00000001 FFFF0000 FFFFFFFF // Palm-Ax Twinblades
+dd 01228700 00000001 FFFF0000 FFFFFFFF // War Scythe
+dd 009a4430 00000001 FFFF0000 FFFFFFFF // Gilded Quarterstaff
+dd 005c02b0 00000001 FFFF0000 FFFFFFFF // Carwyn’s Épée
+dd 006d67d0 00000001 FFFF0000 FFFFFFFF // Godskin Flayer
+dd 01145630 00000001 FFFF0000 FFFFFFFF // Guardian Spearblade
+
+// END
+dd 00000000 00000000 00000000 FFFFFFFF
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337271397</ID>
+                  <Description>"Give all CER catalysts"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[ENABLE]
+ItemGibArray:
+// ID       Quantity Upgrade  AshOfWar
+// dd 000F4240 00000001 FFFF0000 FFFFFFFF // Dagger
+dd 01f78a40 00000001 FFFF0000 FFFFFFFF // glintstone staff
+dd 01f84d90 00000001 FFFF0000 FFFFFFFF // gelmir lava staff
+dd 01f874a0 00000001 FFFF0000 FFFFFFFF // blighted branch
+dd 01f95f00 00000001 FFFF0000 FFFFFFFF // digger staff
+dd 01fa4960 00000001 FFFF0000 FFFFFFFF // prince of death staff
+dd 01fa9780 00000001 FFFF0000 FFFFFFFF // dragon student staff
+dd 01fb0cb0 00000001 FFFF0000 FFFFFFFF // azur's staff
+dd 01fb33c0 00000001 FFFF0000 FFFFFFFF // lusat's night staff
+dd 01fb5ad0 00000001 FFFF0000 FFFFFFFF // meteorite staff
+dd 01fb81e0 00000001 FFFF0000 FFFFFFFF // staff of the guilty
+dd 01fbd000 00000001 FFFF0000 FFFFFFFF // staff of loss
+dd 01fbf710 00000001 FFFF0000 FFFFFFFF // dragonkin scepter
+dd 01fc1e20 00000001 FFFF0000 FFFFFFFF // ranni's staff
+dd 01fc4530 00000001 FFFF0000 FFFFFFFF // snow witch staff
+dd 01fc6c40 00000001 FFFF0000 FFFFFFFF // staff of briar
+dd 01fc9350 00000001 FFFF0000 FFFFFFFF // lavastone staff
+dd 01fcba60 00000001 FFFF0000 FFFFFFFF // tempestcaller's staff
+dd 01fce170 00000001 FFFF0000 FFFFFFFF // stormcaller staff
+dd 0206cc80 00000001 FFFF0000 FFFFFFFF // finger seal
+dd 0206f390 00000001 FFFF0000 FFFFFFFF // godslayer's seal
+dd 02071aa0 00000001 FFFF0000 FFFFFFFF // giant's seal
+dd 020741b0 00000001 FFFF0000 FFFFFFFF // gravel stone seal
+dd 020768c0 00000001 FFFF0000 FFFFFFFF // clawmark seal
+dd 0207b6e0 00000001 FFFF0000 FFFFFFFF // golden order seal
+dd 02082c10 00000001 FFFF0000 FFFFFFFF // frenzied flame seal
+dd 02085320 00000001 FFFF0000 FFFFFFFF // godskin seal
+dd 02087a30 00000001 FFFF0000 FFFFFFFF // fire monk seal
+dd 0208a140 00000001 FFFF0000 FFFFFFFF // dragon cult seal
+dd 0208c850 00000001 FFFF0000 FFFFFFFF // earthbreaker seal
+dd 0208ef60 00000001 FFFF0000 FFFFFFFF // fingerprint seal
+dd 02091670 00000001 FFFF0000 FFFFFFFF // mohgwyn seal
+dd 02093d80 00000001 FFFF0000 FFFFFFFF // war surgeon seal
+dd 02096490 00000001 FFFF0000 FFFFFFFF // seal of rot
+dd 02098ba0 00000001 FFFF0000 FFFFFFFF // pest seal
+dd 0209b2b0 00000001 FFFF0000 FFFFFFFF // spiritshaper seal
+dd 0209d9c0 00000001 FFFF0000 FFFFFFFF // mystic seal
+
+// END
+dd 00000000 00000000 00000000 FFFFFFFF
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337271398</ID>
+                  <Description>"Give all CER armors"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[ENABLE]
+ItemGibArray:
+// ID       Quantity Upgrade  AshOfWar
+// dd 10009C40 00000001 00000000 FFFFFFFF // Iron Helmet
+dd 10035c28 00000001 00000000 FFFFFFFF // page gloves
+dd 1003d158 00000001 00000000 FFFFFFFF // nomadic merchant gloves
+dd 10047950 00000001 00000000 FFFFFFFF // night maiden bracelets
+dd 100479b4 00000001 00000000 FFFFFFFF // night maiden greaves
+dd 10049890 00000001 00000000 FFFFFFFF // shaman bracers
+dd 10049bb0 00000001 00000000 FFFFFFFF // mystic circlet
+dd 10049c78 00000001 00000000 FFFFFFFF // mystic bracelets
+dd 1004e2c8 00000001 00000000 FFFFFFFF // sanguine noble bracelets
+dd 10066c88 00000001 00000000 FFFFFFFF // vulgar militia hood
+dd 100976a8 00000001 00000000 FFFFFFFF // prophet manacles
+dd 100a6428 00000001 00000000 FFFFFFFF // war surgeon hood
+dd 100b5658 00000001 00000000 FFFFFFFF // viridian hood
+dd 100c35c8 00000001 00000000 FFFFFFFF // festive gloves
+dd 100c362c 00000001 00000000 FFFFFFFF // festive trousers
+dd 100cc588 00000001 00000000 FFFFFFFF // glint mage cap
+dd 100cc5ec 00000001 00000000 FFFFFFFF // glint mage robe
+dd 100cc650 00000001 00000000 FFFFFFFF // raya lucarian gloves
+dd 100cc6b4 00000001 00000000 FFFFFFFF // raya lucarian trousers
+dd 100d9558 00000001 00000000 FFFFFFFF // prisoner chains
+dd 100ea6c8 00000001 00000000 FFFFFFFF // consort's gloves
+dd 100eb6cc 00000001 00000000 FFFFFFFF // bloodsoaked wraps
+dd 100f6a18 00000001 00000000 FFFFFFFF // snow witch gloves
+dd 10116520 00000001 00000000 FFFFFFFF // vanguard helm
+dd 10116584 00000001 00000000 FFFFFFFF // vanguard armor
+dd 101165e8 00000001 00000000 FFFFFFFF // vanguard gauntlets
+dd 1011664c 00000001 00000000 FFFFFFFF // vanguard greaves
+dd 10118c30 00000001 00000000 FFFFFFFF // marksman hat
+dd 10118c94 00000001 00000000 FFFFFFFF // marksman tabard
+dd 10118cf8 00000001 00000000 FFFFFFFF // marksman gauntlets
+dd 10118d5c 00000001 00000000 FFFFFFFF // marksman boots
+dd 1011b340 00000001 00000000 FFFFFFFF // berserker leather helm
+dd 1011b3a4 00000001 00000000 FFFFFFFF // berserker battlewear
+dd 1011b408 00000001 00000000 FFFFFFFF // berserker bracers
+dd 1011b46c 00000001 00000000 FFFFFFFF // berserker legwraps
+dd 1011da50 00000001 00000000 FFFFFFFF // dreadnought helm
+dd 1011dab4 00000001 00000000 FFFFFFFF // dreadnought armor
+dd 1011db18 00000001 00000000 FFFFFFFF // dreadnought gauntlets
+dd 1011db7c 00000001 00000000 FFFFFFFF // dreadnought greaves
+dd 10120160 00000001 00000000 FFFFFFFF // sellsword helm
+dd 101201c4 00000001 00000000 FFFFFFFF // sellsword armor
+dd 10120228 00000001 00000000 FFFFFFFF // sellsword gloves
+dd 1012028c 00000001 00000000 FFFFFFFF // sellsword boots
+dd 10122870 00000001 00000000 FFFFFFFF // starcaller hood
+dd 101228d4 00000001 00000000 FFFFFFFF // starcaller garb
+dd 10122938 00000001 00000000 FFFFFFFF // starcaller wraps
+dd 1012299c 00000001 00000000 FFFFFFFF // starcaller boots
+dd 10124f80 00000001 00000000 FFFFFFFF // underworld hood
+dd 10124fe4 00000001 00000000 FFFFFFFF // underworld robe
+dd 10125048 00000001 00000000 FFFFFFFF // underworld bracers
+dd 101250ac 00000001 00000000 FFFFFFFF // underworld boots
+dd 10127690 00000001 00000000 FFFFFFFF // volcanist hat
+dd 101276f4 00000001 00000000 FFFFFFFF // volcanist robe
+dd 10127758 00000001 00000000 FFFFFFFF // volcanist gloves
+dd 101277bc 00000001 00000000 FFFFFFFF // volcanist boots
+dd 10129da0 00000001 00000000 FFFFFFFF // stormcaller helm
+dd 10129e04 00000001 00000000 FFFFFFFF // stormcaller armor
+dd 10129e68 00000001 00000000 FFFFFFFF // stormcaller gauntlets
+dd 10129ecc 00000001 00000000 FFFFFFFF // stormcaller greaves
+dd 1012c4b0 00000001 00000000 FFFFFFFF // nox oracle headband
+dd 1012c514 00000001 00000000 FFFFFFFF // nox oracle armor
+dd 1012c578 00000001 00000000 FFFFFFFF // nox oracle gloves
+dd 1012c5dc 00000001 00000000 FFFFFFFF // nox oracle skirt
+dd 1012ebc0 00000001 00000000 FFFFFFFF // necromancer hood
+dd 1012ec24 00000001 00000000 FFFFFFFF // necromancer robe
+dd 1012ec88 00000001 00000000 FFFFFFFF // necromancer gloves
+dd 1012ecec 00000001 00000000 FFFFFFFF // necromancer trousers
+dd 101312d0 00000001 00000000 FFFFFFFF // frost witch hat
+dd 10131334 00000001 00000000 FFFFFFFF // frost witch robe
+dd 10131398 00000001 00000000 FFFFFFFF // frost witch wraps
+dd 101313fc 00000001 00000000 FFFFFFFF // frost witch skirt
+dd 101339e0 00000001 00000000 FFFFFFFF // heretic's collar
+dd 10133a44 00000001 00000000 FFFFFFFF // heretic's rags
+dd 10133aa8 00000001 00000000 FFFFFFFF // heretic's wraps
+dd 10133b0c 00000001 00000000 FFFFFFFF // heretic's boots
+dd 1013fd30 00000001 00000000 FFFFFFFF // fundamentalist crown
+dd 1013fd94 00000001 00000000 FFFFFFFF // fundamentalist breastplate
+dd 1013fdf8 00000001 00000000 FFFFFFFF // fundamentalist bracers
+dd 1013fe5c 00000001 00000000 FFFFFFFF // fundamentalist greaves
+dd 10142440 00000001 00000000 FFFFFFFF // dragon cult helm
+dd 101424a4 00000001 00000000 FFFFFFFF // dragon cult armor
+dd 10142508 00000001 00000000 FFFFFFFF // dragon cult gauntlets
+dd 1014256c 00000001 00000000 FFFFFFFF // dragon cult greaves
+dd 10144b50 00000001 00000000 FFFFFFFF // zealot hood
+dd 10144bb4 00000001 00000000 FFFFFFFF // zealot robe
+dd 10144c18 00000001 00000000 FFFFFFFF // zealot wraps
+dd 10144c7c 00000001 00000000 FFFFFFFF // zealot boots
+dd 10147260 00000001 00000000 FFFFFFFF // hood of rot
+dd 101472c4 00000001 00000000 FFFFFFFF // coat of rot
+dd 10147328 00000001 00000000 FFFFFFFF // gloves of rot
+dd 1014738c 00000001 00000000 FFFFFFFF // boots of rot
+dd 10149970 00000001 00000000 FFFFFFFF // frenzied maiden blindfold
+dd 101499d4 00000001 00000000 FFFFFFFF // frenzied maiden robe
+dd 10149a38 00000001 00000000 FFFFFFFF // frenzied maiden gloves
+dd 10149a9c 00000001 00000000 FFFFFFFF // frenzied maiden boots
+dd 1014c080 00000001 00000000 FFFFFFFF // dreamer's horned headband
+dd 1014c0e4 00000001 00000000 FFFFFFFF // dreamer's rags
+dd 1014c148 00000001 00000000 FFFFFFFF // dreamer's wraps
+dd 1014c1ac 00000001 00000000 FFFFFFFF // dreamer's skirt
+dd 1014e790 00000001 00000000 FFFFFFFF // beast clergy hood
+dd 1014e7f4 00000001 00000000 FFFFFFFF // beast clergy robe
+dd 1014e858 00000001 00000000 FFFFFFFF // beast clergy bracers
+dd 1014e8bc 00000001 00000000 FFFFFFFF // beast clergy boots
+dd 101b9e50 00000001 00000000 FFFFFFFF // mausoleum knight helm
+dd 101d9ae8 00000001 00000000 FFFFFFFF // fia's bracelets
+dd 101d9b4c 00000001 00000000 FFFFFFFF // fia's trousers
+dd 101dc130 00000001 00000000 FFFFFFFF // millicent's headband
+dd 101e5e38 00000001 00000000 FFFFFFFF // high page gloves
+dd 101e5e9c 00000001 00000000 FFFFFFFF // high page trousers
+
+// END
+dd 00000000 00000000 00000000 FFFFFFFF
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337271399</ID>
+                  <Description>"Give all CER keystones"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[ENABLE]
+ItemGibArray:
+// ID       Quantity Upgrade  AshOfWar
+dd 40001f7c 00000001 00000000 FFFFFFFF // keystone 1
+dd 40001f7d 00000001 00000000 FFFFFFFF // keystone 2
+dd 40001f7e 00000001 00000000 FFFFFFFF // keystone 3
+dd 40001f7f 00000001 00000000 FFFFFFFF // keystone 4
+dd 40001f80 00000001 00000000 FFFFFFFF // keystone 5
+
+// END
+dd 00000000 00000000 00000000 FFFFFFFF
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]
+ItemGibArray+10:
+dd 00000000 00000000 00000000 FFFFFFFF
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337271400</ID>
+                  <Description>"Give all CER physick remnants"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[ENABLE]
+ItemGibArray:
+// ID       Quantity Upgrade  AshOfWar
+// dd 40000898 00000001 00000000 FFFFFFFF // Prattling Pate "Hello"
+dd 400051a4 0000000F 00000000 FFFFFFFF // Essence Physick Remnant
+dd 400051a5 00000007 00000000 FFFFFFFF // Elemental Physick Remnant
+dd 400051a6 00000009 00000000 FFFFFFFF // Prowess Physick Remnant
+dd 400051a7 0000000A 00000000 FFFFFFFF // Invigorating Physick Remnant
+dd 400051a8 00000008 00000000 FFFFFFFF // Enduring Physick Remnant
+
+// END
+dd 00000000 00000000 00000000 FFFFFFFF
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]
+ItemGibArray+10:
+dd 00000000 00000000 00000000 FFFFFFFF
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337271401</ID>
+                  <Description>"Give all CER talisman remnants"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[ENABLE]
+ItemGibArray:
+// ID       Quantity Upgrade  AshOfWar
+// dd 40000898 00000001 00000000 FFFFFFFF // Prattling Pate "Hello"
+dd 400051d6 00000017 00000000 FFFFFFFF // Combat Remnant
+dd 400051d7 0000000F 00000000 FFFFFFFF // Heriloom Remnant
+dd 400051d8 00000005 00000000 FFFFFFFF // Faint Relic Remnant
+dd 400051d9 00000005 00000000 FFFFFFFF // Shimmering Relic Remnant
+dd 400051da 00000005 00000000 FFFFFFFF // Glowing Relic Remnant
+dd 400051db 00000005 00000000 FFFFFFFF // Shining Relic Remnant
+dd 400051dc 0000001C 00000000 FFFFFFFF // Enchanted Remnant
+
+// END
+dd 00000000 00000000 00000000 FFFFFFFF
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]
+ItemGibArray+10:
+dd 00000000 00000000 00000000 FFFFFFFF
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337271402</ID>
+                  <Description>"Give all CER spell runes"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[ENABLE]
+ItemGibArray:
+// ID       Quantity Upgrade  AshOfWar
+// dd 40000898 00000001 00000000 FFFFFFFF // Prattling Pate "Hello"
+dd 4000206c 00000001 00000000 FFFFFFFF // Faint rune of beasts
+dd 4000206d 00000001 00000000 FFFFFFFF // Shimmering rune of beasts
+dd 4000206e 00000001 00000000 FFFFFFFF // Glowing rune of beasts
+dd 4000206f 00000001 00000000 FFFFFFFF // Shining rune of beasts
+dd 40002070 00000001 00000000 FFFFFFFF // Radiant rune of beasts
+dd 40002071 00000001 00000000 FFFFFFFF // Faint rune of order
+dd 40002072 00000001 00000000 FFFFFFFF // Shimmering rune of order
+dd 40002073 00000001 00000000 FFFFFFFF // Glowing rune of order
+dd 40002074 00000001 00000000 FFFFFFFF // Shining rune of order
+dd 40002075 00000001 00000000 FFFFFFFF // Radiant rune of order
+dd 40002076 00000001 00000000 FFFFFFFF // Faint rune of fell flame
+dd 40002077 00000001 00000000 FFFFFFFF // Shimmering rune of fell flame
+dd 40002078 00000001 00000000 FFFFFFFF // Glowing rune of fell flame
+dd 40002079 00000001 00000000 FFFFFFFF // Shining rune of fell flame
+dd 4000207a 00000001 00000000 FFFFFFFF // Radiant rune of fell flame
+dd 4000207b 00000001 00000000 FFFFFFFF // Faint rune of lightning
+dd 4000207c 00000001 00000000 FFFFFFFF // Shimmering rune of Lightning
+dd 4000207d 00000001 00000000 FFFFFFFF // Glowing rune of lightning
+dd 4000207e 00000001 00000000 FFFFFFFF // shining rune of lightning
+dd 4000207f 00000001 00000000 FFFFFFFF // radiant rune of lightning
+dd 40002080 00000001 00000000 FFFFFFFF // Faint rune of black flame
+dd 40002081 00000001 00000000 FFFFFFFF // Shimmering rune of black flame
+dd 40002082 00000001 00000000 FFFFFFFF // Glowing rune of black flame
+dd 40002083 00000001 00000000 FFFFFFFF // Shining rune of black flame
+dd 40002084 00000001 00000000 FFFFFFFF // Radiant rune of black flame
+dd 40002085 00000001 00000000 FFFFFFFF // Faint rune of frenzy
+dd 40002086 00000001 00000000 FFFFFFFF // Shimmering rune of frenzy
+dd 40002087 00000001 00000000 FFFFFFFF // Glowing rune of frenzy
+dd 40002088 00000001 00000000 FFFFFFFF // Shining rune of frenzy
+dd 40002089 00000001 00000000 FFFFFFFF // Radiant rune of frenzy
+dd 4000208a 00000001 00000000 FFFFFFFF // Faint rune of bloodflame
+dd 4000208b 00000001 00000000 FFFFFFFF // Shimmering rune of bloodflame
+dd 4000208c 00000001 00000000 FFFFFFFF // Glowing rune of bloodflame
+dd 4000208d 00000001 00000000 FFFFFFFF // Shining rune of bloodflame
+dd 4000208e 00000001 00000000 FFFFFFFF // Radiant rune of bloodflame
+dd 4000208f 00000001 00000000 FFFFFFFF // Faint rune of rot
+dd 40002090 00000001 00000000 FFFFFFFF // Shimmering rune of rot
+dd 40002091 00000001 00000000 FFFFFFFF // Glowing rune of rot
+dd 40002092 00000001 00000000 FFFFFFFF // Shining rune of rot
+dd 40002093 00000001 00000000 FFFFFFFF // Radiant rune of rot
+dd 40002094 00000001 00000000 FFFFFFFF // Faint rune of Ancient
+dd 40002095 00000001 00000000 FFFFFFFF // Shimmering rune of Ancient
+dd 40002096 00000001 00000000 FFFFFFFF // Glowing rune of Ancient
+dd 40002097 00000001 00000000 FFFFFFFF // Shining rune of ancient
+dd 40002098 00000001 00000000 FFFFFFFF // Radiant rune of ancient
+dd 40002099 00000001 00000000 FFFFFFFF // Faint rune of glintstone
+dd 4000209a 00000001 00000000 FFFFFFFF // Shimmering rune of glintstone
+dd 4000209b 00000001 00000000 FFFFFFFF // Glowing rune of glintstone
+dd 4000209c 00000001 00000000 FFFFFFFF // Shinning rune of glintstone
+dd 4000209d 00000001 00000000 FFFFFFFF // Radiant rune of glintstone
+dd 4000209e 00000001 00000000 FFFFFFFF // Faint rune of gravity
+dd 4000209f 00000001 00000000 FFFFFFFF // Shimmering rune of gravity
+dd 400020a0 00000001 00000000 FFFFFFFF // Glowing rune of gravity
+dd 400020a1 00000001 00000000 FFFFFFFF // Shining rune of gravity
+dd 400020a2 00000001 00000000 FFFFFFFF // Radiant rune of gravity
+dd 400020a3 00000001 00000000 FFFFFFFF // Faint rune of the dragonkin
+dd 400020a4 00000001 00000000 FFFFFFFF // Shimmering rune of the dragonkin
+dd 400020a5 00000001 00000000 FFFFFFFF // Glowing rune of the dragonkin
+dd 400020a6 00000001 00000000 FFFFFFFF // Shining rune of the dragonkin
+dd 400020a7 00000001 00000000 FFFFFFFF // Radiant rune of the dragonkin
+dd 400020a8 00000001 00000000 FFFFFFFF // Faint rune of magma
+dd 400020a9 00000001 00000000 FFFFFFFF // Shimmering rune of magma
+dd 400020aa 00000001 00000000 FFFFFFFF // Glowing rune of magma
+dd 400020ab 00000001 00000000 FFFFFFFF // Shining rune of magma
+dd 400020ac 00000001 00000000 FFFFFFFF // Radiant rune of magma
+dd 400020ad 00000001 00000000 FFFFFFFF // Faint rune of Night
+dd 400020ae 00000001 00000000 FFFFFFFF // Shimmering rune of Night
+dd 400020af 00000001 00000000 FFFFFFFF // Glowing rune of Night
+dd 400020b0 00000001 00000000 FFFFFFFF // Shining rune of Night
+dd 400020b1 00000001 00000000 FFFFFFFF // Radiant rune of Night
+dd 400020b2 00000001 00000000 FFFFFFFF // Faint rune of Necromancy
+dd 400020b3 00000001 00000000 FFFFFFFF // Shimmering rune of Necromancy
+dd 400020b4 00000001 00000000 FFFFFFFF // Glowing rune of Necromancy
+dd 400020b5 00000001 00000000 FFFFFFFF // Shining rune of Necromancy
+dd 400020b6 00000001 00000000 FFFFFFFF // Radiant rune of Necromancy
+dd 400020b7 00000001 00000000 FFFFFFFF // Faint rune of the storm
+dd 400020b8 00000001 00000000 FFFFFFFF // Shimmering rune of the storm
+dd 400020b9 00000001 00000000 FFFFFFFF // Glowing rune of the storm
+dd 400020ba 00000001 00000000 FFFFFFFF // Shining rune of the storm
+dd 400020bb 00000001 00000000 FFFFFFFF // Radiant rune of the storm
+dd 400020bc 00000001 00000000 FFFFFFFF // Faint rune of frost
+dd 400020bd 00000001 00000000 FFFFFFFF // Shimmering rune of frost
+dd 400020be 00000001 00000000 FFFFFFFF // Glowing rune of frost
+dd 400020bf 00000001 00000000 FFFFFFFF // Shining rune of frost
+dd 400020c0 00000001 00000000 FFFFFFFF // Radiant rune of frost
+dd 400020c1 00000001 00000000 FFFFFFFF // Faint rune of thorns
+dd 400020c2 00000001 00000000 FFFFFFFF // Shimmering rune of thorns
+dd 400020c3 00000001 00000000 FFFFFFFF // Glowing rune of thorns
+dd 400020c4 00000001 00000000 FFFFFFFF // Shining rune of thorns
+dd 400020c5 00000001 00000000 FFFFFFFF // Radiant rune of thorns
+
+// END
+dd 00000000 00000000 00000000 FFFFFFFF
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]
+ItemGibArray+10:
+dd 00000000 00000000 00000000 FFFFFFFF
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337271403</ID>
+                  <Description>"Give all projectiles x99"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[ENABLE]
+ItemGibArray:
+// Arrows
+dd 02FAF080 00000063 00000000 FFFFFFFF // Arrow
+dd 02FB1790 00000063 00000000 FFFFFFFF // Fire Arrow
+dd 02FB3EA0 00000063 00000000 FFFFFFFF // Serpent Arrow
+dd 02FB65B0 00000063 00000000 FFFFFFFF // Bone Arrow (Fletched)
+dd 02FB8CC0 00000063 00000000 FFFFFFFF // St. Trina's Arrow
+dd 02FBDAE0 00000063 00000000 FFFFFFFF // Shattershard Arrow (Fletched)
+dd 02FC2900 00000063 00000000 FFFFFFFF // Rainbow Stone Arrow (Fletched)
+dd 02FC5010 00000063 00000000 FFFFFFFF // Golden Arrow
+dd 02FC7720 00000063 00000000 FFFFFFFF // Dwelling Arrow
+dd 02FC9E30 00000063 00000000 FFFFFFFF // Bone Arrow
+dd 02FCEC50 00000063 00000000 FFFFFFFF // Firebone Arrow (Fletched)
+dd 02FD1360 00000063 00000000 FFFFFFFF // Firebone Arrow
+dd 02FD3A70 00000063 00000000 FFFFFFFF // Poisonbone Arrow (Fletched)
+dd 02FD6180 00000063 00000000 FFFFFFFF // Poisonbone Arrow
+dd 02FD8890 00000063 00000000 FFFFFFFF // Sleepbone Arrow (Fletched)
+dd 02FDAFA0 00000063 00000000 FFFFFFFF // Sleepbone Arrow
+dd 02FDD6B0 00000063 00000000 FFFFFFFF // Stormwing Bone Arrow
+dd 02FDFDC0 00000063 00000000 FFFFFFFF // Lightningbone Arrow (Fletched)
+dd 02FE24D0 00000063 00000000 FFFFFFFF // Lightningbone Arrow
+dd 02FE4BE0 00000063 00000000 FFFFFFFF // Rainbow Stone Arrow
+dd 02FE72F0 00000063 00000000 FFFFFFFF // Shattershard Arrow
+dd 02FE9A00 00000063 00000000 FFFFFFFF // Spiritflame Arrow
+dd 02FEE820 00000063 00000000 FFFFFFFF // Magicbone Arrow (Fletched)
+dd 02FF0F30 00000063 00000000 FFFFFFFF // Magicbone Arrow
+dd 02FF3640 00000063 00000000 FFFFFFFF // Haligbone Arrow (Fletched)
+dd 02FF5D50 00000063 00000000 FFFFFFFF // Haligbone Arrow
+dd 02FF8460 00000063 00000000 FFFFFFFF // Bloodbone Arrow (Fletched)
+dd 02FFAB70 00000063 00000000 FFFFFFFF // Bloodbone Arrow
+dd 02FFD280 00000063 00000000 FFFFFFFF // Coldbone Arrow (Fletched)
+dd 02FFF990 00000063 00000000 FFFFFFFF // Coldbone Arrow
+dd 030020A0 00000063 00000000 FFFFFFFF // Rotbone Arrow (Fletched)
+dd 030047B0 00000063 00000000 FFFFFFFF // Rotbone Arrow
+// Greatarrows
+dd 030A32C0 00000063 00000000 FFFFFFFF // Great Arrow
+dd 030A59D0 00000063 00000000 FFFFFFFF // Golem's Great Arrow
+dd 030A80E0 00000063 00000000 FFFFFFFF // Golden Great Arrow
+dd 030AA7F0 00000063 00000000 FFFFFFFF // Golem's Magic Arrow
+dd 030ACF00 00000063 00000000 FFFFFFFF // Radahn's Spear
+dd 030AF610 00000063 00000000 FFFFFFFF // Bone Great Arrow (Fletched)
+dd 030B1D20 00000063 00000000 FFFFFFFF // Bone Great Arrow
+// Bolts
+dd 03197500 00000063 00000000 FFFFFFFF // Bolt
+dd 03199C10 00000063 00000000 FFFFFFFF // Lightning Bolt
+dd 0319C320 00000063 00000000 FFFFFFFF // Perfumer's Bolt
+dd 0319EA30 00000063 00000000 FFFFFFFF // Black-Key Bolt
+dd 031A1140 00000063 00000000 FFFFFFFF // Burred Bolt
+dd 031A3850 00000063 00000000 FFFFFFFF // Meteor Bolt
+dd 031A5F60 00000063 00000000 FFFFFFFF // Explosive Bolt
+dd 031A8670 00000063 00000000 FFFFFFFF // Golden Bolt
+dd 031AAD80 00000063 00000000 FFFFFFFF // Lordsworn's Bolt
+dd 031AD490 00000063 00000000 FFFFFFFF // Bone Bolt
+dd 031AFBA0 00000063 00000000 FFFFFFFF // Firebone Bolt
+dd 031B22B0 00000063 00000000 FFFFFFFF // Lightningbone Bolt
+dd 031B49C0 00000063 00000000 FFFFFFFF // Magicbone Bolt
+dd 031B70D0 00000063 00000000 FFFFFFFF // Haligbone Bolt
+dd 031B97E0 00000063 00000000 FFFFFFFF // Poisonbone Bolt
+dd 031BBEF0 00000063 00000000 FFFFFFFF // Bloodbone Bolt
+dd 031BE600 00000063 00000000 FFFFFFFF // Coldbone Bolt
+dd 031C0D10 00000063 00000000 FFFFFFFF // Rotbone Bolt
+dd 031C3420 00000063 00000000 FFFFFFFF // Sleepbone Bolt
+dd 031C5B30 00000063 00000000 FFFFFFFF // Flaming Bolt
+// Greatbolts
+dd 0328B740 00000063 00000000 FFFFFFFF // Ballista Bolt
+dd 0328DE50 00000063 00000000 FFFFFFFF // Lightning Greatbolt
+dd 03290560 00000063 00000000 FFFFFFFF // Explosive Greatbolt
+dd 03292C70 00000063 00000000 FFFFFFFF // Bone Ballista Bolt
+dd 00000000 00000000 00000000 FFFFFFFF
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337271404</ID>
+                  <Description>"-- Goods --"</Description>
+                  <Color>C0C0C0</Color>
+                  <GroupHeader>1</GroupHeader>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337271405</ID>
+                  <Description>"Give misc consumables x99"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>//Author: The-Raid-Boss
+[ENABLE]
+ItemGibArray:
+// Consumables
+dd 400003AC 00000063 00000000 FFFFFFFF // Preserving Boluses
+dd 400003B6 00000063 00000000 FFFFFFFF // Rejuvenating Boluses
+dd 400003C0 00000063 00000000 FFFFFFFF // Clarifying Boluses
+dd 400003A2 00000063 00000000 FFFFFFFF // Stimulating Boluses
+dd 40000398 00000063 00000000 FFFFFFFF // Thawfrost Boluses
+dd 4000038E 00000063 00000000 FFFFFFFF // Stanching Boluses
+dd 40000384 00000063 00000000 FFFFFFFF // Neutralizing Boluses
+dd 400000BE 00000063 00000000 FFFFFFFF // Rune Arc
+dd 40000096 00000063 00000000 FFFFFFFF // Furlcalling Finger Remedy
+dd 40000334 00000063 00000000 FFFFFFFF // Boiled Crab
+dd 40000D21 00000063 00000000 FFFFFFFF // Radiant Baldachin's Blessing
+dd 4000032C 00000063 00000000 FFFFFFFF // Frozen Raisin
+dd 4000050A 00000063 00000000 FFFFFFFF // Starlight Shards
+dd 40000CEE 00000063 00000000 FFFFFFFF // Warming Stone
+dd 40000CEF 00000063 00000000 FFFFFFFF // Frenzyflame Stone
+dd 40000CF8 00000063 00000000 FFFFFFFF // Scriptstone
+dd 40000D16 00000063 00000000 FFFFFFFF // Bewitching Branch
+dd 400004A6 00000063 00000000 FFFFFFFF // Silver-Pickled Fowl Foot
+dd 400004B0 00000063 00000000 FFFFFFFF // Gold-Pickled Fowl Foot
+dd 400006E0 00000063 00000000 FFFFFFFF // Ruin Fragment
+dd 40000B67 00000063 00000000 FFFFFFFF // Lord's Rune
+dd 40001F40 00000063 00000000 FFFFFFFF // Stonesword Key
+dd 40000834 00000063 00000000 FFFFFFFF // Soft Cotton
+dd 40000802 00000063 00000000 FFFFFFFF // Grace Mimic
+// Meats
+dd 4000044C 00000063 00000000 FFFFFFFF // Pickled Turtle Neck
+dd 40000460 00000063 00000000 FFFFFFFF // Invigorating Cured Meat
+dd 40000456 00000063 00000000 FFFFFFFF // Immunizing Cured Meat
+dd 4000046A 00000063 00000000 FFFFFFFF // Clarifying Cured Meat
+dd 40000474 00000063 00000000 FFFFFFFF // Dappled Cured Meat
+dd 400004BA 00000063 00000000 FFFFFFFF // Exalted Flesh
+//dd 400004C4 00000063 00000000 FFFFFFFF // Deathsbane Jerky
+dd 400004D3 00000063 00000000 FFFFFFFF // Raw Meat Dumpling
+dd 4000051E 00000063 00000000 FFFFFFFF // Immunizing White Cured Meat
+dd 40000528 00000063 00000000 FFFFFFFF // Invigorating White Cured Meat
+dd 40000532 00000063 00000000 FFFFFFFF // Clarifying White Cured Meat
+dd 4000053C 00000063 00000000 FFFFFFFF // Dappled White Cured Meat
+//dd 40000546 00000063 00000000 FFFFFFFF // Deathsbane White Jerky
+dd 4000047E 00000063 00000000 FFFFFFFF // Spellproof Dried Liver
+dd 40000488 00000063 00000000 FFFFFFFF // Fireproof Dried Liver
+dd 40000492 00000063 00000000 FFFFFFFF // Lightningproof Dried Liver
+dd 4000049C 00000063 00000000 FFFFFFFF // Holyproof Dried Liver
+// Throwables
+dd 400006A4 00000063 00000000 FFFFFFFF // Throwing Dagger
+dd 400006AE 00000063 00000000 FFFFFFFF // Bone Dart
+dd 400006B8 00000063 00000000 FFFFFFFF // Poisonbone Dart
+dd 400006C2 00000063 00000000 FFFFFFFF // Kukri
+dd 400006CC 00000063 00000000 FFFFFFFF // Crystal Dart
+dd 400006D6 00000063 00000000 FFFFFFFF // Fan Daggers
+dd 40000726 00000063 00000000 FFFFFFFF // Explosive Stone
+dd 40000727 00000063 00000000 FFFFFFFF // Explosive Stone Clump
+dd 40000730 00000063 00000000 FFFFFFFF // Poisoned Stone
+dd 40000731 00000063 00000000 FFFFFFFF // Poisoned Stone Clump
+dd 400007E4 00000063 00000000 FFFFFFFF // Rainbow Stone
+dd 400007EE 00000063 00000000 FFFFFFFF // Glowstone
+//dd 40000BCC 00000063 00000000 FFFFFFFF // Miranda's Prayer
+dd 40000BD6 00000063 00000000 FFFFFFFF // Cuckoo Glintstone
+dd 40000BEA 00000063 00000000 FFFFFFFF // Glintstone Scrap
+dd 40000BEB 00000063 00000000 FFFFFFFF // Large Glintstone Scrap
+dd 40000BF4 00000063 00000000 FFFFFFFF // Gravity Stone Fan
+dd 40000BFE 00000063 00000000 FFFFFFFF // Gravity Stone Chunk
+// Grease
+dd 40000578 00000063 00000000 FFFFFFFF // Fire Grease
+dd 40000582 00000063 00000000 FFFFFFFF // Lightning Grease
+dd 4000058C 00000063 00000000 FFFFFFFF // Magic Grease
+dd 40000596 00000063 00000000 FFFFFFFF // Holy Grease
+dd 400005A0 00000063 00000000 FFFFFFFF // Blood Grease
+dd 400005AA 00000063 00000000 FFFFFFFF // Soporific Grease
+dd 400005B4 00000063 00000000 FFFFFFFF // Poison Grease
+dd 400005BE 00000063 00000000 FFFFFFFF // Freezing Grease
+dd 400005C8 00000063 00000000 FFFFFFFF // Dragonwound Grease
+dd 400005D2 00000063 00000000 FFFFFFFF // Rot Grease
+dd 400005DC 00000063 00000000 FFFFFFFF // Drawstring Fire Grease
+dd 400005E6 00000063 00000000 FFFFFFFF // Drawstring Lightning Grease
+dd 400005F0 00000063 00000000 FFFFFFFF // Drawstring Magic Grease
+dd 400005FA 00000063 00000000 FFFFFFFF // Drawstring Holy Grease
+dd 40000604 00000063 00000000 FFFFFFFF // Drawstring Blood Grease
+dd 4000060E 00000063 00000000 FFFFFFFF // Drawstring Soporific Grease
+dd 40000618 00000063 00000000 FFFFFFFF // Drawstring Poison Grease
+//dd 40000622 00000063 00000000 FFFFFFFF // Drawstring Freezing Grease
+dd 40000636 00000063 00000000 FFFFFFFF // Drawstring Rot Grease
+dd 4000069A 00000063 00000000 FFFFFFFF // Shield Grease
+//dd 40000CE4 00000063 00000000 FFFFFFFF // Holy Water Grease
+dd 00000000 00000000 00000000 FFFFFFFF
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337271406</ID>
+                  <Description>"Give all crafting materials x999"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>//Author: Mar_Veloz
+[ENABLE]
+ItemGibArray:
+// Animal
+dd 40003A98 000003E7 00000000 FFFFFFFF // Sliver of Meat
+dd 40003AA2 000003E7 00000000 FFFFFFFF // Beast Liver
+dd 40003AAC 000003E7 00000000 FFFFFFFF // Lump of Flesh
+dd 40003AB6 000003E7 00000000 FFFFFFFF // Beast Blood
+dd 40003AC0 000003E7 00000000 FFFFFFFF // Old Fang
+dd 40003ACA 000003E7 00000000 FFFFFFFF // Budding Horn
+dd 40003AD4 000003E7 00000000 FFFFFFFF // Flight Pinion
+dd 40003AE8 000003E7 00000000 FFFFFFFF // Four-Toed Fowl Foot
+dd 40003AF2 000003E7 00000000 FFFFFFFF // Turtle Neck Meat
+dd 40003AFC 000003E7 00000000 FFFFFFFF // Human Bone Shard
+dd 40003B06 000003E7 00000000 FFFFFFFF // Great Dragonfly Head
+dd 40003B10 000003E7 00000000 FFFFFFFF // Slumbering Egg
+dd 40003B1A 000003E7 00000000 FFFFFFFF // Crab Eggs
+dd 40003B24 000003E7 00000000 FFFFFFFF // Land Octopus Ovary
+dd 40003B38 000003E7 00000000 FFFFFFFF // Strip of White Flesh
+dd 40003BEC 000003E7 00000000 FFFFFFFF // Thin Beast Bones
+dd 40003BED 000003E7 00000000 FFFFFFFF // Hefty Beast Bone
+dd 40003C32 000003E7 00000000 FFFFFFFF // Living Jar Shard
+dd 40003C3C 000003E7 00000000 FFFFFFFF // Albinauric Bloodclot
+dd 40003C46 000003E7 00000000 FFFFFFFF // Stormhawk Feather
+dd 40005140 000003E7 00000000 FFFFFFFF // Nascent Butterfly
+dd 40005141 000003E7 00000000 FFFFFFFF // Aeonian Butterfly
+dd 40005142 000003E7 00000000 FFFFFFFF // Smoldering Butterfly
+dd 4000514A 000003E7 00000000 FFFFFFFF // Silver Firefly
+dd 4000514B 000003E7 00000000 FFFFFFFF // Gold Firefly
+dd 4000514C 000003E7 00000000 FFFFFFFF // Glintstone Firefly
+dd 40005154 000003E7 00000000 FFFFFFFF // Golden Centipede
+dd 40005159 000003E7 00000000 FFFFFFFF // Silver Tear Husk
+dd 4000515E 000003E7 00000000 FFFFFFFF // Gold-Tinged Excrement
+dd 4000515F 000003E7 00000000 FFFFFFFF // Blood-Tainted Excrement
+dd 4000516D 000003E7 00000000 FFFFFFFF // Yellow Ember
+// Plant
+dd 40003B2E 000003E7 00000000 FFFFFFFF // Miranda Powder
+dd 400050AA 000003E7 00000000 FFFFFFFF // Poisonbloom
+dd 400050AB 000003E7 00000000 FFFFFFFF // Trina's Lily
+dd 400050AC 000003E7 00000000 FFFFFFFF // Fulgurbloom
+dd 400050AD 000003E7 00000000 FFFFFFFF // Miquella's Lily
+dd 400050AE 000003E7 00000000 FFFFFFFF // Grave Violet
+dd 400050B4 000003E7 00000000 FFFFFFFF // Faded Erdleaf Flower
+dd 400050C8 000003E7 00000000 FFFFFFFF // Erdleaf Flower
+dd 400050C9 000003E7 00000000 FFFFFFFF // Altus Bloom
+dd 400050CA 000003E7 00000000 FFFFFFFF // Fire Blossom
+dd 400050CB 000003E7 00000000 FFFFFFFF // Golden Sunflower
+dd 400050CD 000003E7 00000000 FFFFFFFF // Tarnished Golden Sunflower
+dd 400050D2 000003E7 00000000 FFFFFFFF // Herba
+dd 400050D3 000003E7 00000000 FFFFFFFF // Arteria Leaf
+dd 400050E6 000003E7 00000000 FFFFFFFF // Dewkissed Herba
+dd 400050F0 000003E7 00000000 FFFFFFFF // Rowa Fruit
+dd 400050F1 000003E7 00000000 FFFFFFFF // Golden Rowa
+dd 400050F2 000003E7 00000000 FFFFFFFF // Rimed Rowa
+dd 400050F3 000003E7 00000000 FFFFFFFF // Bloodrose
+dd 40005104 000003E7 00000000 FFFFFFFF // Eye of Yelough
+dd 4000510E 000003E7 00000000 FFFFFFFF // Crystal Bud
+dd 4000510F 000003E7 00000000 FFFFFFFF // Rimed Crystal Bud
+dd 40005111 000003E7 00000000 FFFFFFFF // Sacramental Bud
+dd 40005118 000003E7 00000000 FFFFFFFF // Mushroom
+dd 40005119 000003E7 00000000 FFFFFFFF // Melted Mushroom
+dd 40005122 000003E7 00000000 FFFFFFFF // Toxic Mushroom
+dd 40005127 000003E7 00000000 FFFFFFFF // Root Resin
+dd 40005168 000003E7 00000000 FFFFFFFF // Cave Moss
+dd 40005169 000003E7 00000000 FFFFFFFF // Budding Cave Moss
+dd 4000516A 000003E7 00000000 FFFFFFFF // Crystal Cave Moss
+// Inorganic
+dd 400006E0 000003E7 00000000 FFFFFFFF // Ruin Fragment
+dd 40003C28 000003E7 00000000 FFFFFFFF // String
+dd 4000512C 000003E7 00000000 FFFFFFFF // Cracked Crystal
+dd 4000513B 000003E7 00000000 FFFFFFFF // Sanctuary Stone
+dd 40005172 000003E7 00000000 FFFFFFFF // Volcanic Stone
+dd 40005174 000003E7 00000000 FFFFFFFF // Formic Rock
+dd 40005177 000003E7 00000000 FFFFFFFF // Gravel Stone
+dd 00000000 00000000 00000000 FFFFFFFF
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337271407</ID>
+                  <Description>"Give all Spirit upgrade materials x999"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[ENABLE]
+ItemGibArray:
+// Smithing Stone
+// dd 40002774 000003E7 00000000 FFFFFFFF // Smithing Stone [1]
+// dd 40002775 000003E7 00000000 FFFFFFFF // Smithing Stone [2]
+// dd 40002776 000003E7 00000000 FFFFFFFF // Smithing Stone [3]
+// dd 40002777 000003E7 00000000 FFFFFFFF // Smithing Stone [4]
+// dd 40002778 000003E7 00000000 FFFFFFFF // Smithing Stone [5]
+// dd 40002779 000003E7 00000000 FFFFFFFF // Smithing Stone [6]
+// dd 4000277A 000003E7 00000000 FFFFFFFF // Smithing Stone [7]
+// dd 4000277B 000003E7 00000000 FFFFFFFF // Smithing Stone [8]
+// dd 4000279C 000003E7 00000000 FFFFFFFF // Ancient Dragon Smithing Stone
+// Somber Smithing Stone
+// dd 400027B0 000003E7 00000000 FFFFFFFF // Somber Smithing Stone [1]
+// dd 400027B1 000003E7 00000000 FFFFFFFF // Somber Smithing Stone [2]
+// dd 400027B2 000003E7 00000000 FFFFFFFF // Somber Smithing Stone [3]
+// dd 400027B3 000003E7 00000000 FFFFFFFF // Somber Smithing Stone [4]
+// dd 400027B4 000003E7 00000000 FFFFFFFF // Somber Smithing Stone [5]
+// dd 400027B5 000003E7 00000000 FFFFFFFF // Somber Smithing Stone [6]
+// dd 400027B6 000003E7 00000000 FFFFFFFF // Somber Smithing Stone [7]
+// dd 400027B7 000003E7 00000000 FFFFFFFF // Somber Smithing Stone [8]
+// dd 400027B8 000003E7 00000000 FFFFFFFF // Somber Ancient Dragon Smithing Stone
+// dd 400027D8 000003E7 00000000 FFFFFFFF // Somber Smithing Stone [9]
+// Grave Glovewort
+dd 40002A94 000003E7 00000000 FFFFFFFF // Grave Glovewort [1]
+dd 40002A95 000003E7 00000000 FFFFFFFF // Grave Glovewort [2]
+dd 40002A96 000003E7 00000000 FFFFFFFF // Grave Glovewort [3]
+dd 40002A97 000003E7 00000000 FFFFFFFF // Grave Glovewort [4]
+dd 40002A98 000003E7 00000000 FFFFFFFF // Grave Glovewort [5]
+dd 40002A99 000003E7 00000000 FFFFFFFF // Grave Glovewort [6]
+dd 40002A9A 000003E7 00000000 FFFFFFFF // Grave Glovewort [7]
+dd 40002A9B 000003E7 00000000 FFFFFFFF // Grave Glovewort [8]
+dd 40002A9C 000003E7 00000000 FFFFFFFF // Grave Glovewort [9]
+dd 40002A9D 000003E7 00000000 FFFFFFFF // Great Grave Glovewort
+// Ghost Glovewort
+dd 40002A9E 000003E7 00000000 FFFFFFFF // Ghost Glovewort [1]
+dd 40002A9F 000003E7 00000000 FFFFFFFF // Ghost Glovewort [2]
+dd 40002AA0 000003E7 00000000 FFFFFFFF // Ghost Glovewort [3]
+dd 40002AA1 000003E7 00000000 FFFFFFFF // Ghost Glovewort [4]
+dd 40002AA2 000003E7 00000000 FFFFFFFF // Ghost Glovewort [5]
+dd 40002AA3 000003E7 00000000 FFFFFFFF // Ghost Glovewort [6]
+dd 40002AA4 000003E7 00000000 FFFFFFFF // Ghost Glovewort [7]
+dd 40002AA5 000003E7 00000000 FFFFFFFF // Ghost Glovewort [8]
+dd 40002AA6 000003E7 00000000 FFFFFFFF // Ghost Glovewort [9]
+dd 40002AA7 000003E7 00000000 FFFFFFFF // Great Ghost Glovewort
+dd 00000000 00000000 00000000 FFFFFFFF
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337271408</ID>
+                  <Description>"Give all limited quantity craftables x99"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>//Author: The-Raid-Boss
+[ENABLE]
+ItemGibArray:
+// Perfumes
+dd 40000DAC 00000063 00000000 FFFFFFFF // Uplifting Aromatic
+dd 40000DB6 00000063 00000000 FFFFFFFF // Spark Aromatic
+dd 40000DC0 00000063 00000000 FFFFFFFF // Ironjar Aromatic
+dd 40000DDE 00000063 00000000 FFFFFFFF // Bloodboil Aromatic
+dd 40000DFC 00000063 00000000 FFFFFFFF // Poison Spraymist
+dd 40000E1A 00000063 00000000 FFFFFFFF // Acid Spraymist
+dd 40000DC0 00000063 00000000 FFFFFFFF // Ironjar Aromatic
+// Pots
+dd 4000012C 00000063 00000000 FFFFFFFF // Fire Pot
+dd 4000012D 00000063 00000000 FFFFFFFF // Redmane Fire Pot
+dd 4000012E 00000063 00000000 FFFFFFFF // Giantsflame Fire Pot
+dd 40000140 00000063 00000000 FFFFFFFF // Lightning Pot
+dd 40000141 00000063 00000000 FFFFFFFF // Ancient Dragonbolt Pot
+dd 4000014A 00000063 00000000 FFFFFFFF // Fetid Pot
+dd 4000015E 00000063 00000000 FFFFFFFF // Holy Water Pot
+dd 4000015F 00000063 00000000 FFFFFFFF // Sacred Order Pot
+dd 40000168 00000063 00000000 FFFFFFFF // Freezing Pot
+dd 40000172 00000063 00000000 FFFFFFFF // Poison Pot
+dd 4000017C 00000063 00000000 FFFFFFFF // Oil Pot
+dd 4000029E 00000063 00000000 FFFFFFFF // Rot Pot
+dd 40000186 00000063 00000000 FFFFFFFF // Alluring Pot
+dd 40000187 00000063 00000000 FFFFFFFF // Beastlure Pot
+dd 40000190 00000063 00000000 FFFFFFFF // Roped Fire Pot
+dd 40000154 00000063 00000000 FFFFFFFF // Swarm Pot
+dd 40000280 00000063 00000000 FFFFFFFF // Sleep Pot
+dd 400001A4 00000063 00000000 FFFFFFFF // Roped Lightning Pot
+dd 400001AE 00000063 00000000 FFFFFFFF // Roped Fetid Pot
+dd 400001B8 00000063 00000000 FFFFFFFF // Roped Poison Pot
+dd 400001C2 00000063 00000000 FFFFFFFF // Roped Oil Pot
+dd 400001CC 00000063 00000000 FFFFFFFF // Roped Magic Pot
+dd 400001D6 00000063 00000000 FFFFFFFF // Roped Fly Pot
+//dd 400001E0 00000063 00000000 FFFFFFFF // Roped Freezing Pot
+dd 400001EA 00000063 00000000 FFFFFFFF // Roped Volcano Pot
+dd 400001FE 00000063 00000000 FFFFFFFF // Roped Holy Water Pot
+dd 40000258 00000063 00000000 FFFFFFFF // Volcano Pot
+dd 40000262 00000063 00000000 FFFFFFFF // Albinauric Pot
+dd 40000276 00000063 00000000 FFFFFFFF // Cursed-Blood Pot
+dd 40000294 00000063 00000000 FFFFFFFF // Magic Pot
+dd 40000295 00000063 00000000 FFFFFFFF // Academy Magic Pot
+dd 00000000 00000000 00000000 FFFFFFFF
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337271409</ID>
+                  <Description>"Give all prattling pates"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>//Author: The-Raid-Boss
+[ENABLE]
+ItemGibArray:
+dd 40000898 00000001 00000000 FFFFFFFF // Prattling Pate "Hello"
+dd 40000899 00000001 00000000 FFFFFFFF // Prattling Pate "Thank you"
+dd 4000089A 00000001 00000000 FFFFFFFF // Prattling Pate "Apologies"
+dd 4000089B 00000001 00000000 FFFFFFFF // Prattling Pate "Wonderful"
+dd 4000089C 00000001 00000000 FFFFFFFF // Prattling Pate "Please help"
+dd 4000089D 00000001 00000000 FFFFFFFF // Prattling Pate "My beloved"
+dd 4000089E 00000001 00000000 FFFFFFFF // Prattling Pate "Let's get to it"
+dd 4000089F 00000001 00000000 FFFFFFFF // Prattling Pate "You're beautiful"
+dd 00000000 00000000 00000000 FFFFFFFF
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337271410</ID>
+                  <Description>"Give all bell bearings"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>{
+    Author: Apricus
+    Description: Spawns all bell bearings
+}
+
+[ENABLE]
+ItemGibArray:
+dd 400022CE 00000001 00000000 FFFFFFFF // Pidia's Bell Bearing
+dd 400022CF 00000001 00000000 FFFFFFFF // Seluvis's Bell Bearing
+dd 400022D0 00000001 00000000 FFFFFFFF // Patches' Bell Bearing
+dd 400022D1 00000001 00000000 FFFFFFFF // Sellen's Bell Bearing
+dd 400022D3 00000001 00000000 FFFFFFFF // D's Bell Bearing
+dd 400022D4 00000001 00000000 FFFFFFFF // Bernahl's Bell Bearing
+dd 400022D5 00000001 00000000 FFFFFFFF // Miriel's Bell Bearing
+dd 400022D6 00000001 00000000 FFFFFFFF // Gostoc's Bell Bearing
+dd 400022D7 00000001 00000000 FFFFFFFF // Thops's Bell Bearing
+dd 400022D8 00000001 00000000 FFFFFFFF // Kalé's Bell Bearing
+dd 400022D9 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [1]
+dd 400022DA 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [2]
+dd 400022DB 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [3]
+dd 400022DC 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [4]
+dd 400022DD 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [5]
+dd 400022DE 00000001 00000000 FFFFFFFF // Isolated Merchant's Bell Bearing [1]
+dd 400022DF 00000001 00000000 FFFFFFFF // Isolated Merchant's Bell Bearing [2]
+dd 400022E0 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [6]
+dd 400022E1 00000001 00000000 FFFFFFFF // Hermit Merchant's Bell Bearing [1]
+dd 400022E2 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [7]
+dd 400022E3 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [8]
+dd 400022E4 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [9]
+dd 400022E5 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [10]
+//dd 400022E6 00000001 00000000 FFFFFFFF // Nomadic Merchant's Bell Bearing [11]
+dd 400022E7 00000001 00000000 FFFFFFFF // Isolated Merchant's Bell Bearing [3]
+dd 400022E8 00000001 00000000 FFFFFFFF // Hermit Merchant's Bell Bearing [2]
+dd 400022E9 00000001 00000000 FFFFFFFF // Abandoned Merchant's Bell Bearing
+dd 400022EA 00000001 00000000 FFFFFFFF // Hermit Merchant's Bell Bearing [3]
+dd 400022EB 00000001 00000000 FFFFFFFF // Imprisoned Merchant's Bell Bearing
+dd 400022EC 00000001 00000000 FFFFFFFF // Iji's Bell Bearing
+dd 400022ED 00000001 00000000 FFFFFFFF // Rogier's Bell Bearing
+dd 400022EE 00000001 00000000 FFFFFFFF // Blackguard's Bell Bearing
+dd 400022EF 00000001 00000000 FFFFFFFF // Corhyn's Bell Bearing
+dd 400022F0 00000001 00000000 FFFFFFFF // Gowry's Bell Bearing
+dd 400022F1 00000001 00000000 FFFFFFFF // Bone Peddler's Bell Bearing
+dd 400022F2 00000001 00000000 FFFFFFFF // Meat Peddler's Bell Bearing
+dd 400022F3 00000001 00000000 FFFFFFFF // Medicine Peddler's Bell Bearing
+dd 400022F4 00000001 00000000 FFFFFFFF // Gravity Stone Peddler's Bell Bearing
+dd 400022F7 00000001 00000000 FFFFFFFF // Smithing-Stone Miner's Bell Bearing [1]
+dd 400022F8 00000001 00000000 FFFFFFFF // Smithing-Stone Miner's Bell Bearing [2]
+dd 400022F9 00000001 00000000 FFFFFFFF // Smithing-Stone Miner's Bell Bearing [3]
+dd 400022FA 00000001 00000000 FFFFFFFF // Smithing-Stone Miner's Bell Bearing [4]
+dd 400022FB 00000001 00000000 FFFFFFFF // Somberstone Miner's Bell Bearing [1]
+dd 400022FC 00000001 00000000 FFFFFFFF // Somberstone Miner's Bell Bearing [2]
+dd 400022FD 00000001 00000000 FFFFFFFF // Somberstone Miner's Bell Bearing [3]
+dd 400022FE 00000001 00000000 FFFFFFFF // Somberstone Miner's Bell Bearing [4]
+dd 400022FF 00000001 00000000 FFFFFFFF // Somberstone Miner's Bell Bearing [5]
+dd 40002300 00000001 00000000 FFFFFFFF // Glovewort Picker's Bell Bearing [1]
+dd 40002301 00000001 00000000 FFFFFFFF // Glovewort Picker's Bell Bearing [2]
+dd 40002302 00000001 00000000 FFFFFFFF // Glovewort Picker's Bell Bearing [3]
+dd 40002303 00000001 00000000 FFFFFFFF // Ghost-Glovewort Picker's Bell Bearing [1]
+dd 40002304 00000001 00000000 FFFFFFFF // Ghost-Glovewort Picker's Bell Bearing [2]
+dd 40002305 00000001 00000000 FFFFFFFF // Ghost-Glovewort Picker's Bell Bearing [3]
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337271411</ID>
+                  <Description>"Give all spirit ashes"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[ENABLE]
+ItemGibArray:
+dd 40030D40 00000001 00000000 FFFFFFFF // Black Knife Tiche
+dd 40031128 00000001 00000000 FFFFFFFF // Banished Knight Oleg
+dd 40031510 00000001 00000000 FFFFFFFF // Banished Knight Engvall
+dd 400318F8 00000001 00000000 FFFFFFFF // Fanged Imp Ashes
+dd 40031CE0 00000001 00000000 FFFFFFFF // Latenna the Albinauric
+dd 400320C8 00000001 00000000 FFFFFFFF // Nomad Ashes
+dd 400324B0 00000001 00000000 FFFFFFFF // Nightmaiden &amp; Swordstress Puppets
+// dd 40032898 00000001 00000000 FFFFFFFF // Mimic Tear Ashes
+dd 40032C80 00000001 00000000 FFFFFFFF // Crystalian Ashes
+dd 40033068 00000001 00000000 FFFFFFFF // Ancestral Follower Ashes
+dd 40033450 00000001 00000000 FFFFFFFF // Winged Misbegotten Ashes
+dd 40033838 00000001 00000000 FFFFFFFF // Albinauric Ashes
+dd 40033C20 00000001 00000000 FFFFFFFF // Skeletal Militiaman Ashes
+dd 40034008 00000001 00000000 FFFFFFFF // Skeletal Bandit Ashes
+dd 400343F0 00000001 00000000 FFFFFFFF // Oracle Envoy Ashes
+dd 400347D8 00000001 00000000 FFFFFFFF // Putrid Corpse Ashes
+dd 40034BC0 00000001 00000000 FFFFFFFF // Depraved Perfumer Carmaan
+dd 40034FA8 00000001 00000000 FFFFFFFF // Perfumer Tricia
+dd 40035390 00000001 00000000 FFFFFFFF // Glintstone Sorcerer Ashes
+dd 40035778 00000001 00000000 FFFFFFFF // Twinsage Sorcerer Ashes
+dd 40035B60 00000001 00000000 FFFFFFFF // Page Ashes
+dd 40035F48 00000001 00000000 FFFFFFFF // Battlemage Hugues
+dd 40036330 00000001 00000000 FFFFFFFF // Clayman Ashes
+dd 40036718 00000001 00000000 FFFFFFFF // Cleanrot Knight Finlay
+dd 40036B00 00000001 00000000 FFFFFFFF // Kindred of Rot Ashes
+dd 40036EE8 00000001 00000000 FFFFFFFF // Marionette Soldier Ashes
+dd 400372D0 00000001 00000000 FFFFFFFF // Avionette Soldier Ashes
+dd 400376B8 00000001 00000000 FFFFFFFF // Fire Monk Ashes
+dd 40037AA0 00000001 00000000 FFFFFFFF // Blackflame Monk Amon
+dd 40037E88 00000001 00000000 FFFFFFFF // Man-Serpent Ashes
+dd 40038270 00000001 00000000 FFFFFFFF // Azula Beastman Ashes
+dd 40038658 00000001 00000000 FFFFFFFF // Kaiden Sellsword Ashes
+dd 40038A40 00000001 00000000 FFFFFFFF // Lone Wolf Ashes
+dd 40038E28 00000001 00000000 FFFFFFFF // Giant Rat Ashes
+dd 40039210 00000001 00000000 FFFFFFFF // Demi-Human Ashes
+dd 400395F8 00000001 00000000 FFFFFFFF // Rotten Stray Ashes
+dd 400399E0 00000001 00000000 FFFFFFFF // Spirit Jellyfish Ashes
+dd 40039DC8 00000001 00000000 FFFFFFFF // Warhawk Ashes
+dd 4003A1B0 00000001 00000000 FFFFFFFF // Stormhawk Deenh
+dd 4003A598 00000001 00000000 FFFFFFFF // Bloodhound Knight Floh
+dd 4003A980 00000001 00000000 FFFFFFFF // Wandering Noble Ashes
+dd 4003AD68 00000001 00000000 FFFFFFFF // Noble Sorcerer Ashes
+dd 4003B150 00000001 00000000 FFFFFFFF // Vulgar Militia Ashes
+dd 4003B538 00000001 00000000 FFFFFFFF // Mad Pumpkin Head Ashes
+dd 4003B920 00000001 00000000 FFFFFFFF // Land Squirt Ashes
+dd 4003BD08 00000001 00000000 FFFFFFFF // Miranda Sprout Ashes
+dd 4003C0F0 00000001 00000000 FFFFFFFF // Soldjars of Fortune Ashes
+dd 4003C4D8 00000001 00000000 FFFFFFFF // Omenkiller Rollo
+dd 4003C8C0 00000001 00000000 FFFFFFFF // Greatshield Soldier Ashes
+dd 4003CCA8 00000001 00000000 FFFFFFFF // Archer Ashes
+dd 4003D090 00000001 00000000 FFFFFFFF // Godrick Soldier Ashes
+dd 4003D478 00000001 00000000 FFFFFFFF // Raya Lucaria Soldier Ashes
+dd 4003D860 00000001 00000000 FFFFFFFF // Leyndell Soldier Ashes
+dd 4003DC48 00000001 00000000 FFFFFFFF // Radahn Soldier Ashes
+dd 4003E030 00000001 00000000 FFFFFFFF // Mausoleum Soldier Ashes
+dd 4003E418 00000001 00000000 FFFFFFFF // Haligtree Soldier Ashes
+dd 4003E800 00000001 00000000 FFFFFFFF // Ancient Dragon Knight Kristoff
+dd 4003EBE8 00000001 00000000 FFFFFFFF // Redmane Knight Ogha
+dd 4003EFD0 00000001 00000000 FFFFFFFF // Lhutel the Headless
+dd 4003F3B8 00000001 00000000 FFFFFFFF // Nepheli Loux Puppet
+dd 4003F7A0 00000001 00000000 FFFFFFFF // Dung Eater Puppet
+dd 4003FB88 00000001 00000000 FFFFFFFF // Finger Maiden Therolina Puppet
+dd 4003FF70 00000001 00000000 FFFFFFFF // Dolores the Sleeping Arrow Puppet
+dd 40040358 00000001 00000000 FFFFFFFF // Jarwight Puppet
+dd 00000000 00000000 00000000 FFFFFFFF
 
 createthread(ItemGib)
 {$lua}
