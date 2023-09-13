@@ -1,9 +1,214 @@
 type,id,name
+armor,220200,page gloves
+armor,250200,nomadic merchant gloves
+armor,293200,night maiden bracelets
+armor,293300,night maiden greaves
+armor,301200,shaman bracers
+armor,302000,mystic circlet
+armor,302200,mystic bracelets
+armor,320200,sanguine noble bracelets
+armor,421000,vulgar militia hood
+armor,620200,prophet manacles
+armor,681000,war surgeon hood
+armor,743000,viridian hood
+armor,800200,festive gloves
+armor,800300,festive trousers
+armor,837000,glint mage cap
+armor,837100,glint mage robe
+armor,837200,raya lucarian gloves
+armor,837300,raya lucarian trousers
+armor,890200,prisoner chains
+armor,960200,consort's gloves
+armor,964300,bloodsoaked wraps
+armor,1010200,snow witch gloves
+armor,1140000,vanguard helm
+armor,1140100,vanguard armor
+armor,1140200,vanguard gauntlets
+armor,1140300,vanguard greaves
+armor,1150000,marksman hat
+armor,1150100,marksman tabard
+armor,1150200,marksman gauntlets
+armor,1150300,marksman boots
+armor,1160000,berserker leather helm
+armor,1160100,berserker battlewear
+armor,1160200,berserker bracers
+armor,1160300,berserker legwraps
+armor,1170000,dreadnought helm
+armor,1170100,dreadnought armor
+armor,1170200,dreadnought gauntlets
+armor,1170300,dreadnought greaves
+armor,1180000,sellsword helm
+armor,1180100,sellsword armor
+armor,1180200,sellsword gloves
+armor,1180300,sellsword boots
+armor,1190000,starcaller hood
+armor,1190100,starcaller garb
+armor,1190200,starcaller wraps
+armor,1190300,starcaller boots
+armor,1200000,underworld hood
+armor,1200100,underworld robe
+armor,1200200,underworld bracers
+armor,1200300,underworld boots
+armor,1210000,volcanist hat
+armor,1210100,volcanist robe
+armor,1210200,volcanist gloves
+armor,1210300,volcanist boots
+armor,1220000,stormcaller helm
+armor,1220100,stormcaller armor
+armor,1220200,stormcaller gauntlets
+armor,1220300,stormcaller greaves
+armor,1230000,nox oracle headband
+armor,1230100,nox oracle armor
+armor,1230200,nox oracle gloves
+armor,1230300,nox oracle skirt
+armor,1240000,necromancer hood
+armor,1240100,necromancer robe
+armor,1240200,necromancer gloves
+armor,1240300,necromancer trousers
+armor,1250000,frost witch hat
+armor,1250100,frost witch robe
+armor,1250200,frost witch wraps
+armor,1250300,frost witch skirt
+armor,1260000,heretic's collar
+armor,1260100,heretic's rags
+armor,1260200,heretic's wraps
+armor,1260300,heretic's boots
+armor,1310000,fundamentalist crown
+armor,1310100,fundamentalist breastplate
+armor,1310200,fundamentalist bracers
+armor,1310300,fundamentalist greaves
+armor,1320000,dragon cult helm
+armor,1320100,dragon cult armor
+armor,1320200,dragon cult gauntlets
+armor,1320300,dragon cult greaves
+armor,1330000,zealot hood
+armor,1330100,zealot robe
+armor,1330200,zealot wraps
+armor,1330300,zealot boots
+armor,1340000,hood of rot
+armor,1340100,coat of rot
+armor,1340200,gloves of rot
+armor,1340300,boots of rot
+armor,1350000,frenzied maiden blindfold
+armor,1350100,frenzied maiden robe
+armor,1350200,frenzied maiden gloves
+armor,1350300,frenzied maiden boots
+armor,1360000,dreamer's horned headband
+armor,1360100,dreamer's rags
+armor,1360200,dreamer's wraps
+armor,1360300,dreamer's skirt
+armor,1370000,beast clergy hood
+armor,1370100,beast clergy robe
+armor,1370200,beast clergy bracers
+armor,1370300,beast clergy boots
+armor,1810000,mausoleum knight helm
+armor,1940200,fia's bracelets
+armor,1940300,fia's trousers
+armor,1950000,millicent's headband
+armor,1990200,high page gloves
+armor,1990300,high page trousers
+catalyst,33000000,glintstone staff
+catalyst,33050000,gelmir lava staff
+catalyst,33060000,blighted branch
+catalyst,33120000,digger staff
+catalyst,33180000,prince of death staff
+catalyst,33200000,dragon student staff
+catalyst,33230000,azur's staff
+catalyst,33240000,lusat's night staff
+catalyst,33250000,meteorite staff
+catalyst,33260000,staff of the guilty
+catalyst,33280000,staff of loss
+catalyst,33290000,dragonkin scepter
+catalyst,33300000,ranni's staff
+catalyst,33310000,snow witch staff
+catalyst,33320000,staff of briar
+catalyst,33330000,lavastone staff
+catalyst,33340000,tempestcaller's staff
+catalyst,33350000,stormcaller staff
+catalyst,34000000,finger seal
+catalyst,34010000,godslayer's seal
+catalyst,34020000,giant's seal
+catalyst,34030000,gravel stone seal
+catalyst,34040000,clawmark seal
+catalyst,34060000,golden order seal
+catalyst,34090000,frenzied flame seal
+catalyst,34100000,godskin seal
+catalyst,34110000,fire monk seal
+catalyst,34120000,dragon cult seal
+catalyst,34130000,earthbreaker seal
+catalyst,34140000,fingerprint seal
+catalyst,34150000,mohgwyn seal
+catalyst,34160000,war surgeon seal
+catalyst,34170000,seal of rot
+catalyst,34180000,pest seal
+catalyst,34190000,spiritshaper seal
+catalyst,34200000,mystic seal
 keystone,8060,keystone 1
 keystone,8061,keystone 2
 keystone,8062,keystone 3
 keystone,8063,keystone 4
 keystone,8064,keystone 5
+note,12070550,path of the underworld mage
+note,12070551,weapons for the underworld mage
+note,31030000,path of the bestial devout
+note,31030001,weapons for bestial devout
+note,32070080,path of the prisoner
+note,1034420070,path of the perfumer
+note,1035440140,path of the blood initiate
+note,1035440141,weapons for the blood initiate
+note,1035490100,path of the frost witch
+note,1035490101,weapons for the frost witch
+note,1036420010,path of the rogue
+note,1036420011,weapons for the rogue
+note,1037440020,path of the glint sorcerer
+note,1037440021,weapons for the glint sorcerer
+note,1037480110,path of the mystic
+note,1037480111,weapons for the mystic
+note,1038450030,path of the aberrant heretic
+note,1038450031,weapons for the aberrant heretic
+note,1039410040,path of the dreadnought
+note,1039410041,weapons for the dreadnought
+note,1040380010,path of the storm caller
+note,1040380011,weapons for the storm caller
+note,1041360900,path of the retainer
+note,1041360901,weapons for the retainer
+note,1042340030,path of the necromancer
+note,1042340031,weapons for the necromancer
+note,1042370110,path of the vanguard
+note,1042370111,weapons for the vanguard
+note,1042380060,path of the berserker
+note,1042380061,weapons for the berserker
+note,1043360080,path of the dragon cultist
+note,1043360081,weapons for the dragon cultist
+note,1043380030,path of the sellsword
+note,1043380031,weapons for the sellsword
+note,1043400020,path of the godskin celebrant
+note,1043400021,weapons for the godskin celebrant
+note,1044330090,path of the frenzied zealot
+note,1044330091,weapons for the frenzied zealot
+note,1045330010,path of the starcaller
+note,1045330011,weapons for the starcaller
+note,1045360000,path of the marksman
+note,1045360001,weapons for the marksman
+note,1046380300,path of the fundamentalist
+note,1046380301,weapons for the fundamentalist
+note,1046400030,path of the flame prophet
+note,1046400031,weapons for the flame prophet
+note,1047400101,path of the volcanist
+note,1047400102,weapons for the volcanist
+note,1049390050,path of the nox oracle
+note,1049390051,weapons for the nox oracle
+note,1050380030,path of the servant of rot
+note,1050380031,weapons for the servant of rot
+physick,20900,essence
+physick,20901,elemental
+physick,20902,prowess
+physick,20903,invigorating
+physick,20904,enduring
+talisman,20952,faint
+talisman,20953,shimmering
+talisman,20954,glowing
+talisman,20955,shining
 rune,8300,faint rune of beasts
 rune,8301,shimmering rune of beasts
 rune,8302,glowing rune of beasts
@@ -94,129 +299,21 @@ rune,8386,shimmering rune of thorns
 rune,8387,glowing rune of thorns
 rune,8388,shining rune of thorns
 rune,8389,radiant rune of thorns
-physick,20900,essence
-physick,20901,elemental
-physick,20902,prowess
-physick,20903,invigorating
-physick,20904,enduring
+stone,10101,smithing stone
+stone,10105,large smithing stone
+stone,10107,great smithing stone
+stone,10140,dragon smithing stone
+stone,10160,somber stone
+stone,10164,large somber stone
+stone,10165,great somber stone
+stone,10167,colossal somber stone
+stone,10168,dragon somber stone
 talisman,20950,combat
 talisman,20951,heirloom
-talisman,20952,faint
-talisman,20953,shimmering
-talisman,20954,glowing
-talisman,20955,shining
 talisman,20956,enchanted
-armor,220200,page gloves
-armor,250200,nomadic merchant gloves
-armor,293200,night maiden bracelets
-armor,293300,night maiden greaves
-armor,301200,shaman bracers
-armor,302000,mystic circlet
-armor,302200,mystic bracelets
-armor,320200,sanguine noble bracelets
-armor,421000,vulgar militia hood
-armor,620200,prophet manacles
-armor,681000,war surgeon hood
-armor,743000,viridian hood
-armor,800200,festive gloves
-armor,800300,festive trousers
-armor,837000,glint mage cap
-armor,837100,glint mage robe
-armor,837200,raya lucarian gloves
-armor,837300,raya lucarian trousers
-armor,890200,prisoner chains
-armor,960200,consort's gloves
-armor,964300,bloodsoaked wraps
-armor,1010200,snow witch gloves
 weapon,1050000,underworld dagger
 weapon,1120000,surgeons catlinger
-armor,1140000,vanguard helm
-armor,1140100,vanguard armor
-armor,1140200,vanguard gauntlets
-armor,1140300,vanguard greaves
-armor,1150000,marksman hat
-armor,1150100,marksman tabard
-armor,1150200,marksman gauntlets
-armor,1150300,marksman boots
-armor,1160000,berserker leather helm
-armor,1160100,berserker battlewear
-armor,1160200,berserker bracers
-armor,1160300,berserker legwraps
-armor,1170000,dreadnought helm
 weapon,1170000,midnight dagger
-armor,1170100,dreadnought armor
-armor,1170200,dreadnought gauntlets
-armor,1170300,dreadnought greaves
-armor,1180000,sellsword helm
-armor,1180100,sellsword armor
-armor,1180200,sellsword gloves
-armor,1180300,sellsword boots
-armor,1190000,starcaller hood
-armor,1190100,starcaller garb
-armor,1190200,starcaller wraps
-armor,1190300,starcaller boots
-armor,1200000,underworld hood
-armor,1200100,underworld robe
-armor,1200200,underworld bracers
-armor,1200300,underworld boots
-armor,1210000,volcanist hat
-armor,1210100,volcanist robe
-armor,1210200,volcanist gloves
-armor,1210300,volcanist boots
-armor,1220000,stormcaller helm
-armor,1220100,stormcaller armor
-armor,1220200,stormcaller gauntlets
-armor,1220300,stormcaller greaves
-armor,1230000,nox oracle headband
-armor,1230100,nox oracle armor
-armor,1230200,nox oracle gloves
-armor,1230300,nox oracle skirt
-armor,1240000,necromancer hood
-armor,1240100,necromancer robe
-armor,1240200,necromancer gloves
-armor,1240300,necromancer trousers
-armor,1250000,frost witch hat
-armor,1250100,frost witch robe
-armor,1250200,frost witch wraps
-armor,1250300,frost witch skirt
-armor,1260000,heretic's collar
-armor,1260100,heretic's rags
-armor,1260200,heretic's wraps
-armor,1260300,heretic's boots
-armor,1310000,fundamentalist crown
-armor,1310100,fundamentalist breastplate
-armor,1310200,fundamentalist bracers
-armor,1310300,fundamentalist greaves
-armor,1320000,dragon cult helm
-armor,1320100,dragon cult armor
-armor,1320200,dragon cult gauntlets
-armor,1320300,dragon cult greaves
-armor,1330000,zealot hood
-armor,1330100,zealot robe
-armor,1330200,zealot wraps
-armor,1330300,zealot boots
-armor,1340000,hood of rot
-armor,1340100,coat of rot
-armor,1340200,gloves of rot
-armor,1340300,boots of rot
-armor,1350000,frenzied maiden blindfold
-armor,1350100,frenzied maiden robe
-armor,1350200,frenzied maiden gloves
-armor,1350300,frenzied maiden boots
-armor,1360000,dreamer's horned headband
-armor,1360100,dreamer's rags
-armor,1360200,dreamer's wraps
-armor,1360300,dreamer's skirt
-armor,1370000,beast clergy hood
-armor,1370100,beast clergy robe
-armor,1370200,beast clergy bracers
-armor,1370300,beast clergy boots
-armor,1810000,mausoleum knight helm
-armor,1940200,fia's bracelets
-armor,1940300,fia's trousers
-armor,1950000,millicent's headband
-armor,1990200,high page gloves
-armor,1990300,high page trousers
 weapon,2030000,yura’s kanabo
 weapon,2100000,zephyr blades
 weapon,2140000,sword of the cosmos
@@ -258,39 +355,3 @@ weapon,18170000,reaver’s odachi
 weapon,19040000,war scythe
 weapon,22040000,stone claws
 weapon,23160000,lodestone of gelmir
-catalyst,33000000,glintstone staff
-catalyst,33050000,gelmir lava staff
-catalyst,33060000,blighted branch
-catalyst,33120000,digger staff
-catalyst,33180000,prince of death staff
-catalyst,33200000,dragon student staff
-catalyst,33230000,azur's staff
-catalyst,33240000,lusat's night staff
-catalyst,33250000,meteorite staff
-catalyst,33260000,staff of the guilty
-catalyst,33280000,staff of loss
-catalyst,33290000,dragonkin scepter
-catalyst,33300000,ranni's staff
-catalyst,33310000,snow witch staff
-catalyst,33320000,staff of briar
-catalyst,33330000,lavastone staff
-catalyst,33340000,tempestcaller's staff
-catalyst,33350000,stormcaller staff
-catalyst,34000000,finger seal
-catalyst,34010000,godslayer's seal
-catalyst,34020000,giant's seal
-catalyst,34030000,gravel stone seal
-catalyst,34040000,clawmark seal
-catalyst,34060000,golden order seal
-catalyst,34090000,frenzied flame seal
-catalyst,34100000,godskin seal
-catalyst,34110000,fire monk seal
-catalyst,34120000,dragon cult seal
-catalyst,34130000,earthbreaker seal
-catalyst,34140000,fingerprint seal
-catalyst,34150000,mohgwyn seal
-catalyst,34160000,war surgeon seal
-catalyst,34170000,seal of rot
-catalyst,34180000,pest seal
-catalyst,34190000,spiritshaper seal
-catalyst,34200000,mystic seal
