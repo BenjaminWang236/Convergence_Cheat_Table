@@ -302,55 +302,55 @@
 101dc130:millicent's headband
 101e5e38:high page gloves
 101e5e9c:high page trousers
-00b82e96:path of the underworld mage
-00b82e97:weapons for the underworld mage
-01d97af0:path of the bestial devout
-01d97af1:weapons for bestial devout
-01e959c0:path of the prisoner
-3da7ff66:path of the perfumer
-3db7900c:path of the blood initiate
-3db7900d:weapons for the blood initiate
-3db85334:path of the frost witch
-3db85335:weapons for the frost witch
-3dc683aa:path of the rogue
-3dc683ab:weapons for the rogue
-3dd61414:path of the glint sorcerer
-3dd61415:weapons for the glint sorcerer
-3dd6b0ae:path of the mystic
-3dd6b0af:weapons for the mystic
-3de57d6e:path of the aberrant heretic
-3de57d6f:weapons for the aberrant heretic
-3df42378:path of the dreadnought
-3df42379:weapons for the dreadnought
-3e02f06a:path of the storm caller
-3e02f06b:weapons for the storm caller
-3e11e804:path of the retainer
-3e11e805:weapons for the retainer
-3e20d8be:path of the necromancer
-3e20d8bf:weapons for the necromancer
-3e214e3e:path of the vanguard
-3e214e3f:weapons for the vanguard
-3e21751c:path of the berserker
-3e21751d:weapons for the berserker
-3e306950:path of the dragon cultist
-3e306951:weapons for the dragon cultist
-3e30b73e:path of the sellsword
-3e30b73f:weapons for the sellsword
-3e310554:path of the godskin celebrant
-3e310555:weapons for the godskin celebrant
-3e3f366a:path of the frenzied zealot
-3e3f366b:weapons for the frenzied zealot
-3e4e785a:path of the starcaller
-3e4e785b:weapons for the starcaller
-3e4eed80:path of the marksman
-3e4eed81:weapons for the marksman
-3e5e7f0c:path of the fundamentalist
-3e5e7f0d:weapons for the fundamentalist
-3e5ecc1e:path of the flame prophet
-3e5ecc1f:weapons for the flame prophet
-3e6e0ea5:path of the volcanist
-3e6e0ea6:weapons for the volcanist
-3e8c6be2:path of the nox oracle
-3e8c6be3:weapons for the nox oracle
-3e9b86fe:path of the servant of rot
-3e9b86ff:weapons for the servant of rot
+40002260:path of the retainer
+40002261:path of the vanguard
+40002262:path of the marksman
+40002263:path of the berserker
+40002264:path of the dreadnought
+40002265:path of the sellsword
+40002266:path of the rogue
+40002267:path of the glint sorcerer
+40002268:path of the starcaller
+40002269:path of the underworld mage
+4000226a:path of the volcanist
+4000226b:path of the storm caller
+4000226c:path of the nox oracle
+4000226d:path of the necromancer
+4000226e:path of the frost witch
+4000226f:path of the aberrant heretic
+40002270:path of the flame prophet
+40002271:path of the fundamentalist
+40002272:path of the bestial devout
+40002273:path of the dragon cultist
+40002274:path of the godskin celebrant
+40002275:path of the frenzied zealot
+40002276:path of the blood initiate
+40002277:path of the servant of rot
+40002278:path of the mystic
+40002279:path of the perfumer
+4000227a:path of the prisoner
+400022a6:weapons for the retainer
+400022a7:weapons for the vanguard
+400022a8:weapons for the marksman
+400022a9:weapons for the berserker
+400022aa:weapons for the dreadnought
+400022ab:weapons for the sellsword
+400022ac:weapons for the rogue
+400022ad:weapons for the glint sorcerer
+400022ae:weapons for the starcaller
+400022af:weapons for the underworld mage
+400022b0:weapons for the volcanist
+400022b1:weapons for the storm caller
+400022b2:weapons for the nox oracle
+400022b3:weapons for the necromancer
+400022b4:weapons for the frost witch
+400022b5:weapons for the aberrant heretic
+400022b6:weapons for the flame prophet
+400022b7:weapons for the fundamentalist
+400022b8:weapons for bestial devout
+400022b9:weapons for the dragon cultist
+400022ba:weapons for the godskin celebrant
+400022bb:weapons for the frenzied zealot
+400022bc:weapons for the blood initiate
+400022bd:weapons for the servant of rot
+400022be:weapons for the mystic

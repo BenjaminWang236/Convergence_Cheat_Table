@@ -2,58 +2,58 @@
 ItemGibArray:
 // ID       Quantity Upgrade  AshOfWar
 // dd 40000898 00000001 00000000 FFFFFFFF // Prattling Pate "Hello"
-dd 00b82e96 00000001 00000000 FFFFFFFF // path of the underworld mage
-dd 00b82e97 00000001 00000000 FFFFFFFF // weapons for the underworld mage
-dd 01d97af0 00000001 00000000 FFFFFFFF // path of the bestial devout
-dd 01d97af1 00000001 00000000 FFFFFFFF // weapons for bestial devout
-dd 01e959c0 00000001 00000000 FFFFFFFF // path of the prisoner
-dd 3da7ff66 00000001 00000000 FFFFFFFF // path of the perfumer
-dd 3db7900c 00000001 00000000 FFFFFFFF // path of the blood initiate
-dd 3db7900d 00000001 00000000 FFFFFFFF // weapons for the blood initiate
-dd 3db85334 00000001 00000000 FFFFFFFF // path of the frost witch
-dd 3db85335 00000001 00000000 FFFFFFFF // weapons for the frost witch
-dd 3dc683aa 00000001 00000000 FFFFFFFF // path of the rogue
-dd 3dc683ab 00000001 00000000 FFFFFFFF // weapons for the rogue
-dd 3dd61414 00000001 00000000 FFFFFFFF // path of the glint sorcerer
-dd 3dd61415 00000001 00000000 FFFFFFFF // weapons for the glint sorcerer
-dd 3dd6b0ae 00000001 00000000 FFFFFFFF // path of the mystic
-dd 3dd6b0af 00000001 00000000 FFFFFFFF // weapons for the mystic
-dd 3de57d6e 00000001 00000000 FFFFFFFF // path of the aberrant heretic
-dd 3de57d6f 00000001 00000000 FFFFFFFF // weapons for the aberrant heretic
-dd 3df42378 00000001 00000000 FFFFFFFF // path of the dreadnought
-dd 3df42379 00000001 00000000 FFFFFFFF // weapons for the dreadnought
-dd 3e02f06a 00000001 00000000 FFFFFFFF // path of the storm caller
-dd 3e02f06b 00000001 00000000 FFFFFFFF // weapons for the storm caller
-dd 3e11e804 00000001 00000000 FFFFFFFF // path of the retainer
-dd 3e11e805 00000001 00000000 FFFFFFFF // weapons for the retainer
-dd 3e20d8be 00000001 00000000 FFFFFFFF // path of the necromancer
-dd 3e20d8bf 00000001 00000000 FFFFFFFF // weapons for the necromancer
-dd 3e214e3e 00000001 00000000 FFFFFFFF // path of the vanguard
-dd 3e214e3f 00000001 00000000 FFFFFFFF // weapons for the vanguard
-dd 3e21751c 00000001 00000000 FFFFFFFF // path of the berserker
-dd 3e21751d 00000001 00000000 FFFFFFFF // weapons for the berserker
-dd 3e306950 00000001 00000000 FFFFFFFF // path of the dragon cultist
-dd 3e306951 00000001 00000000 FFFFFFFF // weapons for the dragon cultist
-dd 3e30b73e 00000001 00000000 FFFFFFFF // path of the sellsword
-dd 3e30b73f 00000001 00000000 FFFFFFFF // weapons for the sellsword
-dd 3e310554 00000001 00000000 FFFFFFFF // path of the godskin celebrant
-dd 3e310555 00000001 00000000 FFFFFFFF // weapons for the godskin celebrant
-dd 3e3f366a 00000001 00000000 FFFFFFFF // path of the frenzied zealot
-dd 3e3f366b 00000001 00000000 FFFFFFFF // weapons for the frenzied zealot
-dd 3e4e785a 00000001 00000000 FFFFFFFF // path of the starcaller
-dd 3e4e785b 00000001 00000000 FFFFFFFF // weapons for the starcaller
-dd 3e4eed80 00000001 00000000 FFFFFFFF // path of the marksman
-dd 3e4eed81 00000001 00000000 FFFFFFFF // weapons for the marksman
-dd 3e5e7f0c 00000001 00000000 FFFFFFFF // path of the fundamentalist
-dd 3e5e7f0d 00000001 00000000 FFFFFFFF // weapons for the fundamentalist
-dd 3e5ecc1e 00000001 00000000 FFFFFFFF // path of the flame prophet
-dd 3e5ecc1f 00000001 00000000 FFFFFFFF // weapons for the flame prophet
-dd 3e6e0ea5 00000001 00000000 FFFFFFFF // path of the volcanist
-dd 3e6e0ea6 00000001 00000000 FFFFFFFF // weapons for the volcanist
-dd 3e8c6be2 00000001 00000000 FFFFFFFF // path of the nox oracle
-dd 3e8c6be3 00000001 00000000 FFFFFFFF // weapons for the nox oracle
-dd 3e9b86fe 00000001 00000000 FFFFFFFF // path of the servant of rot
-dd 3e9b86ff 00000001 00000000 FFFFFFFF // weapons for the servant of rot
+dd 40002260 00000001 00000000 FFFFFFFF // path of the retainer
+dd 40002261 00000001 00000000 FFFFFFFF // path of the vanguard
+dd 40002262 00000001 00000000 FFFFFFFF // path of the marksman
+dd 40002263 00000001 00000000 FFFFFFFF // path of the berserker
+dd 40002264 00000001 00000000 FFFFFFFF // path of the dreadnought
+dd 40002265 00000001 00000000 FFFFFFFF // path of the sellsword
+dd 40002266 00000001 00000000 FFFFFFFF // path of the rogue
+dd 40002267 00000001 00000000 FFFFFFFF // path of the glint sorcerer
+dd 40002268 00000001 00000000 FFFFFFFF // path of the starcaller
+dd 40002269 00000001 00000000 FFFFFFFF // path of the underworld mage
+dd 4000226a 00000001 00000000 FFFFFFFF // path of the volcanist
+dd 4000226b 00000001 00000000 FFFFFFFF // path of the storm caller
+dd 4000226c 00000001 00000000 FFFFFFFF // path of the nox oracle
+dd 4000226d 00000001 00000000 FFFFFFFF // path of the necromancer
+dd 4000226e 00000001 00000000 FFFFFFFF // path of the frost witch
+dd 4000226f 00000001 00000000 FFFFFFFF // path of the aberrant heretic
+dd 40002270 00000001 00000000 FFFFFFFF // path of the flame prophet
+dd 40002271 00000001 00000000 FFFFFFFF // path of the fundamentalist
+dd 40002272 00000001 00000000 FFFFFFFF // path of the bestial devout
+dd 40002273 00000001 00000000 FFFFFFFF // path of the dragon cultist
+dd 40002274 00000001 00000000 FFFFFFFF // path of the godskin celebrant
+dd 40002275 00000001 00000000 FFFFFFFF // path of the frenzied zealot
+dd 40002276 00000001 00000000 FFFFFFFF // path of the blood initiate
+dd 40002277 00000001 00000000 FFFFFFFF // path of the servant of rot
+dd 40002278 00000001 00000000 FFFFFFFF // path of the mystic
+dd 40002279 00000001 00000000 FFFFFFFF // path of the perfumer
+dd 4000227a 00000001 00000000 FFFFFFFF // path of the prisoner
+dd 400022a6 00000001 00000000 FFFFFFFF // weapons for the retainer
+dd 400022a7 00000001 00000000 FFFFFFFF // weapons for the vanguard
+dd 400022a8 00000001 00000000 FFFFFFFF // weapons for the marksman
+dd 400022a9 00000001 00000000 FFFFFFFF // weapons for the berserker
+dd 400022aa 00000001 00000000 FFFFFFFF // weapons for the dreadnought
+dd 400022ab 00000001 00000000 FFFFFFFF // weapons for the sellsword
+dd 400022ac 00000001 00000000 FFFFFFFF // weapons for the rogue
+dd 400022ad 00000001 00000000 FFFFFFFF // weapons for the glint sorcerer
+dd 400022ae 00000001 00000000 FFFFFFFF // weapons for the starcaller
+dd 400022af 00000001 00000000 FFFFFFFF // weapons for the underworld mage
+dd 400022b0 00000001 00000000 FFFFFFFF // weapons for the volcanist
+dd 400022b1 00000001 00000000 FFFFFFFF // weapons for the storm caller
+dd 400022b2 00000001 00000000 FFFFFFFF // weapons for the nox oracle
+dd 400022b3 00000001 00000000 FFFFFFFF // weapons for the necromancer
+dd 400022b4 00000001 00000000 FFFFFFFF // weapons for the frost witch
+dd 400022b5 00000001 00000000 FFFFFFFF // weapons for the aberrant heretic
+dd 400022b6 00000001 00000000 FFFFFFFF // weapons for the flame prophet
+dd 400022b7 00000001 00000000 FFFFFFFF // weapons for the fundamentalist
+dd 400022b8 00000001 00000000 FFFFFFFF // weapons for bestial devout
+dd 400022b9 00000001 00000000 FFFFFFFF // weapons for the dragon cultist
+dd 400022ba 00000001 00000000 FFFFFFFF // weapons for the godskin celebrant
+dd 400022bb 00000001 00000000 FFFFFFFF // weapons for the frenzied zealot
+dd 400022bc 00000001 00000000 FFFFFFFF // weapons for the blood initiate
+dd 400022bd 00000001 00000000 FFFFFFFF // weapons for the servant of rot
+dd 400022be 00000001 00000000 FFFFFFFF // weapons for the mystic
 
 // END
 dd 00000000 00000000 00000000 FFFFFFFF
