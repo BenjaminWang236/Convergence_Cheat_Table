@@ -1,0 +1,16 @@
+[ENABLE]
+ItemGibArray:
+// ID       Quantity Upgrade  AshOfWar
+dd 4000271A 0000000E 00000000 FFFFFFFF // Golden Seed
+dd 40002724 0000000C 00000000 FFFFFFFF // Sacred Tear
+dd 4000272E 00000008 00000000 FFFFFFFF // Memory Stone
+
+// END
+dd 00000000 00000000 00000000 FFFFFFFF
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]
+ItemGibArray+10:
+dd 00000000 00000000 00000000 FFFFFFFF

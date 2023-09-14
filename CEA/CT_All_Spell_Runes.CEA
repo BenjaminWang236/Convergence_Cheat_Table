@@ -2,6 +2,7 @@
 ItemGibArray:
 // ID       Quantity Upgrade  AshOfWar
 // dd 40000898 00000001 00000000 FFFFFFFF // Prattling Pate "Hello"
+dd 4000274C 00000013 00000000 FFFFFFFF // Dragon Hearts
 dd 4000206c 00000001 00000000 FFFFFFFF // Faint rune of beasts
 dd 4000206d 00000001 00000000 FFFFFFFF // Shimmering rune of beasts
 dd 4000206e 00000001 00000000 FFFFFFFF // Glowing rune of beasts
