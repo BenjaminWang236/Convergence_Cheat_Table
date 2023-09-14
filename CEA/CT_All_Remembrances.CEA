@@ -1,0 +1,26 @@
+[ENABLE]
+ItemGibArray:
+// dd 40000898 00000001 00000000 FFFFFFFF // Prattling Pate "Hello"
+dd 40000B86 00000001 00000000 FFFFFFFF // Remembrance of the Grafted
+dd 40000B87 00000001 00000000 FFFFFFFF // Remembrance of the Starscourge
+dd 40000B88 00000001 00000000 FFFFFFFF // Remembrance of the Omen King
+dd 40000B89 00000001 00000000 FFFFFFFF // Remembrance of the Blasphemous
+dd 40000B8A 00000001 00000000 FFFFFFFF // Remembrance of the Rot Goddess
+dd 40000B8B 00000001 00000000 FFFFFFFF // Remembrance of the Blood Lord
+dd 40000B8C 00000001 00000000 FFFFFFFF // Remembrance of the Black Blade
+dd 40000B8D 00000001 00000000 FFFFFFFF // Remembrance of Hoarah Loux
+dd 40000B8E 00000001 00000000 FFFFFFFF // Remembrance of the Dragonlord
+dd 40000B8F 00000001 00000000 FFFFFFFF // Remembrance of the Full Moon Queen
+dd 40000B90 00000001 00000000 FFFFFFFF // Remembrance of the Lichdragon
+dd 40000B91 00000001 00000000 FFFFFFFF // Remembrance of the Fire Giant
+dd 40000B92 00000001 00000000 FFFFFFFF // Remembrance of the Regal Ancestor
+dd 40000B93 00000001 00000000 FFFFFFFF // Elden Remembrance
+dd 40000B94 00000001 00000000 FFFFFFFF // Remembrance of the Naturalborn
+dd 40000B95 00000001 00000000 FFFFFFFF // Remembrance of the Crucible's Betrayer
+dd 40000B96 00000001 00000000 FFFFFFFF // Remembrance of the Godskin Matriarch
+dd 00000000 00000000 00000000 FFFFFFFF
+
+createthread(ItemGib)
+{$lua}
+if not syntaxcheck then disableMemrec(memrec) end
+[DISABLE]

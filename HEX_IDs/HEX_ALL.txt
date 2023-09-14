@@ -354,3 +354,20 @@
 400022bc:weapons for the blood initiate
 400022bd:weapons for the servant of rot
 400022be:weapons for the mystic
+40000B86:Remembrance of the Grafted
+40000B87:Remembrance of the Starscourge
+40000B88:Remembrance of the Omen King
+40000B89:Remembrance of the Blasphemous
+40000B8A:Remembrance of the Rot Goddess
+40000B8B:Remembrance of the Blood Lord
+40000B8C:Remembrance of the Black Blade
+40000B8D:Remembrance of Hoarah Loux
+40000B8E:Remembrance of the Dragonlord
+40000B8F:Remembrance of the Full Moon Queen
+40000B90:Remembrance of the Lichdragon
+40000B91:Remembrance of the Fire Giant
+40000B92:Remembrance of the Regal Ancestor
+40000B93:Elden Remembrance
+40000B94:Remembrance of the Naturalborn
+40000B95:Remembrance of the Crucible's Betrayer
+40000B96:Remembrance of the Godskin Matriarch
